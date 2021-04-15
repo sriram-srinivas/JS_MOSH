@@ -1,0 +1,1 @@
+console.log("Speed 1thz")
