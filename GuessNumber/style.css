@@ -1,0 +1,100 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    color: #FFF;
+}
+
+header{
+    height: 40vh;
+    border-bottom: 4px solid #FFF;
+    position: relative;
+}
+
+.btn{
+ background-color: #FFF;
+ color: #000;
+ padding: 10px 15px;   
+ font-weight: bold;
+ border: none;
+ font-size: 15pt;
+ cursor: pointer;
+}
+
+.Again {
+position: absolute;
+top:5vh;
+left: 8vh;
+}
+
+h1{
+    text-align: center;
+}
+
+.guessTxt{
+    position: absolute;
+    margin: auto;
+    width: 100%;
+    top: 10vh;
+}
+
+.scoreResult{
+    position: absolute;
+    width: 15vw;
+    padding: 3vh 3vw;
+    background-color: #FFF;
+    color: #000;
+    font-size: 35pt;
+    text-align: center;
+    left:43vw;
+    top: 30vh;
+}
+.betweenTxt{
+    position: absolute;
+    top: 5vh;
+    right: 8vh;
+}
+
+section{
+    margin: 3vw;
+    margin-top: 5vw;
+}
+
+.left{
+    float: left;
+    width: 40vw;
+}
+
+.right{
+    float: right;
+    width: 40vw;
+}
+
+.input{
+    background-color: transparent;
+    border: 2px solid #FFF;
+    color:#FFF;
+    padding: 20px 7px;
+    font-size: 25pt;
+    width: 15vw;
+    margin-left: 5vw;
+}
+
+.check{
+    padding: 10px 3px;
+    width: 7vw;
+    margin-left: 5vw;
+    margin-top: 10px;
+}
+
+.right p{
+    padding: 2vh 3vw;
+    font-size: 20pt;
+}
