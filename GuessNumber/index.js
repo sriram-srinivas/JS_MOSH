@@ -14,49 +14,49 @@ const checkBtn = document.querySelector("#check");
 const check = () => {
     const val = Number(guess.value)
     if(!val){
-        msg.innerHTML = 'Enter a Number!'
+        msg.textContent = 'Enter a Number!'
     }else{
     const diff = val - answer;
     if(val === answer){
-        msg.innerHTML = '🎉 Correct Number!'
+        msg.textContent = '🎉 Correct Number!'
         correctGuess= true
     } 
     else if(val > answer ){
-        msg.innerHTML = diff < 3 ? 'High' : 'Too High' 
+        msg.textContent = diff < 3 ? 'High' : 'Too High' 
     } 
     else if(val < answer){
-        msg.innerHTML = diff > -3 ? 'Low' : 'Too Low' 
+        msg.textContent = diff > -3 ? 'Low' : 'Too Low' 
     } 
 
     if(!correctGuess){
-        score.innerHTML = --currentScore
+        score.textContent = --currentScore
         if(currentScore <= 0){
-            score.innerHTML = currentScore = 0
-            msg.innerHTML = " Game Over :("
+            score.textContent = currentScore = 0
+            msg.textContent = " Game Over :("
         }
     }else{
         body.style.backgroundColor= "green"
-        result.innerHTML = answer;
+        result.textContent = answer;
         if(currentScore > highScore){
-            HighScore.innerHTML = highScore = currentScore
-            msg.innerHTML += " New High Score!!!"
+            HighScore.textContent = highScore = currentScore
+            msg.textContent += " New High Score!!!"
         }
     }
 }
 }
 
 const reset = () => {
-    msg.innerHTML = startMsg;
+    msg.textContent = startMsg;
     currentScore = Maxscore;
-    score.innerHTML = currentScore
-    result.innerHTML = '?';
+    score.textContent = currentScore
+    result.textContent = '?';
     correctGuess=false;
     guess.value="";
     body.style.backgroundColor= "black";
     answer = Math.floor(Math.random() * 21);  
 }
 
-HighScore.innerHTML = highScore;
+HighScore.textContent = highScore;
 again.addEventListener('click',reset);
 checkBtn.addEventListener('click',check);
 reset();
