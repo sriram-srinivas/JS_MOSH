@@ -1,3 +1,6 @@
+'use strict';
+
+console.log(document);
 let Maxscore=20,currentScore,highScore=0,answer=0,startMsg='Start Guessing...',correctGuess=false;
 
 const result = document.getElementById("result");
@@ -14,29 +17,27 @@ const generateNewAnswer = () => {
 
 const check = () => {
     const val = Number(guess.value)
+    if(!val){
+        msg.innerHTML = 'Enter a Number!'
+    }else{
     const diff = val - answer;
     if(val === answer){
-        msg.innerHTML = 'Correct Number!'
+        msg.innerHTML = '🎉 Correct Number!'
         correctGuess= true
     } 
     else if(val > answer ){
-        if(diff < 3){
-            msg.innerHTML = `High`
-        }else{
-            msg.innerHTML = `Too High`
-        }
+        msg.innerHTML = diff < 3 ? 'High' : 'Too High' 
     } 
     else if(val < answer){
-        if(diff > -3){
-            msg.innerHTML = `Low`
-        }else{
-            msg.innerHTML = `Too Low`
-        }
+        msg.innerHTML = diff > -3 ? 'Low' : 'Too Low' 
     } 
 
     if(!correctGuess){
-        console.log("inside false answer");
         score.innerHTML = --currentScore
+        if(currentScore <= 0){
+            score.innerHTML = currentScore = 0
+            msg.innerHTML = " Game Over :("
+        }
     }else{
         body.style.backgroundColor= "green"
         result.innerHTML = answer;
@@ -45,7 +46,7 @@ const check = () => {
             msg.innerHTML += " New High Score!!!"
         }
     }
-
+}
 }
 
 const reset = () => {
@@ -60,3 +61,4 @@ const reset = () => {
 }
 
 HighScore.innerHTML = highScore;
+reset();

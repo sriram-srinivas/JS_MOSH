@@ -1,1 +1,86 @@
 Script tag always at end of body tag, to let HTML load fully
+
+JS Notes
+	DataTypes
+		Number
+		String
+		Boolean
+		undefined
+		null
+		Symbol //ES2015
+		BigInt //ES2020
+		
+		typeof null -> Object //error in JS which is not likely to be corrected	
+		Symbol is used to create and hold unique values
+	
+	MISC
+	Creating variable without let,const or var will create a property in global object and will not throw error in non strict mode
+	** -> exponent operator i.e 2 ** 4 => 2*2*2*2 //4 times 2
+	mdn operator precedence //mdn mozilla dev network
+
+	Flasey values 
+		0
+		'' // empty String
+		undefined
+		null
+		NaN
+		
+	Switch(case)
+		case 1:
+		 log(1)
+		 break
+		 case 2:
+		 case 3:
+		 log(5)  // will print 5 for both 2 & 3
+		 
+		 Switch case without break will execute next case as well (unconditionally) until it finds break
+		 
+	Math
+		Math.max(//csv),Math.min(//csv) to return min max values of numerical csv alone 
+		
+		
+	Console
+		console.log() - Print in console as message
+		warn() - Print in console as warning
+		error()  - Print in console as error
+		table()  - Prints array/object in table format
+		
+	Debug
+		debugger; // write this in js file at specific position to open dev tools with breakpoint at the position
+	Functions
+		Functions can be declarations or Expressions
+		
+		const testFunc = function () {//definition}  //function Expression
+		function testFunc1() { //function declaration
+			..definition
+		}
+		Note: Function declaration can be called even before definition
+			
+			//will work
+			testFunc1() 
+			function testFunc1() { 
+				..definition
+			}
+
+			//will not work
+			testFunc()
+			const testFunc = function () {//definition}
+			
+	Array
+		console.log([10,10,10] + 10) //prints "10,10,1010" as string
+		console.log([10,10,10] - 10) //prints NaN
+		
+		Array Methods
+			Array.push('test') -> adds 'test' to end of array and returns length of array
+			Array.unshift('test')-> adds 'test' to start of array and returns length of array
+			Array.pop() -> will remove and return last element of the array
+			Array.shift() -> will remove and return first element of the array
+			Array.indexOf('test') -> returns index of 'test', if element is not present -1 is returned
+			Array.includes('test') -> returns true/false if its present (=== strict equal) or not in Array //ES6 method
+	
+    DOM
+        document.querySelector(//css selector syntax)
+        innerHTML vs innerText vs textContent
+            innerHTML -> parses and provide as HTML
+            innnerText -> just text no parsing of HTML
+            textContent -> sets text content alone
