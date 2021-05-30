@@ -9,7 +9,9 @@ const msg = document.getElementById("msg");
 const score = document.getElementById("score");
 const HighScore = document.getElementById("HighScore");
 const body = document.getElementsByTagName("body")[0];
-
+const again = document.querySelector("#again");
+const checkBtn = document.querySelector("#check");
+console.log(again,checkBtn);
 const generateNewAnswer = () => {
     answer = Math.floor(Math.random() * 21);  
     console.log(answer)
@@ -61,4 +63,6 @@ const reset = () => {
 }
 
 HighScore.innerHTML = highScore;
+again.addEventListener('click',reset);
+checkBtn.addEventListener('click',check);
 reset();
