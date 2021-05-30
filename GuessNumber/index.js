@@ -1,6 +1,5 @@
 'use strict';
 
-console.log(document);
 let Maxscore=20,currentScore,highScore=0,answer=0,startMsg='Start Guessing...',correctGuess=false;
 
 const result = document.getElementById("result");
@@ -11,11 +10,6 @@ const HighScore = document.getElementById("HighScore");
 const body = document.getElementsByTagName("body")[0];
 const again = document.querySelector("#again");
 const checkBtn = document.querySelector("#check");
-console.log(again,checkBtn);
-const generateNewAnswer = () => {
-    answer = Math.floor(Math.random() * 21);  
-    console.log(answer)
-}
 
 const check = () => {
     const val = Number(guess.value)
@@ -59,7 +53,7 @@ const reset = () => {
     correctGuess=false;
     guess.value="";
     body.style.backgroundColor= "black";
-    generateNewAnswer();
+    answer = Math.floor(Math.random() * 21);  
 }
 
 HighScore.innerHTML = highScore;
