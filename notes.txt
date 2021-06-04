@@ -14,9 +14,16 @@ JS Notes
 		Symbol is used to create and hold unique values
 	
 	MISC
-	Creating variable without let,const or var will create a property in global object and will not throw error in non strict mode
-	** -> exponent operator i.e 2 ** 4 => 2*2*2*2 //4 times 2
-	mdn operator precedence //mdn mozilla dev network
+	Compilation
+		JS is now Just in Time (JIT) complied, before execution. whith following phases
+		Parsing - Code is parsed to check for errors and to create an Abstract Syntax Tree (AST)
+		Compilation - AST is converted to machine Code to be stored in call stack
+		Execution - Code is executed based on call stack
+
+	Operators
+		Creating variable without let,const or var will create a property in global object and will not throw error in non strict mode
+		** -> exponent operator i.e 2 ** 4 => 2*2*2*2 //4 times 2
+		mdn operator precedence //mdn mozilla dev network
 
 	Flasey values 
 		0
@@ -84,3 +91,41 @@ JS Notes
             innerHTML -> parses and provide as HTML
             innnerText -> just text no parsing of HTML
             textContent -> sets text content alone
+
+	Scoping
+		Lexical scoping - Js is lexically scope (child can access parent and function can access Golbal variables)
+		After ES6 functions declared inside othr blocs are also block scoped in Strict mode alone. i.e in strict mode after ES6
+		if a funtions in decarled inside if(){} it is accessible only inside if
+		'var' still has no block or function scopes
+
+	Window
+		'var' decarled at global level create a property in window pbject. i.e if we create var x= 10 -> window.x will be created with value 10
+
+	This
+		this keyword in not same always
+		In general 'this' is a special variable created inside every execution context (function, object). 
+		It points to the owner of the function
+		'this' is not a static variable. It depends on how function is called and value is assigned to 'this' only when function is called
+		
+		4 ways of calling function
+		
+		1.If normal function (not arrow function) is a method inside an object 'this' will refer to the Object 
+		
+		const Person = {
+			Name:"Logan",
+			Year:1994,
+			calcAge:function() {
+				return 2021 - this.Year   // output: 27; here this point to Person Object
+			}
+			calcAge1: year => {
+				year - this.Year // output: NaN; here this points to window object 
+			}
+		}
+
+		2. Global scoped function definition/declaration will point to undefined in strict mode and window object if not in strict mode
+
+		'use strict';
+
+		const calcAge = function() {
+				console.log(this)   // strict mode will log undefined; else window object 
+			}
