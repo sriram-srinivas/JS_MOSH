@@ -14,6 +14,41 @@ JS Notes
 		Symbol is used to create and hold unique values
 	
 	MISC
+	Destructuring
+		Arrays 
+			Array Destructuring happens based on array index position
+			Swapping variables
+				let arr = [1,2]
+				let [a,b] = arr
+				[a,b] = [b,a] //will swap a=2,b=1
+			Nested Destructuring
+				const [a,[b,c]] =[5,[6,7],8] // gives a=5,b=6,c=7
+			Defaulting
+				const [a,b,c=5] = [1,2,3] // gives a=1,b=2,c=3
+				const [a,b,c=5] = [1,2] // gives a=1,b=2,c=5 (as per value array c is undefined so it is defaulted to 5)
+			Skipping values
+				const [a,,b] =[4,5,6] // gives a=4,b=6 
+
+				const [data,length] = someFunc() // Destructuring can be used to store returned data as well
+		Object Destructuring
+			Object Destructuring happens based on Key name
+				const Person = {name:"Logan",age:27,job:developer}
+				const {name,job} = Person // creates name and job variable
+			Orderless
+				const {job,age} = Person // since based on key name order does not matter
+			Alias
+				const {job : designation,age : old} = Person // creates designation and old variables with job and age's value. i.e before : is value and after : is variable Alias
+			Defaulting
+				const {job : designation = "VIP"} = Person // Defaulting with alias
+			Mutating variables
+				let a=100,b=200;
+				const obj = {a:1,b:2,c:7}
+				{a,b} = obj // error: unexpected token '=' -> because {} is considered code block syntax error is thrown
+				({a,b} = obj) // enclose above line with () to avoid syntax error // result a=1,b=2
+			Nested Destructuring
+				const Person = {name:"Logan",age:27,job:developer,address:{street:"100 king st",zip:60004}}
+				const {address:{street,zip}} = Person
+
 	Compilation
 		JS is now Just in Time (JIT) complied, before execution. whith following phases
 		Parsing - Code is parsed to check for errors and to create an Abstract Syntax Tree (AST)
@@ -24,6 +59,36 @@ JS Notes
 		Creating variable without let,const or var will create a property in global object and will not throw error in non strict mode
 		** -> exponent operator i.e 2 ** 4 => 2*2*2*2 //4 times 2
 		mdn operator precedence //mdn mozilla dev network
+
+		Spread
+			'...' to take out values from Iterables & objects
+			Spread can be used in areas where we are allowed to specify CSV. i.e inside array, passing function arguments,console.log etc 
+			const arr =[1,2,3,4,5,6]
+			const arr1 = [...arr,7,8,9] // will create new copy of arr [1,2,3,4,5,6,7,8,9]
+			Uses
+				Shallow copy
+				merge two Iterable (eg [...arr,...arr1])
+				String to string array
+					const str = "Logan"
+					const strArr = [...str,] // creates string arr ['L','o','g','a','n']
+
+		Logical Operators
+			In javascript Logical Operators can do the following
+				1. Use any DataType
+				2. Return any DataType
+				3. Do short Circuiting
+			AND
+			
+			OR
+				Short Circuiting
+					(condition1 || condition2) 
+					JS returns condition1 immediately without evaluating condition2, only if condition1 is false condition2 is returned irrespectively
+
+					Scenarios
+						const test = 23
+						const test1 = test || 10 // this is equal to test ? test : 10
+
+
 
 	Flasey values 
 		0
@@ -129,3 +194,20 @@ JS Notes
 		const calcAge = function() {
 				console.log(this)   // strict mode will log undefined; else window object 
 			}
+
+		3. Arrow functions does not have 'this' for itself, instead it points to 'this' around it (lexically accessible parent 'this')
+
+		4.eventListner, if 'this' is used inside eventListner of the element, this will refer to the DOM element
+
+
+		Note: 'this' will never point to the funtion or the variable environment
+
+	Data Structures
+		Iterable (iterateable)
+			Array
+			String
+			Map
+			Set
+		Non Iterable
+			Objects
+			

@@ -1,0 +1,25 @@
+HTML
+    HTML5 concepts, doctype,meta
+css
+    CSS3
+    Preprocessors
+JS
+    ES6 and ES6+
+React
+    React core
+    React Hooks
+    Redux
+    Middleware
+    Webpack
+    Babel
+    etc
+    Libraries
+Node
+    Express
+    Mongo Driver
+    REST API
+MongoDB
+    commands
+DataStructures
+TTD
+    Jasmine/Karma/jest/mocha
