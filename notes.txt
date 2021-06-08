@@ -77,17 +77,27 @@ JS Notes
 				1. Use any DataType
 				2. Return any DataType
 				3. Do short Circuiting
-			AND
-			
-			OR
+			&&
 				Short Circuiting
-					(condition1 || condition2) 
-					JS returns condition1 immediately without evaluating condition2, only if condition1 is false condition2 is returned irrespectively
+					(condition1 || condition2) // if condition1 is true condition2 is evaluated
+					Will return first falsey value or last value
+					JS returns condition1 immediately if its false, without evaluating condition2, only if condition1 is true condition2 is returned irrespectively
+					Used to evaluate second expression if first is true (like an if condition)
+					Scenarios
+						const test = 23
+						(test && functionCall(test)) // calls the function only if test has a truthy value
 
+			||
+				Short Circuiting
+					(condition1 || condition2) // if condition1 is false condition2 is evaluated
+					Will return first truthy value or last value
+					JS returns condition1 if its true, immediately without evaluating condition2, only if condition1 is false condition2 is returned irrespectively
+					Used to set default values
 					Scenarios
 						const test = 23
 						const test1 = test || 10 // this is equal to test ? test : 10
-
+			?? - es 2020
+				this is same as || but sends false only for null and undefined
 
 
 	Flasey values 
@@ -137,18 +147,6 @@ JS Notes
 			//will not work
 			testFunc()
 			const testFunc = function () {//definition}
-			
-	Array
-		console.log([10,10,10] + 10) //prints "10,10,1010" as string
-		console.log([10,10,10] - 10) //prints NaN
-		
-		Array Methods
-			Array.push('test') -> adds 'test' to end of array and returns length of array
-			Array.unshift('test')-> adds 'test' to start of array and returns length of array
-			Array.pop() -> will remove and return last element of the array
-			Array.shift() -> will remove and return first element of the array
-			Array.indexOf('test') -> returns index of 'test', if element is not present -1 is returned
-			Array.includes('test') -> returns true/false if its present (=== strict equal) or not in Array //ES6 method
 	
     DOM
         document.querySelector(//css selector syntax)
@@ -210,4 +208,102 @@ JS Notes
 			Set
 		Non Iterable
 			Objects
-			
+
+		Array
+		console.log([10,10,10] + 10) //prints "10,10,1010" as string
+		console.log([10,10,10] - 10) //prints NaN
+		
+		Array Methods
+			array.push('test') -> adds 'test' to end of array and returns length of array
+			array.unshift('test')-> adds 'test' to start of array and returns length of array
+			array.pop() -> will remove and return last element of the array
+			array.shift() -> will remove and return first element of the array
+			array.indexOf('test') -> returns index of 'test', if element is not present -1 is returned
+			array.includes('test') -> returns true/false if its present (=== strict equal) or not in Array //ES6 method
+
+			array.entries() -> returns an array with index in 0 and value in 1 position eg. [[0,'a'],[1,'b']]
+
+		Optional Chaining
+			?. can be used to perform Optional Chaining in array of objects
+			const arr = [{data:"100"}]
+			console.log(arr[1].data) // will throw error
+			console.log(arr[1]?.data) // will print undefined
+
+		Objects
+			Objects are used to store Key value pairs, where key is always a string and value can be of any datatype
+
+			Object Methods
+				const obj = {a:11,b:12,c:13,d:14}
+				Object.keys(objName) -> returns an array with all the keys in object ['a','b','c','d']
+				Object.values(objName) -> returns an array with all the values in object [11,12,13,14]
+				Object.entries(objName) -> returns an array with keys in 0 and value in 1 position eg. [['a',11],['b',12]....]
+			Enhanced Object literals
+				Major Enhancements on Object literals are
+				1. Setting variable alone creates a property in object with same variable name and sets it to it
+				2. Functions can be configured in funcName(){} directly where funcName is considered as the key
+				3. use [] in the key side to evalute any expression inside to arrive at a dynamic keyname
+				const Address = {add1:"No 6", street:"Vivekanandar Theru",city:"Dubai main rd"}
+
+				const Person = {
+					Name:"Logan",
+					Address, // same as Address: Address
+					calcAge(age){  // same as calcAge : function(){}
+						return 2021 - age
+					},
+					['Bini'+'Babu']:"dost" // using [] is used to set dynamic key name after evaluating expression inside it
+				}
+			Optional Chaining - es 2020
+				Using ?. to access property of object is called Optional Chaining and its returns undefined as soon as property is not found in the object
+				Scenarios
+					const Person = {
+						Name:"Logan",
+						Address:{StreetNum:"No6"}
+					}
+					Person.Address.Address1.StreetName // throws unable to find property StreetName of undefined
+					Person?.Address?.Address1?.StreetName // returns undefined right after Address1 without throwing error
+					Person?.Address[Address1]?.StreetName // can be used with [] as well
+
+					Person?.calcAge?.(1994) // method is invoked only if its available
+
+		Sets
+			Collection of unique values (kind of Hashset)
+			Supports mixed dataTypes as well
+			const tempSet = new Set(<Iterable>) // can be used with any iterable
+
+			const tempSet = new Set([1,2,3,1,2,4,3]) // will store only unique values // result : [1,2,3,4]
+
+			Set Methods
+				tempSet.add(6) // adds element
+				tempSet.delete(6) // removes element
+				tempSet.size // returns size (length)
+				tempSet.has(5) // returns true or false based on values being present in set
+				tempSet.clear() // clears entire set
+
+				Note: We can use for of to iterate through Sets
+
+				Scenarios
+					Remove duplicates from Array
+					let arr = [1,2,3,4,5,1,2,4,2]
+					arr = [...new Set(arr)] // set will remove duplicates and Spread operator gives new array from the set
+		Maps
+			Map is used to store Key value pair as well, but unlike objects Map can have keys and values of any datatype
+				const mMap = new Map()
+			Map Methods
+				mMap.set(Key,value) // set value in key and returns new Map
+				mMap.set(Key,value).set(Key1,value1) // set() can be chained as it returns new Map always
+				
+				mMap.get(key) // returns the value if key is present else undefined
+				mMap.has(key) // returns booelan if key is present or not
+				mMap.delete(key)
+	Loop
+		For of Loop
+			Arrays
+				const arr = ['a','b','c']
+
+				for(const a of arr) console.log(a) // will print each index one by one
+
+				Use arr.entries() method to get index in for of loop  
+					for(const [index,element] of arr.entries()) console.log(`${index+1}:${element}`) //output: 1: a ....
+
+
+			Objects

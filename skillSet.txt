@@ -1,11 +1,11 @@
 HTML
-    HTML5 concepts, doctype,meta
+    HTML5 concepts, doctype,meta  // trivial
 css
-    CSS3
-    Preprocessors
+    CSS3 // Meduim
+    Preprocessors // high
 JS
-    ES6 and ES6+
-React
+    ES6 and ES6+ // high
+React //high 
     React core
     React Hooks
     Redux
@@ -14,12 +14,91 @@ React
     Babel
     etc
     Libraries
-Node
+Node // medium
     Express
     Mongo Driver
     REST API
-MongoDB
+MongoDB // medium
     commands
 DataStructures
 TTD
     Jasmine/Karma/jest/mocha
+
+==========================================================================================
+
+What is React?
+Why do you choose React?
+What is Virtual DOM?
+Props and State
+When will choose Class/Functional Component
+Pure Component
+Controlled/Uncontrolled Component
+HOF/HOC
+JSX
+React Component lifecycle methods
+
+JWT
+ 
+
+constructor
+getDerivedStateFromProps
+render
+componentDidMount
+
+getDerivedStateFromProps
+shouldComponentUpdate
+render
+getSnapshotUpdate
+componentDidupdate
+Routes
+componentWillUnmount
+Custom-hooks
+getDerivedStateFromProps
+componentDidCatch
+
+ 
+
+Hooks and its purpose
+How will you implement lifecycle methods with functional components?
+
+ 
+
+react-router
+
+ 
+
+Redux
+Components of Redux
+Lifecycle of Redux components
+
+ 
+
+Babel
+Webpack
+
+ 
+
+JS
+
+ 
+
+ES6
+Array functions
+Callback
+Asnyc/Await
+Promises
+Generator Functions
+Closures and Scopes
+Assign and Create functions
+Freeze method
+Object Mutation
+Middlewares
+
+react and redux verison
+ES5 and ES6 DIFFERENCE
+Let AND Constant
+login page construction using html , css and javascript
+protected Route
+Redux thunk
+Provider
+interceptors

@@ -1,15 +1,21 @@
-'use strict';
-const Person = {
-    Name:"Logan",
-    Year:1994,
-    calcAge:function(year){
-        console.log("func",this);
-        const test =  () => {
-            console.log("inner func",this);
-        }
-        test()
-        return year - this.Year
-    }
-}
+const game = { 
+    team1: 'Bayern Munich', 
+    team2: 'Borrussia Dortmund', 
+    players: [
+        ['Neuer', 'Pavard', 'Martinez', 'Alaba', 'Davies', 'Kimmich', 'Goretzka', 'Coman', 'Muller', 'Gnarby', 'Lewandowski'], ['Burki', 'Schulz', 'Hummels', 'Akanji', 'Hakimi', 'Weigl', 'Witsel', 'Hazard', 'Brandt', 'Sancho', 'Gotze']],
+    score: '4:0', 
+    scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'], 
+    date: 'Nov 9th, 2037', 
+    odds: { team1: 1.33, x: 3.25, team2: 6.5}
+    };
 
-Person.calcAge(2004)
+const sMap = new Map()
+
+sMap.set('1',1);
+sMap.set(1,'1');
+sMap.set(true,"false").set(false,"true")
+
+console.log(sMap)
+sMap.set(1,"false").set('1',"true")
+
+console.log(sMap)
