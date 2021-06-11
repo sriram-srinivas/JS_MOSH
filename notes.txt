@@ -13,6 +13,35 @@ JS Notes
 		typeof null -> Object //error in JS which is not likely to be corrected	
 		Symbol is used to create and hold unique values
 	
+		Strings
+			const str = "Logan"
+			console.log(str[0]) // prints L
+			console.log('ETHAN'[0]) // prints E
+
+			String Methods
+				All/Most string comparison methods are case sensitive
+
+				str.indexOf('a') // returns position of 'a'  in str
+				str.lastIndexOf('a') // returns position of last 'a' occurence in str 
+				str.includes('an') // returns boolean based on substring is present or not
+				str.startsWith('Lo') // returns boolean based on string starts with substring or not
+				str.endsWith('Lo') // returns boolean based on string ends with substring or not
+				str.slice(startIndex) // returns string from the mentioned start index str.slice(1) gives 'ogan'
+					-ve index will extract from end str.slice(-2) returns 'an'
+				str.slice(start,end) // returns substring from start and before end str.slice(1,3) gives 'og'
+				str.toLowerCase() // returns lowercase String
+				str.toUpperCase() // returns uppercase String
+				str.trim()// returns string with whitespace removed from start and end of string
+				str.replace(targetString,stringReplacement) // returns string after replacing first occurence of targetString with stringReplacement. Note: use regex /string/g to replaceAll str.replace(/a/g,'b') will replace all a with b
+
+				str.split(delimiter) // returns array 
+				str.padStart(20,'*') // returns a string of length 20 by adding 20 - str.length * before str String// result : **************Logan
+				str.padEnd(20,'+') // returns a string of length 20 by adding 20 - str.length * after str String// result : Logan************** 
+				str.repeat(5) // repeats str 5 times and returns string
+				Chaining
+					String method chaining is possible as almos every string method returns modified string
+					str.toLowerCase().trim() // returns lowercased and trimmed str
+
 	MISC
 	Destructuring
 		Arrays 
@@ -147,7 +176,35 @@ JS Notes
 			//will not work
 			testFunc()
 			const testFunc = function () {//definition}
-	
+		Function methods
+			const testFunc = function (param1,param2){
+				console.log(`${this.name} ${param1} ${param2}`)
+			}
+			testFunc.call(thisVar,arg1,arg2,..) -> Calls function testFunc with 'this' variable pointing to 1st argument 'thisVar' and remaining arg1 & 2 are testFunc's arguments 
+
+			testFunc.apply(thisVar,[arg1,arg2,..]) -> same as call() but expects argument array as second argument
+			
+			testFunc.bind(thisVar) -> returns a function which has its 'this' set to 'thisVar'
+			const testFuncWithThis =testFunc.bind(thisVar,arg1) -> same as above but first parameter of funcName is also set to arg1 
+			testFuncWithThis(arg2) // since this and 1st param is set above only arg2 is needed to call
+
+			testFunc1.bind(null,arg1) -> use this to just set fixed parameter (since this is not needed it is set to null)
+
+		IIFE - Immediately Invoked Function Expression
+			An Immediately-invoked Function Expression is a way to execute functions immediately, as soon as they are created. IIFEs are very useful because they don't pollute the global object, and they are a simple way to isolate variables declarations
+			(function(){
+				const test = 100
+				console.log("IIFE")
+			})(); // this is an IIFE code pattern invoked only once ( to create a specific scope before ES6 bolck scope)
+
+			(() => console.log("Arrow IIFE")) // works for arrow function as well
+			
+			//Named IIFE
+			(function testIIFE(){
+				console.log("Named IIFE")
+			})()
+
+			testIIFE(); // will throw reference error
     DOM
         document.querySelector(//css selector syntax)
         innerHTML vs innerText vs textContent
@@ -198,7 +255,7 @@ JS Notes
 		4.eventListner, if 'this' is used inside eventListner of the element, this will refer to the DOM element
 
 
-		Note: 'this' will never point to the funtion or the variable environment
+		Note: 'this' will never point to the funtion or the variable environment, Also check Function Methods to know how to modify 'this' binding
 
 	Data Structures
 		Iterable (iterateable)
@@ -220,6 +277,7 @@ JS Notes
 			array.shift() -> will remove and return first element of the array
 			array.indexOf('test') -> returns index of 'test', if element is not present -1 is returned
 			array.includes('test') -> returns true/false if its present (=== strict equal) or not in Array //ES6 method
+			array.join('*') -> returns string by concating all array index with delimiter
 
 			array.entries() -> returns an array with index in 0 and value in 1 position eg. [[0,'a'],[1,'b']]
 
@@ -237,6 +295,9 @@ JS Notes
 				Object.keys(objName) -> returns an array with all the keys in object ['a','b','c','d']
 				Object.values(objName) -> returns an array with all the values in object [11,12,13,14]
 				Object.entries(objName) -> returns an array with keys in 0 and value in 1 position eg. [['a',11],['b',12]....]
+
+				Object.assign()
+				Object.create()
 			Enhanced Object literals
 				Major Enhancements on Object literals are
 				1. Setting variable alone creates a property in object with same variable name and sets it to it
@@ -294,7 +355,31 @@ JS Notes
 				
 				mMap.get(key) // returns the value if key is present else undefined
 				mMap.has(key) // returns booelan if key is present or not
-				mMap.delete(key)
+				mMap.delete(key) // remove key
+				mMap.clear() // clear map
+				mMap.size // returns size (length)
+				[...mMap.keys()] -> returns an array with all the keys in Mao ['a','b','c','d']
+				[...mMap.values()] -> returns an array with all the values in Map` [11,12,13,14]
+				[...mMap.entries()] -> returns an array with keys in 0 and value in 1 position eg. [['a',11],['b',12]....]
+				[...mMap] -> same as above; Convert Map to Array
+
+			const sMap = new Map([["Key","val"],["Key1","val1"]]) // to initialize a Map, use Array of Arrays syntax where 0 index is key and 1 index is value (similar to Object.entries())
+
+			Maps can have following as key as well
+				Arrays
+				objects
+				DOM element
+
+			Note: All reference DataTypes if used as a key in map, should always be set with variable and not value
+				mMap.set([1,2],"test");
+				mMap.get([1,2]); // returns undefined as [1,2] is created twice and not referenced
+
+				const arr=[1,2]
+				mMap.set(arr,"test");
+				mMap.get(arr); // will return "test"
+
+			Convert Object to Map
+				const jMap = new Map(Object.entries(objName)) // will create a Map based on Object
 	Loop
 		For of Loop
 			Arrays
@@ -306,4 +391,46 @@ JS Notes
 					for(const [index,element] of arr.entries()) console.log(`${index+1}:${element}`) //output: 1: a ....
 
 
-			Objects
+	OOPS
+		Programming Paradigm, using Classes and Objects
+		Abstraction
+			Hiding logic
+		Encapsulation
+			access modifiers, keeping things inside class itself
+		Inheritance
+			child extends parent
+		Polymorphism
+			child can override parent class methods
+
+		Constrctor Function
+			Constructor function does not work with Arrow function as it does not have it own this keyword
+			Create a constructor Function with function definition & declaration
+			To make it an actual constructor function use 'new' keyword when calling the function
+			Using new funcName() does the following things
+				1. Createa a new {} Object by default
+				2. Upon calling the function, 'this' will point to newly created Object {}
+				3. {} is linked to Prototype
+				4. Automatically returns the created object
+
+			const Person = function(Name,Age){
+				this.Name = Name
+				this.Age = Age
+				console.log(this) // will print Person{}
+			}
+
+			new Person('Logan',27);
+
+			Note: Never create a function/method inside constructor functions as it would reapeat the function unecessarily for each instance, instead use Prototype and inherit the method
+
+		Prototype
+			Person.prototype.funcName = function(){
+				//any code
+			}
+			Person.prototype.Type = "Humans"
+
+			Any property configured inside a Prototype Object will be available for all the objects created for Person
+
+		Class
+			Class is just syntac Enhancements but it is same as constructor function that returns an object
+			Not hoisted
+			Classes are always executed in strict mode

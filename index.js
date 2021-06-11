@@ -1,21 +1,7 @@
-const game = { 
-    team1: 'Bayern Munich', 
-    team2: 'Borrussia Dortmund', 
-    players: [
-        ['Neuer', 'Pavard', 'Martinez', 'Alaba', 'Davies', 'Kimmich', 'Goretzka', 'Coman', 'Muller', 'Gnarby', 'Lewandowski'], ['Burki', 'Schulz', 'Hummels', 'Akanji', 'Hakimi', 'Weigl', 'Witsel', 'Hazard', 'Brandt', 'Sancho', 'Gotze']],
-    score: '4:0', 
-    scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'], 
-    date: 'Nov 9th, 2037', 
-    odds: { team1: 1.33, x: 3.25, team2: 6.5}
-    };
+const func = function (){
+}
+const arr = []
+const temp = null
+const obj = {}
 
-const sMap = new Map()
-
-sMap.set('1',1);
-sMap.set(1,'1');
-sMap.set(true,"false").set(false,"true")
-
-console.log(sMap)
-sMap.set(1,"false").set('1',"true")
-
-console.log(sMap)
+console.log(typeof func , typeof arr , typeof temp , typeof obj)
