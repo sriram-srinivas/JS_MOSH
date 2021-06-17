@@ -43,46 +43,85 @@ JS Notes
 					str.toLowerCase().trim() // returns lowercased and trimmed str
 
 	MISC
-	Destructuring
-		Arrays 
-			Array Destructuring happens based on array index position
-			Swapping variables
-				let arr = [1,2]
-				let [a,b] = arr
-				[a,b] = [b,a] //will swap a=2,b=1
-			Nested Destructuring
-				const [a,[b,c]] =[5,[6,7],8] // gives a=5,b=6,c=7
-			Defaulting
-				const [a,b,c=5] = [1,2,3] // gives a=1,b=2,c=3
-				const [a,b,c=5] = [1,2] // gives a=1,b=2,c=5 (as per value array c is undefined so it is defaulted to 5)
-			Skipping values
-				const [a,,b] =[4,5,6] // gives a=4,b=6 
+		Destructuring
+			Arrays 
+				Array Destructuring happens based on array index position
+				Swapping variables
+					let arr = [1,2]
+					let [a,b] = arr
+					[a,b] = [b,a] //will swap a=2,b=1
+				Nested Destructuring
+					const [a,[b,c]] =[5,[6,7],8] // gives a=5,b=6,c=7
+				Defaulting
+					const [a,b,c=5] = [1,2,3] // gives a=1,b=2,c=3
+					const [a,b,c=5] = [1,2] // gives a=1,b=2,c=5 (as per value array c is undefined so it is defaulted to 5)
+				Skipping values
+					const [a,,b] =[4,5,6] // gives a=4,b=6 
 
-				const [data,length] = someFunc() // Destructuring can be used to store returned data as well
-		Object Destructuring
-			Object Destructuring happens based on Key name
-				const Person = {name:"Logan",age:27,job:developer}
-				const {name,job} = Person // creates name and job variable
-			Orderless
-				const {job,age} = Person // since based on key name order does not matter
-			Alias
-				const {job : designation,age : old} = Person // creates designation and old variables with job and age's value. i.e before : is value and after : is variable Alias
-			Defaulting
-				const {job : designation = "VIP"} = Person // Defaulting with alias
-			Mutating variables
-				let a=100,b=200;
-				const obj = {a:1,b:2,c:7}
-				{a,b} = obj // error: unexpected token '=' -> because {} is considered code block syntax error is thrown
-				({a,b} = obj) // enclose above line with () to avoid syntax error // result a=1,b=2
-			Nested Destructuring
-				const Person = {name:"Logan",age:27,job:developer,address:{street:"100 king st",zip:60004}}
-				const {address:{street,zip}} = Person
+					const [data,length] = someFunc() // Destructuring can be used to store returned data as well
+			Object Destructuring
+				Object Destructuring happens based on Key name
+					const Person = {name:"Logan",age:27,job:developer}
+					const {name,job} = Person // creates name and job variable
+				Orderless
+					const {job,age} = Person // since based on key name order does not matter
+				Alias
+					const {job : designation,age : old} = Person // creates designation and old variables with job and age's value. i.e before : is value and after : is variable Alias
+				Defaulting
+					const {job : designation = "VIP"} = Person // Defaulting with alias
+				Mutating variables
+					let a=100,b=200;
+					const obj = {a:1,b:2,c:7}
+					{a,b} = obj // error: unexpected token '=' -> because {} is considered code block syntax error is thrown
+					({a,b} = obj) // enclose above line with () to avoid syntax error // result a=1,b=2
+				Nested Destructuring
+					const Person = {name:"Logan",age:27,job:developer,address:{street:"100 king st",zip:60004}}
+					const {address:{street,zip}} = Person
 
-	Compilation
-		JS is now Just in Time (JIT) complied, before execution. whith following phases
-		Parsing - Code is parsed to check for errors and to create an Abstract Syntax Tree (AST)
-		Compilation - AST is converted to machine Code to be stored in call stack
-		Execution - Code is executed based on call stack
+		Compilation
+			JS is now Just in Time (JIT) complied, before execution. whith following phases
+			Parsing - Code is parsed to check for errors and to create an Abstract Syntax Tree (AST)
+			Compilation - AST is converted to machine Code to be stored in call stack
+			Execution - Code is executed based on call stack
+
+		Closure
+			Closure in an internal concept in JS, Which is
+				1. A function has access to the variable environment of the execution context in which it was created
+				2. Closure is the concept of attaching this variable environment as it is when the function is created
+
+			eg:
+			1.	function temp(){
+					let counter =0;
+					return function(){
+						counter++;
+						console.log(`${counter}`)
+					}
+				}
+
+				const incrementer = temp() // stores returned function
+
+				incrementer(); // 1
+				incrementer(); // 2
+				incrementer(); // 3
+
+				The above concept of returned function accessing the counter variable of the completed function is because of closure
+
+			2. let f;
+
+				const g = function(){
+					const a=4
+					f= function(){
+						console.log(a*2)
+					}
+				}
+
+				g(); // sets f as a function
+				f(); //  8
+
+				Another Scenario where scope of a is available for f is a closure
+
+			3. callback set in SetTimeout with variable created outside, is a similar example for closure
+
 
 	Operators
 		Creating variable without let,const or var will create a property in global object and will not throw error in non strict mode
@@ -147,7 +186,10 @@ JS Notes
 		 Switch case without break will execute next case as well (unconditionally) until it finds break
 		 
 	Math
-		Math.max(//csv),Math.min(//csv) to return min max values of numerical csv alone 
+		Math.max(csv)
+		Math.min(csv) to return min max values of numerical csv alone 
+		Math.abs(-10) // 10 // get unsigned value
+		Math.trunc(val) //without decimal
 		
 		
 	Console
@@ -280,6 +322,23 @@ JS Notes
 			array.join('*') -> returns string by concating all array index with delimiter
 
 			array.entries() -> returns an array with index in 0 and value in 1 position eg. [[0,'a'],[1,'b']]
+
+			array.slice(startIndex) -> returns new array from startIndex // original is untouched
+			array.slice(startIndex, endIndex) -> returns new array from startIndex till endIndex-1
+			array.slice(-2) -> returns last 2 elements // using negative index will select elements from end
+			array.slice() -> returns shallow copied array
+
+			array.splice(startIndex) -> deletes elements from startIndex of arr and returns it // negative index works as usual
+			array.splice(startIndex,deleteCount) -> deletes the deleteCount no of elements from startIndex of arr and returns it
+			array.splice(startIndex,deleteCount,element1,element2,...) -> works as above but inserts element1 & element2 at startIndex
+
+			useCase
+				arr.splice(1,0,'February') -> at position 1, 0 element(s) are deleted and February is inserted at 1
+				arr.splice(2,1,'March') -> remove 1 element at 2 index and 'March' is replaced
+
+			arr.reverse() -> reverses arr array
+			arr.concat(arr2) -> returns concatenated array [...arr,...arr2]  
+
 
 		Optional Chaining
 			?. can be used to perform Optional Chaining in array of objects
