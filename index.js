@@ -74,3 +74,17 @@ const currencies = new Map([
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
 /////////////////////////////////////////////////
+const Testform = document.querySelector("#GB"), input = document.querySelector("#test"),btn = document.querySelector("#btn")
+
+const testSubmit = e => {
+  console.log("testSubmit",Testform);
+  e.preventDefault();
+    e.stopPropagation();
+    return true
+}
+
+const testFunc = () => {
+  
+  Testform.submit()
+  console.log("testFunc",Testform,Testform.submit);
+}
