@@ -36,10 +36,10 @@ JS Notes
 
 				str.split(delimiter) // returns array 
 				str.padStart(20,'*') // returns a string of length 20 by adding 20 - str.length * before str String// result : **************Logan
-				str.padEnd(20,'+') // returns a string of length 20 by adding 20 - str.length * after str String// result : Logan************** 
+				str.padEnd(20,'+') // returns a string of length 20 by adding 20 - str.length + after str String// result : Logan++++++++++++++ 
 				str.repeat(5) // repeats str 5 times and returns string
 				Chaining
-					String method chaining is possible as almos every string method returns modified string
+					String method chaining is possible as almost every string method returns modified string
 					str.toLowerCase().trim() // returns lowercased and trimmed str
 
 	MISC
@@ -125,6 +125,7 @@ JS Notes
 
 	Operators
 		Creating variable without let,const or var will create a property in global object and will not throw error in non strict mode
+		Note: Variables created with var are also stored in Global object
 		** -> exponent operator i.e 2 ** 4 => 2*2*2*2 //4 times 2
 		mdn operator precedence //mdn mozilla dev network
 
@@ -147,7 +148,7 @@ JS Notes
 				3. Do short Circuiting
 			&&
 				Short Circuiting
-					(condition1 || condition2) // if condition1 is true condition2 is evaluated
+					(condition1 && condition2) // if condition1 is true condition2 is evaluated
 					Will return first falsey value or last value
 					JS returns condition1 immediately if its false, without evaluating condition2, only if condition1 is true condition2 is returned irrespectively
 					Used to evaluate second expression if first is true (like an if condition)
@@ -239,7 +240,7 @@ JS Notes
 				console.log("IIFE")
 			})(); // this is an IIFE code pattern invoked only once ( to create a specific scope before ES6 bolck scope)
 
-			(() => console.log("Arrow IIFE")) // works for arrow function as well
+			(() => console.log("Arrow IIFE"))() // works for arrow function as well
 			
 			//Named IIFE
 			(function testIIFE(){
@@ -261,7 +262,7 @@ JS Notes
 		'var' still has no block or function scopes
 
 	Window
-		'var' decarled at global level create a property in window pbject. i.e if we create var x= 10 -> window.x will be created with value 10
+		'var' decarled at global level create a property in window object. i.e if we create var x= 10 -> window.x will be created with value 10
 
 	This
 		this keyword in not same always
@@ -490,6 +491,6 @@ JS Notes
 			Any property configured inside a Prototype Object will be available for all the objects created for Person
 
 		Class
-			Class is just syntac Enhancements but it is same as constructor function that returns an object
+			Class is just syntax Enhancements but it is same as constructor function that returns an object
 			Not hoisted
 			Classes are always executed in strict mode
