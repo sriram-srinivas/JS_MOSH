@@ -302,7 +302,20 @@ JS Notes
             textContent -> sets text content alone
 
 	Advanced DOM
+		DOM -> Document object model
+		Node -> Node is the individual part in DOM; It has different types; Note: Every node is an JS object
+			Document Node -> Contains all dom manipulation methods (createElement,getElementById,querySelector), Global objects etc
+			Element Node -> This Node is created only for HTML elements contains all common attributes of HTML elements 
+							It has 'chidType' attribute which specifies html element node 
+						HTMLElementNode -> Each html tag (div,a,img) has its own node(js objext) and has properties specific to that node (eg a-> href, img -> src) 
+			Text Node -> This node will be created for Texts inside tags
+			Comment Node -> All html content needs to be mapped in DOM so also comments will have its own nodes 
+		Event Type -> Parent node of all nodes (addEventListner is a property of this Node and all tags recieve this attribute as part of inheritance/prototyping)
+		document -> Document Object which has all DOM maipulation methods and attributes(Document Type Node)
+		document.documentElement -> It returns actual HTMLElement node of tag 'html' (document.documentElement === document.getElementsByTagName("html")[0] // true)
 		
+		Note: All Node is reperesented in the form of JS objects and Every Node type has its own set of attributes and methdods
+			  ALso Node has hierarchies and all Node properties are shared using prototyping
 
 	Scoping
 		Lexical scoping - Js is lexically scope (child can access parent and function can access Golbal variables)
