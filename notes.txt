@@ -149,8 +149,17 @@ JS Notes
 				setTimeout(()=>console.log("after 3 secs"),3000) //prints msg after 3000 milliseconds
 			
 			We can clear the setTimeout before the delay time by doing the below
-			const timer = setTimeout(function,delay,args1,args2...)
-			clearTimeout(timer) // this clears the timer and callback will not execute
+				const timer = setTimeout(function,delay,args1,args2...)
+				clearTimeout(timer) // this clears the timer and callback will not execute
+		SetInterval
+			To perform a function call repeatedly with specific time interval
+				setInterval(function,delay,args1,args2...) // This will call the 'function' parameter, repeatedly after every 'delay' milliseconds with parameter to function 'args1,arg2'
+				setInterval(()=>console.log("every 3 secs"),3000) //prints msg every 3000 milliseconds
+			
+			We can clear the setInterval before the delay time by doing the below
+				const interval = setInterval(function,delay,args1,args2...)
+				clearInterval(interval) // this clears the interval and callback will not execute anymore
+		
 
 	Operators
 		Creating variable without let,const or var will create a property in global object and will not throw error in non strict mode
@@ -291,6 +300,9 @@ JS Notes
             innerHTML -> parses and provide as HTML
             innnerText -> just text no parsing of HTML
             textContent -> sets text content alone
+
+	Advanced DOM
+		
 
 	Scoping
 		Lexical scoping - Js is lexically scope (child can access parent and function can access Golbal variables)
