@@ -317,7 +317,26 @@ JS Notes
 		Note: All Node is reperesented in the form of JS objects and Every Node type has its own set of attributes and methdods
 			  ALso Node has hierarchies and all Node properties are shared using prototyping
 
-	Scoping
+		NodeList -> A List of nodes that is snapshot of what was available when executed, does not Automatically change with change in DOM (unless invoked again)
+		HTMLCollection -> A live collection list, which changed along with any change in dom; getElementsByTagName,getElementsByClassName etc return HTMLCollection
+		
+		Select DOM Elements -> all below methods can be call with document object or other HTMLElement objects too(this determines the scope of selection)
+			getElementById(//id of tag) //returns single HTMLElement
+			getElementsByClassName(//css class name) // returns HTMLCollection
+			getElementsByTagName(//tag name) // returns HTMLCollection
+			getElementsByTagNameNS(//tag name,//namespace) // returns HTMLCollection
+			getElementsByName(//name attribute) //returns NodeList 
+			querySelector(//css selector) //returns single HTMLElement
+			querySelectorAll(//css selector) //returns NodeList
+
+		Create DOM Elements
+			
+			element.insertAdjacentHTML(position, html); // 'element' is selector; 'position' ("afterbegin","afterend","beforebegin","beforeend") & 'html' content to insert
+				const h = document.getElementById(id);
+				h.insertAdjacentHTML("afterend", "<p>My new paragraph</p>"); this create a <p> element and inserts it after 'h'
+
+			
+	Scoping	
 		Lexical scoping - Js is lexically scope (child can access parent and function can access Golbal variables)
 		After ES6 functions declared inside othr blocs are also block scoped in Strict mode alone. i.e in strict mode after ES6
 		if a funtions in decarled inside if(){} it is accessible only inside if
@@ -372,9 +391,11 @@ JS Notes
 			Objects
 
 		Array
-		console.log([10,10,10] + 10) //prints "10,10,1010" as string
-		console.log([10,10,10] - 10) //prints NaN
-		
+			console.log([10,10,10] + 10) //prints "10,10,1010" as string
+			console.log([10,10,10] - 10) //prints NaN
+
+			Arrays are actual JS objects, which get predefined set of Array methods through prototypal inheritance
+
 		Array Methods
 			array.push('test') -> adds 'test' to end of array and returns length of array
 			array.unshift('test')-> adds 'test' to start of array and returns length of array
@@ -402,7 +423,27 @@ JS Notes
 			arr.reverse() -> reverses arr array
 			arr.concat(arr2) -> returns concatenated array [...arr,...arr2]  
 
+			arr.map(function(currentValue, index, arr), thisValue) -> iterates through array and performs the callback function directly on every index and returns new array
+						//currentValue -> currentIndexItem; index -> arrayIndex; arr -> full array; thisValue -> this binding for the callback function
+				const a=[1,2,3,4,5]
+				const b = a.map(i => i*2) // b = [2,4,6,8,10]
 
+			arr.forEach(function(currentValue, index, arr), thisValue) -> iterate through array but source is untouched
+						//currentValue -> currentIndexItem; index -> arrayIndex; arr -> full array; thisValue -> this binding for the callback function
+				const a=[1,2,3,4,5]
+				const b = a.forEach(i => i*2) // b = undefined
+
+			arr.filter(function(currentValue, index, arr), thisValue) -> iterate through array items and perform function on every index; only the items satisfying condition inside filter funtion is returned in new array
+						//currentValue -> currentIndexItem; index -> arrayIndex; arr -> full array; thisValue -> this binding for the callback function
+				const a = [3,5,2,6,1,2]
+				const b = a.filter(i => i> 2) // b = [3,5,6]
+
+			arr.reduce(function(total, currentValue, index, arr), initialValue) -> iterate through array and perform function on each item against the 'total' variable 
+						//total-> Accumulator | initalize with 'initialValue' and retains value from previous iteration (final return data);currentValue -> currentIndexItem; index -> arrayIndex; arr -> full array; initialValue -> initialValue for the result
+
+				const a = [1,2,3,4,5]
+				const b = a.reduce((total,i) => total+i,10) // b =10+1+2+3+4+5 = 25
+				
 		Optional Chaining
 			?. can be used to perform Optional Chaining in array of objects
 			const arr = [{data:"100"}]
