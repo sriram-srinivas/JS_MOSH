@@ -433,7 +433,7 @@ JS Notes
 				const a=[1,2,3,4,5]
 				const b = a.forEach(i => i*2) // b = undefined
 
-			arr.filter(function(currentValue, index, arr), thisValue) -> iterate through array items and perform function on every index; only the items satisfying condition inside filter funtion is returned in new array
+			arr.filter(function(currentValue, index, arr), thisValue) -> iterate through array items and perform function on every index; only the items satisfying condition inside filter funtion is returned in new array; Needs a function that returns a boolean
 						//currentValue -> currentIndexItem; index -> arrayIndex; arr -> full array; thisValue -> this binding for the callback function
 				const a = [3,5,2,6,1,2]
 				const b = a.filter(i => i> 2) // b = [3,5,6]
@@ -443,7 +443,25 @@ JS Notes
 
 				const a = [1,2,3,4,5]
 				const b = a.reduce((total,i) => total+i,10) // b =10+1+2+3+4+5 = 25
+
+				Note: The first time that the callback is run there is no "return value of the previous calculation". If supplied, an initial value may be used in its place. Otherwise the array element at index 0 is used as the initial value and iteration starts from the next element (index 1 instead of index 0)
+
+					let arr="1a 2b 3c"
+					console.log(arr.toLowerCase().split(" ").reduce((t,a)=>t+a[0])) // will print '1a23'
+
+					let arr="1a 2b 3c"
+					console.log(arr.toLowerCase().split(" ").reduce((t,a)=>t+a[0],'')) // will print '123'
 				
+			arr.find(function(currentValue, index, arr),thisValue) -> returns the value of the first element that passes the condition; Needs a function that returns a boolean
+						//currentValue -> currentIndexItem; index -> arrayIndex; arr -> full array; thisValue -> this binding for the callback function
+				Note: arr.filter is a findAll method of find(); filter() returns all passed elements in array, whereas find() returns the first passed element itself
+				 
+			Array method Chaining
+				We can chain array methods one after the other if the methods return back an array
+					arr.filter(//fn).map(//fn).reduce(//fn) is totally possible
+
+				Note: It is a bad practice in JS to chain methods if it mutates original array: i.e do not chain splice() or reverse() methods as it mutates original array
+
 		Optional Chaining
 			?. can be used to perform Optional Chaining in array of objects
 			const arr = [{data:"100"}]
