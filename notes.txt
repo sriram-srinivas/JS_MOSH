@@ -455,7 +455,37 @@ JS Notes
 			arr.find(function(currentValue, index, arr),thisValue) -> returns the value of the first element that passes the condition; Needs a function that returns a boolean
 						//currentValue -> currentIndexItem; index -> arrayIndex; arr -> full array; thisValue -> this binding for the callback function
 				Note: arr.filter is a findAll method of find(); filter() returns all passed elements in array, whereas find() returns the first passed element itself
-				 
+			
+			arr.findIndex(function(currentValue, index, arr),thisValue) -> same as find() but instead of returning passed element the index of the element is returned
+
+			array.some(()=>{//custom condition}) -> returns true if atleast anyone of the array element satisfies the given custom condition. Array elements are iterated until first satisfied element (return true) 
+				const a =[10,20,30,-5]
+				a.some(ele => ele > 0) -> will have only one iteration as condition is true for first element itself
+				a.some(ele => ele < 0) -> will have full iteration as condition is false until the last element
+			
+			array.every(()=>{//custom condition}) -> returns true omly if all of the array element satisfies the given custom condition.
+				const a =[10,20,30,-5]
+				a.every(ele => ele > 0) //returns false
+				a.every(ele => ele > -6) //returns true
+
+			//ES2019
+			
+			array.flat(depth) -> is used to flatten multi level arrays, 'depth' is used to specify no of levels to iteration is needed; by default depth is 1
+				const arr1 = [0, 1, 3, [3, [4,4]];
+				console.log(arr1.flat()); // [0,1,3,3,[4,4]]
+
+				const arr1 = [0, 1, 3, [3, [4,5]]];
+				console.log(arr1.flat(2));// [0,1,3,3,4,5]
+			
+			array.flatMap(mapObj => mapObj.key)-> inbuit version of arr.map(//function).flat(); used to flat array inside array of Objects; flatMap does only only level of depth, we need to chain with flat() for later levels
+
+				//Indirect implementation
+				const temp = [{a:[1,2,3]},{a:[1,2,6]}]
+				temp.map(a=>a.a).flat(); // performs [[1,2,3],[1,2,6]] -> [1,2,3,1,2,6]
+				
+				//Direct implementation
+				console.log(temp.flatMap(a=>a.a)); // peforms the same as above [1,2,3,1,2,6]
+
 			Array method Chaining
 				We can chain array methods one after the other if the methods return back an array
 					arr.filter(//fn).map(//fn).reduce(//fn) is totally possible
