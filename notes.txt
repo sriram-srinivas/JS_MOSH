@@ -387,34 +387,63 @@ JS Notes
 			String
 			Map
 			Set
+			NodeList
+			Collection
 		Non Iterable
 			Objects
 
 		Array
+
+			Array creation methods
+				const arr = [1,2,3,4,5,6,7] // creates array as given [1,2,3,4,5,6,7]
+				const arr = new Array(1,2,3,4,5,6,7) // creates array [1,2,3,4,5,6,7]
+				const arr = new Array(7) // creates array with no elements, nothing is filled but length is seven
+				const arr = Array.from({length:7},(currentElement,index) => index + 1) // creates an array [1,2,3,4,5,6,7]
+
 			console.log([10,10,10] + 10) //prints "10,10,1010" as string
 			console.log([10,10,10] - 10) //prints NaN
 
 			Arrays are actual JS objects, which get predefined set of Array methods through prototypal inheritance
 
 		Array Methods
-			array.push('test') -> adds 'test' to end of array and returns length of array
-			array.unshift('test')-> adds 'test' to start of array and returns length of array
-			array.pop() -> will remove and return last element of the array
-			array.shift() -> will remove and return first element of the array
-			array.indexOf('test') -> returns index of 'test', if element is not present -1 is returned
-			array.includes('test') -> returns true/false if its present (=== strict equal) or not in Array //ES6 method
-			array.join('*') -> returns string by concating all array index with delimiter
 
-			array.entries() -> returns an array with index in 0 and value in 1 position eg. [[0,'a'],[1,'b']]
+			Array.from(//Iterable)
+				const arr = Array.from("ABCDEF") // creates['A','B','C','D','E','F']
 
-			array.slice(startIndex) -> returns new array from startIndex // original is untouched
-			array.slice(startIndex, endIndex) -> returns new array from startIndex till endIndex-1
-			array.slice(-2) -> returns last 2 elements // using negative index will select elements from end
-			array.slice() -> returns shallow copied array
+			Array.from(object, mapFunction, thisValue) -> 'object' options object;'mapFunction' use as mapfucntion for array constructor; 'thisValue' use for this binding for method
+				const arr = Array.from({length:7},(currentElement,index) => index * 2) // creates an array [0,2,4,6,8,10,12]
+				Note: use Array.from(document.getElementsByClassName(),element => element.textContent) to convert NodeList to array easily
 
-			array.splice(startIndex) -> deletes elements from startIndex of arr and returns it // negative index works as usual
-			array.splice(startIndex,deleteCount) -> deletes the deleteCount no of elements from startIndex of arr and returns it
-			array.splice(startIndex,deleteCount,element1,element2,...) -> works as above but inserts element1 & element2 at startIndex
+			arr.push('test') -> adds 'test' to end of array and returns length of array
+			arr.unshift('test')-> adds 'test' to start of array and returns length of array
+			arr.pop() -> will remove and return last element of the array
+			arr.shift() -> will remove and return first element of the array
+			arr.indexOf('test') -> returns index of 'test', if element is not present -1 is returned
+			arr.includes('test') -> returns true/false if its present (=== strict equal) or not in Array //ES6 method
+			arr.join('*') -> returns string by concating all array index with delimiter
+
+			arr.entries() -> returns an array with index in 0 and value in 1 position eg. [[0,'a'],[1,'b']]
+
+			arr.fill(val) -> fills complete array with given 'val'; this works for both empty array and filled arrays
+				const arr = new Array(7) //creates [], length 7
+				arr.fill(1) // mutates empty arr and creates [1,1,1,1,1,1,1]
+				const arr = [1,2,3,4,5,6,7]
+				arr.fill(7) // mutates arr by overriding all values [1,1,1,1,1,1,1]
+
+			arr.fill(val,startIndex) -> replaces val from startIndex
+				arr.fill(7,3) // mutates arr by overriding all values [1,2,3,7,7,7,7]
+
+			arr.fill(val,startIndex,endIndex) -> replaces val from startIndex before endIndex
+				arr.fill(8,3,6) // mutates arr by overriding all values [1,2,3,8,8,8,7]
+
+			arr.slice(startIndex) -> returns new array from startIndex // original is untouched
+			arr.slice(startIndex, endIndex) -> returns new array from startIndex till endIndex-1
+			arr.slice(-2) -> returns last 2 elements // using negative index will select elements from end
+			arr.slice() -> returns shallow copied array
+
+			arr.splice(startIndex) -> deletes elements from startIndex of arr and returns it // negative index works as usual
+			arr.splice(startIndex,deleteCount) -> deletes the deleteCount no of elements from startIndex of arr and returns it
+			arr.splice(startIndex,deleteCount,element1,element2,...) -> works as above but inserts element1 & element2 at startIndex
 
 			useCase
 				arr.splice(1,0,'February') -> at position 1, 0 element(s) are deleted and February is inserted at 1
@@ -422,6 +451,20 @@ JS Notes
 
 			arr.reverse() -> reverses arr array
 			arr.concat(arr2) -> returns concatenated array [...arr,...arr2]  
+
+			arr.sort(//function) -> used to sort array elements based on callback; sort() without callback will work for sorting strings in array but not for numbers
+			Inside sort callback method if value <0 is returned no switch happens; if > 0 value is returned value switch occurs 
+			
+			Note: sort() mutates original array
+			arr.sort((a,b) => {
+				if(//condition)
+					return -1 // since return value is less than 0 elements are not reversed 
+				if(//condition)
+					return 1 // since return value is greater than 0 elements are reversed
+			})
+
+			//short version of above 
+				arr.sort((a,b) => a - b)
 
 			arr.map(function(currentValue, index, arr), thisValue) -> iterates through array and performs the callback function directly on every index and returns new array
 						//currentValue -> currentIndexItem; index -> arrayIndex; arr -> full array; thisValue -> this binding for the callback function
@@ -458,26 +501,26 @@ JS Notes
 			
 			arr.findIndex(function(currentValue, index, arr),thisValue) -> same as find() but instead of returning passed element the index of the element is returned
 
-			array.some(()=>{//custom condition}) -> returns true if atleast anyone of the array element satisfies the given custom condition. Array elements are iterated until first satisfied element (return true) 
+			arr.some(()=>{//custom condition}) -> returns true if atleast anyone of the array element satisfies the given custom condition. Array elements are iterated until first satisfied element (return true) 
 				const a =[10,20,30,-5]
 				a.some(ele => ele > 0) -> will have only one iteration as condition is true for first element itself
 				a.some(ele => ele < 0) -> will have full iteration as condition is false until the last element
 			
-			array.every(()=>{//custom condition}) -> returns true omly if all of the array element satisfies the given custom condition.
+			arr.every(()=>{//custom condition}) -> returns true omly if all of the array element satisfies the given custom condition.
 				const a =[10,20,30,-5]
 				a.every(ele => ele > 0) //returns false
 				a.every(ele => ele > -6) //returns true
 
 			//ES2019
 			
-			array.flat(depth) -> is used to flatten multi level arrays, 'depth' is used to specify no of levels to iteration is needed; by default depth is 1
+			arr.flat(depth) -> is used to flatten multi level arrays, 'depth' is used to specify no of levels to iteration is needed; by default depth is 1
 				const arr1 = [0, 1, 3, [3, [4,4]];
 				console.log(arr1.flat()); // [0,1,3,3,[4,4]]
 
 				const arr1 = [0, 1, 3, [3, [4,5]]];
 				console.log(arr1.flat(2));// [0,1,3,3,4,5]
 			
-			array.flatMap(mapObj => mapObj.key)-> inbuit version of arr.map(//function).flat(); used to flat array inside array of Objects; flatMap does only only level of depth, we need to chain with flat() for later levels
+			arr.flatMap(mapObj => mapObj.key)-> inbuit version of arr.map(//function).flat(); used to flat array inside array of Objects; flatMap does only only level of depth, we need to chain with flat() for later levels
 
 				//Indirect implementation
 				const temp = [{a:[1,2,3]},{a:[1,2,6]}]
@@ -491,6 +534,52 @@ JS Notes
 					arr.filter(//fn).map(//fn).reduce(//fn) is totally possible
 
 				Note: It is a bad practice in JS to chain methods if it mutates original array: i.e do not chain splice() or reverse() methods as it mutates original array
+
+		Array Method return types
+
+			Mutate original Array itself -> all these array methods mutate original array
+				Add element
+					.push()
+					.unshift()
+				Remove element
+					.pop()
+					.shift()
+					.splice()
+				Misc
+					.reverse()
+					.sort()
+					.fill()
+			
+			New Array -> below methods will return new array without affecting source array
+				.map()
+				.filter()
+				.slice()
+				.concat()
+				.flat()
+				.flatMap()
+
+			Array Index -> return Array Index
+				.indexOf()
+				.lastINdexOf()
+				.findIndex()
+
+			Array Element -> return single array element
+				.find()
+
+			Boolean -> returns boolean value
+				.includes()
+				.some()
+				.every()
+			
+			String -> return String
+				.join()
+
+			single value -> return a single datatype
+				.reduce() //use to return any single datatype(number,string,boolean,array or object)
+				.reduceRight() // same as reduce but from right to left
+				
+			undefined -> nothing is returned; just iteration
+				.forEach
 
 		Optional Chaining
 			?. can be used to perform Optional Chaining in array of objects
