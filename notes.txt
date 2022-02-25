@@ -331,13 +331,58 @@ JS Notes
 
 		Create DOM Elements
 			
+			Create
+				document.createElement(//html tag name) -> returns Element Node with respective methods (classList, style, value, innerHTML etc)
+				element.cloneNode(boolean) -> copys and returns the 'element'; boolean parameter if true clones child tags of element too
+			Insert
+				element.prepend(//element1) -> adds 'element1' as first child of 'element'
+				element.append(//element1) -> adds 'element1' as last child of 'element'
+				element.before(//element1) -> adds 'element1' as sibling of 'element', just before it
+				element.after(//element1) -> adds 'element1' as sibling of 'element', just after it
+				
+				Note: Following is the behaviour of js Html element insertion in DOM
+
+					const element = document.createElement('div')
+					header.prepend(element) // this is reverted by JS, due to next line of code
+					header.append(element)
+				//Above code adds element only at the end; This is because single DOM element can be available only once in a DOM
+
+			Create & Insert
 			element.insertAdjacentHTML(position, html); // 'element' is selector; 'position' ("afterbegin","afterend","beforebegin","beforeend") & 'html' content to insert
 				const h = document.getElementById(id);
 				h.insertAdjacentHTML("afterend", "<p>My new paragraph</p>"); this create a <p> element and inserts it after 'h'
+			Delete
+				element.remove()
+				parentElement.removeChild(element)
 
+		DOM CSS
+			element.style 
+				element.style.AttrName
+					(or)
+				element.style['AttrName']
+				console.log(element.style) // will show object will all properties by default "" except for any manually set properties
 			
+			getComputedStyle(element) // will give default/inbuilt css attributes of element
+
+			element.style.setProperty('--varname','value') // to set Css variable in local or global Scope
+				document.documentElement.style.setProperty('--black','#000') // is same as :root{--black:#000}
+			
+			element.getAttribute('attrName') // use this to get custom/non standard attributes also
+					<img id="logo" src="logo.png" alt="logo" custom_Attr="test" />
+						const logo = document.querySelector("#logo");
+						console.log(logo.custom_Attr) //undefined
+						console.log(logo.getAttribute('custom_Attr')) // PRINTS 'test'
+
+					Note: for Attributes like src, href use getAttribute to get excat relative paths instead of absolute paths
+					console.log(logo.src)//http://localhost:8080/logo.png
+					console.log(logo.getAttribute('src'))//logo.png
+
+			element.setAttribute('attrName') // use this to set custom/non standard attributes also
+
+			element.dataset // to store custom data attributes for elements
+
 	Scoping	
-		Lexical scoping - Js is lexically scope (child can access parent and function can access Golbal variables)
+		Lexical scoping - Js is lexically scope (child can access parent and function can access Global variables)
 		After ES6 functions declared inside othr blocs are also block scoped in Strict mode alone. i.e in strict mode after ES6
 		if a funtions in decarled inside if(){} it is accessible only inside if
 		'var' still has no block or function scopes
@@ -735,4 +780,16 @@ JS Notes
 			Not hoisted
 			Classes are always executed in strict mode
 
-		
+
+
+
+CSS Notes
+	Use --varName and var(--varName) to set and get css variables in Local(any selector{}) or Global (:root) Scope
+:root{
+	--bgColor: #fff 
+	--black: #000
+}//caseSensitive
+
+div{
+	background-color: var(--black)
+}
