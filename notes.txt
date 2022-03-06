@@ -310,7 +310,7 @@ JS Notes
 						HTMLElementNode -> Each html tag (div,a,img) has its own node(js objext) and has properties specific to that node (eg a-> href, img -> src) 
 			Text Node -> This node will be created for Texts inside tags
 			Comment Node -> All html content needs to be mapped in DOM so also comments will have its own nodes 
-		Event Type -> Parent node of all nodes (addEventListner is a property of this Node and all tags recieve this attribute as part of inheritance/prototyping)
+		Event Type -> Parent node of all nodes (addEventListener is a property of this Node and all tags recieve this attribute as part of inheritance/prototyping)
 		document -> Document Object which has all DOM maipulation methods and attributes(Document Type Node)
 		document.documentElement -> It returns actual HTMLElement node of tag 'html' (document.documentElement === document.getElementsByTagName("html")[0] // true)
 		
@@ -379,7 +379,62 @@ JS Notes
 
 			element.setAttribute('attrName') // use this to set custom/non standard attributes also
 
-			element.dataset // to store custom data attributes for elements
+			element.dataset // to store custom data attributes for elements; attribute should be prefixed with 'data-'
+					<li data-animal-type="bird">Swan</li>
+						const list = document.querySelector("li");
+						console.log(list.dataset.animalType) //PRINTS 'bird'
+						console.log(list.getAttribute('data-animal-type')) // PRINTS 'bird'
+			
+			element.classList
+					element.classList.add('className1','className2') // add multiple css classes to element
+					element.classList.remove('className1','className2') // remove multiple css classes from element
+					element.classList.toggle('className') // switch css class;i.e remove if present, add if not present
+					element.classList.toggle('className',boolean) // if booelan is true class is added if not present but not removed, and vice versa for false
+					element.classList.contains('className')// returns boolean if css is present
+					element.classList.replace('old','new')//replace values and returns boolean if replace is success
+
+		DOM Viewport
+			element.getBoundingClientRect() // to get co-ordinates of element with respect to Viewport
+			element.scrollIntoView({behaviour:'smooth'}) // advanced way to smooth scroll 'element' into view
+
+			window.pageXOffset() // returns pixels of x-axis scroll position; read-only
+			window.pageYOffset() // returns pixels of y-axis scroll position; read-only
+
+			window.scrollBy(x-pixels,y-pixels) // scroll by 'x-pixels' horizontally and 'y-pixels' vertically in additon to current scroll position
+			window.scrollTo(x-coordinate,y-coordinate) // scroll to specific horizontal 'x-coordinate' and vertical 'y-coordinate'; fixed position
+			window.scrollTo({
+				left: x-coordinate
+				top:y-coordinate
+				behaviour:'smooth'
+			})                         // scrollTo with object as parameter for smooth scrolling
+			window.scrollX // returns pixels of x-axis scroll position
+			window.scrollY // returns pixels of y-axis scroll position
+
+			Note: any property inside window object can also be access directly without 'window.' prefix
+			
+
+				document.documentElement.clientHeight // height of Viewport excluding scroll bar
+				document.documentElement.clientWidth // width of Viewport excluding scroll bar 
+
+		DOM Events
+			DOM events - https://developer.mozilla.org/en-US/docs/Web/Events
+
+			element.addEventListener('//event',function(){}) // used to listen to certain 'event' and invoke function during the same happens in 'element'.
+				const testLog = e=>console.log('h1 clicked')
+				document.querySelector('h1').addEventListener('mouseenter',testLog) //print log msh on mouse hover
+
+				Note: If multiple eventListner is added to a single elementNode for with same event all associated functions are called 
+					document.querySelector('h1').addEventListener('click',e=>console.log('h1 clicked')) 
+					document.querySelector('h1').addEventListener('click',e=>console.log('h1 clicked listener1')) //prints both log on click
+			
+			element.removeEventListener('event',//function reference) // used to remove event listener from element
+				document.querySelector('h1').removeEventListener('mouseenter',testLog) // removes the above set event listener
+
+
+			On-listeners
+				These are equivalent to 'click' & 'mouseenter' events, oldschool eventListener. Note: multiple function for same event can be performed with this approach
+				element.onclick = function(){} 
+				element.onmouseenter = function(){}
 
 	Scoping	
 		Lexical scoping - Js is lexically scope (child can access parent and function can access Global variables)
@@ -389,7 +444,7 @@ JS Notes
 
 	Window
 		'var' decarled at global level create a property in window object. i.e if we create var x= 10 -> window.x will be created with value 10
-
+		any property set to window object can be accessed directly; i.e console.log(window.pageXOffset) & console.log(pageYOffset) 
 	This
 		this keyword in not same always
 		In general 'this' is a special variable created inside every execution context (function, object). 
