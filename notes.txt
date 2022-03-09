@@ -419,22 +419,78 @@ JS Notes
 		DOM Events
 			DOM events - https://developer.mozilla.org/en-US/docs/Web/Events
 
-			element.addEventListener('//event',function(){}) // used to listen to certain 'event' and invoke function during the same happens in 'element'.
+			element.addEventListener('//event',function(event){},boolean) // used to listen to certain 'event' and invoke function during the same happens in 'element', 'boolean' if set true will perform event in capture phase itself (default is false). 
+			
+			Note: using 'this' inside the callback function will always point to the element
 				const testLog = e=>console.log('h1 clicked')
 				document.querySelector('h1').addEventListener('mouseenter',testLog) //print log msh on mouse hover
 
 				Note: If multiple eventListner is added to a single elementNode for with same event all associated functions are called 
 					document.querySelector('h1').addEventListener('click',e=>console.log('h1 clicked')) 
 					document.querySelector('h1').addEventListener('click',e=>console.log('h1 clicked listener1')) //prints both log on click
+
+				
+				event.target -> this points to the ElementNode that triggered the event. It is carried over even in parent node in Bubbling phase, i.e in above example 'a' is the event.target in both 'a' & 'p' actionListener
+
+				event.currentTarget -> this points to the current elementnode in bubbling phase; it is equal to 'this' object of actionListener
+
+				event.preventDefault() -> use this to stop defualt behaviour of elementNode event (eg form submit, anchor redirect etc)
+				event.stopPropagation() -> use this in a node to stop the event bubbling to parent nodes 
 			
 			element.removeEventListener('event',//function reference) // used to remove event listener from element
 				document.querySelector('h1').removeEventListener('mouseenter',testLog) // removes the above set event listener
 
 
 			On-listeners
-				These are equivalent to 'click' & 'mouseenter' events, oldschool eventListener. Note: multiple function for same event can be performed with this approach
+				These are equivalent to 'click' & 'mouseenter' events, oldschool eventListener. Note: multiple function for same event can't be performed with this approach
 				element.onclick = function(){} 
 				element.onmouseenter = function(){}
+
+			Event Propagation
+				This describes how and where event listenres are created in html/javascript. COnsider below html structure
+					root
+						html
+							body
+								section
+									p
+										a
+				Event Propagation is carried out is following steps, for a Scenario where 'a' tag onclick event occurs`
+					document.querySelector('a').addEventListener('click',e => console.log('a tag is clicked'))
+					
+					Capturing phase
+						DOM generates click event which is created in root element and its passed through every single parent of 'a' tag (only parents and not sibilings of parents) until it reacches 'a' tag 
+					
+					Target phase
+						after 'a' tag is reached, target phase starts and event is handled through the configured event listeners and runs attached callback function
+					
+					Bubbling phase
+						After the event is handeled in target phase, th dom generated event travels back through its parent elements one by one until it reaches root, this is where event bubble up through only parent elements to root element, called as Bubbling phase
+
+						Note: this thus makes click event made in parent elements too, i.e if child is clicked then it means parent is clicked too
+						e.g: if we add document.querySelector('p').addEventListener('click',e => console.log('p tag is clicked'))
+						 and click on 'a' both 'a' tag is cicked and 'p' tag is clicked messages are displayed // this is beacuse click event progates till 'a' and bubbles up through 'p' which calls the 'click' event of parent 'p' tag as well
+					
+					Note: By default events can only be handled in target and bubbling phase, But there are certain event listners that can be used to handled event in capturing phase instead.
+						Also not all events have capturing and bubbling phase, instead some events are directly created in target element
+
+					
+			Event Delegation
+				Consider following HTML structure, where we need to listen to the click event for all 'a' tags are inside a 'p' tag
+					<p>
+						<a>Link 1</a><a>Link 2</a><a>Link 3</a>
+					</p>
+				
+				Instead of listening to each 'a' tag delegate the actionListener to 'p'(because of event bubbling) as follows 
+					<script>
+						document.querySelector('p').actionListener('click',e=>{
+							if(e.target.nodeName === 'A'){ //to select 'a' child tags alone
+								// logic
+							} 
+						})
+					</script>
+				Above code is event delegation which reduces no of actionListener by setting it at the parentElement with the help of event bubbling concept
+
+				Note : we can use to define event handling for dynamic HTMLelements, by using event Delegation; i.e if a button is dynamic as is not yet added in the UI, we can listen to & define its click event in its parent ele	ment 
 
 	Scoping	
 		Lexical scoping - Js is lexically scope (child can access parent and function can access Global variables)
