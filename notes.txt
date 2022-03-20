@@ -490,7 +490,29 @@ JS Notes
 					</script>
 				Above code is event delegation which reduces no of actionListener by setting it at the parentElement with the help of event bubbling concept
 
-				Note : we can use to define event handling for dynamic HTMLelements, by using event Delegation; i.e if a button is dynamic as is not yet added in the UI, we can listen to & define its click event in its parent ele	ment 
+				Note : we can use to define event handling for dynamic HTMLelements, by using event Delegation; i.e if a button is dynamic as is not yet added in the UI, we can listen to & define its click event in its parent element
+
+		DOM Traversing // navigation and selecting HTML elements 
+			
+			//children (downward direction)
+			element.childNodes -> return NodeList including textNode, commentNode, ElementNode etc inside of the element
+			element.children -> retuens HTMLCollection of the "element" node's direct children HTMLElements
+			element.firstElementChild -> First child HTMLElement 
+			element.lastElementChild -> Last child HTMLElement
+
+			//parent (downward direction)
+			element.parentNode -> Html parent element of 'element'
+			element.parentElement -> Html parent element of 'element'
+				element.parentElement === element.parentNode // true
+			element.closest('//css Selector') -> this is opposite of querySelector & querySelectorAll which uses css seletor as parameter but traveses from 'element' towards root element (parent and its parents)
+
+			//sibling 
+			element.previousElementSibling -> returns the previous tag(htmlElement) at same level; null if its first child element
+			element.nextElementSibling -> returns the next tag(htmlElement) at same level; null if its last child element
+
+			element.previousibling -> returns the previous node(textnode or commentNode) at same level; null if its first child element
+			element.nextSibling -> returns the next node(textnode or commentNode) at same level; null if its last child element
+
 
 	Scoping	
 		Lexical scoping - Js is lexically scope (child can access parent and function can access Global variables)
@@ -662,7 +684,7 @@ JS Notes
 				a.some(ele => ele > 0) -> will have only one iteration as condition is true for first element itself
 				a.some(ele => ele < 0) -> will have full iteration as condition is false until the last element
 			
-			arr.every(()=>{//custom condition}) -> returns true omly if all of the array element satisfies the given custom condition.
+			arr.every(()=>{//custom condition}) -> returns true only if all of the array element satisfies the given custom condition.
 				const a =[10,20,30,-5]
 				a.every(ele => ele > 0) //returns false
 				a.every(ele => ele > -6) //returns true
