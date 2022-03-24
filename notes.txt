@@ -415,6 +415,28 @@ JS Notes
 
 				document.documentElement.clientHeight // height of Viewport excluding scroll bar
 				document.documentElement.clientWidth // width of Viewport excluding scroll bar 
+			
+			IntersectionObserver
+				This is an internal JS library, used to observe intersection betweem two elements, This can be used to bring in Fade in effects, Scroll based sticky headers and on scroll image load effects etc 
+				const callbackF = (INOEntries,ino) => {
+					const [entry] = INOEntries // entry is always obtained as list even if only one intesection occurs at once
+
+					if(entry.isIntersecting)
+						// logic when component intersects with root element/viewport
+					else
+						// logic when component stops intersecting with root element/viewport
+
+					ino.unobserve(Targetcomponent) // to stop pbserving the element intersection
+				}
+
+				const options = {
+					root: null, // null refers to viewport, put null or and ElementNode obj as root element to identify intersection in UI
+					threshold: 0.15, // exception threshold during intersection; use value between 0 to 1 as threshold to capture when intersection happens and stops
+					rootMargin: -10px, // virtual margin for Element set as root, from which the threshold can be calculated
+				}
+
+				const ino = new IntersectionObserver(callbackF,options)
+				ino.observe(Targetcomponent)
 
 		DOM Events
 			DOM events - https://developer.mozilla.org/en-US/docs/Web/Events
