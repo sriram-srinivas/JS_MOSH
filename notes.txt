@@ -159,7 +159,25 @@ JS Notes
 			We can clear the setInterval before the delay time by doing the below
 				const interval = setInterval(function,delay,args1,args2...)
 				clearInterval(interval) // this clears the interval and callback will not execute anymore
-		
+
+		Script Loading in HTML
+			General behaviour
+				<script src="Script.js"/>
+				HTML is parsed
+				when JS script tag or external file is encountered, Script is fetched and executed then HTML continues loading
+
+			Async
+				<script async src="Script.js"/>
+				HTML parsing and Script Fetch happens asynchronously
+				After fetching JS Loader waits for executing fetched JS then resumes loading HTML
+				
+				Note: order of execution is not preserved: DOMContentLoaded will not wait for script load
+			Defer
+				<script defer src="Script.js"/>
+				HTML parsing is done without interruption
+				JS is fetched asynchronously but executed only after loading HTML
+
+				Note: order of execution is preserved; DOMContentLoaded waits for script execution
 
 	Operators
 		Creating variable without let,const or var will create a property in global object and will not throw error in non strict mode
@@ -440,6 +458,20 @@ JS Notes
 
 		DOM Events
 			DOM events - https://developer.mozilla.org/en-US/docs/Web/Events
+
+			LifeCycle DOM events
+				document.addEventListener('DOMContentLoaded',function(){}) // event is fired when HTML is parsed and all JS is downloaded and executed; but does not waits for images and other external resources; It is kind of equivalent to document.ready()
+
+				window.addEventListener('load',function(){}) // fired after all HTML,JS and other resources including images and css are loaded
+
+
+				window.addEventListener('beforeunload',function(e){ 
+					e.preventDefault() // to support all browsers
+					e.returnValue ='' // set this to show confirm popup before reload or close
+				})  // fired before page closes including page reload, browser or tab close etc
+
+				note: use preventDefault in the event to support all browsers 
+
 
 			element.addEventListener('//event',function(event){},boolean) // used to listen to certain 'event' and invoke function during the same happens in 'element', 'boolean' if set true will perform event in capture phase itself (default is false). 
 			
@@ -826,6 +858,23 @@ JS Notes
 
 					Person?.calcAge?.(1994) // method is invoked only if its available
 
+			Getter & setters
+					These are used to get and set data inside object properties, incase if it needs any code logic to processed before setting or getting
+
+				const obj = {
+					test: 5,
+					arr:[1,2,3,4,5],
+					get arrLast(){
+						return this.arr.pop()
+					},
+					set arrLastAdd(val){
+						this.arr.push(val)
+					}
+				}
+				
+				console.log(obj.arrLast) // does not need to be invoked with (), Since 'get' & 'set' changes it tho property
+				obj.arrLastAdd = 6 // will add 6 to obj.arr
+
 		Sets
 			Collection of unique values (kind of Hashset)
 			Supports mixed dataTypes as well
@@ -910,7 +959,7 @@ JS Notes
 				1. Createa a new {} Object by default
 				2. Upon calling the function, 'this' will point to newly created Object {}
 				3. {} is linked to Prototype
-				4. Automatically returns the created object
+				4. Automatically returns the created object // we can override return to our will anyway
 
 			const Person = function(Name,Age){
 				this.Name = Name
@@ -920,7 +969,7 @@ JS Notes
 
 			new Person('Logan',27);
 
-			Note: Never create a function/method inside constructor functions as it would reapeat the function unecessarily for each instance, instead use Prototype and inherit the method
+			Note: Never create a function/method inside constructor functions as it would reapeat the function unecessarily for each instance, instead create the method in its Prototype which will be executed only once and inherit the method for each instance
 
 		Prototype
 			Person.prototype.funcName = function(){
@@ -928,13 +977,38 @@ JS Notes
 			}
 			Person.prototype.Type = "Humans"
 
-			Any property configured inside a Prototype Object will be available for all the objects created for Person
+			Any property configured inside a Prototype Object will be available for all the objects created from Person
+			i.e const per = new Person("TestName","28")
+				per.__proto__ === Person.prototype // true
+				Person.prototype.isPrototypeOf(per)	//true
+				So, Anyhting defined in .prototype of a constructor function is the inherited .__proto__ property
+				Also, every object has .prototype(to be inherited in next level) as well as .__proto__(inhertied from previous object)
 
+				Person.prototype.constructor === Person // true
+			
 		Class
 			Class is just syntax Enhancements but it is same as constructor function that returns an object
-			Not hoisted
-			Classes are always executed in strict mode
+			Class are first class citizens (datatype that can be stored in variable, can be returned etc)
+			Class content are always executed in strict mode
+			Not hoisted; so they cannot be used before declaration
+			Since Class is still a functin behind the scene, it cna be created by both decalration as well as expression
 
+			const Person = class{
+
+			}//class expression
+
+			class Person{
+				constructor(){
+					super()
+					//same as constructor function invoked when instance is created with 'new' keyword
+				}
+				this.calc(){ // when created with this. the method is set directly in class
+
+				}
+				calcAge(){ // any function/property created outside constructor and without 'this' keyword is created in the prototype
+
+				}
+			}//class declaration
 
 
 
