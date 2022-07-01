@@ -22,16 +22,21 @@
 class Person{
     constructor(){
         this.YOB =1994
-        this.Age = 50
+        //this.Age = 50
     }
-    get Age(){
-        return 2022 - this.YOB
+    check(){
+        //test
     }
-    set Age(a){
-        this.Age=a
+     get Age(){
+         return 2022 - this.YOB
     }
+     set Age(a){
+         this.Age=a
+    }
+
+
 }
 
 const per = new Person()
-
+console.dir(Person)
 console.log(per.Age)

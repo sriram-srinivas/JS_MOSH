@@ -946,8 +946,27 @@ JS Notes
 			Hiding logic
 		Encapsulation
 			access modifiers, keeping things inside class itself
+			There is no private or protected access modifiers in constructor functions. add '_' before a property or a method and verbally communicate to the team, that any varialb/medthod with '_' as prefix is to be considered as protected and is not supposed to be accessd or modified outside the constructor function
+
+			For class based properties and methods follow the below
+				Declare any variable or a method directly inside class (not inside constructor() or any other method) with '#' as prefix; i.e any variable/method startig with '#' is a private varible/method and is accesible only inside class. 
+
+				Note: These private variable/method will be present directly on the object and not inside the prototype
+ 
 		Inheritance
-			child extends parent
+			Constructor Function Inheritance
+				const Person = function(name,age){
+					this.name = name
+					this.age = age
+				}
+				const Student = function(name,age,course){
+					Person.call(this,name,age) // inheritance is simulated using call() method and binding 'this' object with it 
+					this.course = course
+				}
+				Student.prototype = Object.create(Person.protoype) // to manually inhert protoype
+				const stu1 = new Student('Logan','28','JS')
+
+		Note: in class based inheritance if the child class does not differ from parent class initialization there is not need to specify construcctor() in child class
 		Polymorphism
 			child can override parent class methods
 
@@ -967,9 +986,16 @@ JS Notes
 				console.log(this) // will print Person{}
 			}
 
-			new Person('Logan',27);
+			const Logan = new Person('Logan',27);
 
 			Note: Never create a function/method inside constructor functions as it would reapeat the function unecessarily for each instance, instead create the method in its Prototype which will be executed only once and inherit the method for each instance
+
+			Static Method in constructor Functions
+				Set a method to the variable of constructor function outside it to make it static and not accesible to the constructor function's instances
+
+				Person.Hi = function(){
+					//some ode
+				} // this is accessible only from Person. and not from Logan.
 
 		Prototype
 			Person.prototype.funcName = function(){
@@ -992,7 +1018,7 @@ JS Notes
 			Class content are always executed in strict mode
 			Not hoisted; so they cannot be used before declaration
 			Since Class is still a functin behind the scene, it cna be created by both decalration as well as expression
-
+			Class supports getter & setter methods
 			const Person = class{
 
 			}//class expression
@@ -1002,7 +1028,7 @@ JS Notes
 					super()
 					//same as constructor function invoked when instance is created with 'new' keyword
 				}
-				this.calc(){ // when created with this. the method is set directly in class
+				static calc(){ // when created with static the method is accessible only for class and not for its objects
 
 				}
 				calcAge(){ // any function/property created outside constructor and without 'this' keyword is created in the prototype
@@ -1010,7 +1036,9 @@ JS Notes
 				}
 			}//class declaration
 
-
+			Note: In case of inheritance between classes, constructor() will need super() method to be called
+			Static Method in class
+				'static' keyword before the method declaration will not set it to prototype hence it is not carried over to the class instances; See example above
 
 CSS Notes
 	Use --varName and var(--varName) to set and get css variables in Local(any selector{}) or Global (:root) Scope
