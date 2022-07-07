@@ -1040,6 +1040,9 @@ JS Notes
 			Static Method in class
 				'static' keyword before the method declaration will not set it to prototype hence it is not carried over to the class instances; See example above
 
+			Static Fields in class
+				'static' keyword before class level property will create instance level variable, available only in class
+
 CSS Notes
 	Use --varName and var(--varName) to set and get css variables in Local(any selector{}) or Global (:root) Scope
 :root{
@@ -1050,3 +1053,32 @@ CSS Notes
 div{
 	background-color: var(--black)
 }
+
+
+
+
+Web Workers
+	Web worker is to enalbe multi threading in javascript. In general JS is single threaded and every operation from calcualtion to DOM manipulation happens in same thread. Using web worker we can have multiple separate worker threads to execute CPU heavy tasks in parallel
+	Note:  Web worker cannot access DOM. so no DOM manipulation
+	     Web workers can communicate with each other through Post message / Get message api 
+
+	//Script.js
+	const worker1 = new Worker("Worker.js"); // create 
+	document.getElementById("ID").addEventListener("click", e=>{
+		worker1.postMessage('HI')
+	})
+
+	worker1.addEventListener("message", e=>{
+	console.log(e.data)
+	})
+
+	//Worker.js
+	self.onmessage = message => { // 'self' is worker object which is global object like 'window' or 'process'
+		console.log(message.data)
+
+		let sum =0 
+		for(let i =0; i< 1000000000;i++){ // heavy work  
+			sum += i 
+		}
+		postMessage(sum)
+	}
