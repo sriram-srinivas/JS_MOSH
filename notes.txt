@@ -317,7 +317,7 @@ JS Notes
         innerHTML vs innerText vs textContent
             innerHTML -> parses and provide as HTML
             innnerText -> just text no parsing of HTML
-            textContent -> sets text content alone
+            textContent -> sets text content alone with full spacing like <pre> tag
 
 	Advanced DOM
 		DOM -> Document object model
@@ -1082,3 +1082,23 @@ Web Workers
 		}
 		postMessage(sum)
 	}
+
+Throttling
+	Consider a button is clicked every millisecond, but the funciton should be called only once per set delay time from the previous time it was called
+
+Debouncing
+var button = document.getElementById("debounce");
+const debounce = (func, delay) => {
+    let debounceTimer
+    return function() {
+        const context = this
+        const args = ['str1','str2']
+            clearTimeout(debounceTimer)
+                debounceTimer
+            = setTimeout(() => func.apply(context, args), delay)
+    }
+} 
+button.addEventListener('click', debounce(function(x,y) {
+        alert(y)
+           }, 3000));
+
