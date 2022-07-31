@@ -1,0 +1,307 @@
+MongoDB
+	It is Database, to store huMONGOus data... work with lots and lots of data..>. NoSQL database
+	Database server that allows us to run different databases on it
+	
+		MySQL						MongoDB
+		Tables (schema)				Collections (schemaless)
+		Columns						- // flexbile need not have any fixed structure inside a collection
+		rows/records(csv)			Documents(json objects0
+		
+	Datatypes in mongoDB
+		String
+		Int	(int32)
+		NumberLong (int64)
+		float (64 bit non precise datatype)
+		NumberDecimal (highly precision float datatype, 34 decimal places)
+		Boolean
+		Objects (nested objects which is called as Embedded Document)//List of Lists...Kind of
+		Arrays - [Lists of any other datatype]
+		ObjectId - 
+			Unquie Id internally created by MongoDB during inserts.
+			It is stored in "_id" key in the inserted document
+			It stores timestamp information in it too, SO it can be used to sort records like created datatime field
+		ISODate - date
+		TimeStamp - (timestamp + ordinal Value) to differentiate data stored at once
+		null
+		
+		Documents - embedded Document (upto 100 levels)
+		
+		All ablove methods are stored in json notations/format..
+		Note: this JSON is internally converted to BSON a binary format, that MongoDB uses to query in a super effecient way
+	
+MongoDB Products
+	MongoDB Server - core product, DB solution
+		Self Managed, Enterprise, community version of server
+	Cloud Manager / OPS Manager - Tool for DB admin
+	Atlas - Cloud solution, with all DB admin tasks done already.. ready for developer to focus only on data and logic
+	Mobile solution - Mobile sw to store MongoDB in phone and access them without Internet
+	Compass - (like MYSQL workbench) GUI tool to connect to db and work with
+	Business Intelligence connectors - Tools for analytics / Data Science
+	Mongo DB charts - Tools for analytics / Data Science
+	
+	Stitch - Serverless backend Solution, This is a queryAPI, used to fetch data directly from client side apps
+		Serverless queryAPI
+		Serverless functions (execute JS code in DB) equivalent to AWS lambda / google cloud functions
+		DB Triggers - Trigger
+		Real Time Sync
+		
+MongoDB tools
+	Mongo Shell - CMD area where after starting mongoDB server, all codes are executed
+	Wired Tiger - Default storage engine that mongoDB uses to manage data... pluggable/replacable storage engine
+		
+Installation
+   Download Community server version from official website.. Install
+   Add mongodb../../bin path to environment variable 'Path'
+   open cmd
+   Run 'net stop MongoDB' to stop existing service
+   Create a folder for the Db at any desired location
+   Run 'mongod --dbpath "D:\MongoDB\DB"' where path inside "" is the DB folder path
+	Note: Run 'mongod --port 20178 --dbpath "D:\MongoDB\DB"' to give port in which MongoDB should run
+   leave that instance as it is, It is the actula server starting up
+   From next Login no need to start this as, it is done by default at startup
+   Now in a new cmd window Run 'Mongo' to connect to the mongo shell
+	Note: if you had run Mongod with a port, Run 'Mongo --port 20178' to start the DB at specified port
+	
+	
+	Config file
+		Create a config file 'fileName.cfg' with following contents
+			storage:
+				dbpath: "some path"
+			systemlog:
+				destination: file,
+				path: "path/logFileName.log"
+		run 'mongod -f c:\path..\fileName.cfg'
+			
+MongoDB drivers
+	just like Mysql driver, download the driver for repective logic layer (nodejs)
+	Based on the programming language, syntax would defer, as we would use this driver in the programming language
+	
+Basics
+	DataBase Server
+		MongoDB server that allows us to store/handle multiple databases
+	DataBase
+		DataBase is a Place multiple collections are stored. This is a NoSQL DataBase, thus it does not follow traditional RDB concepts
+	Collections
+		Collections are equivalent to MySQL Tables. MongoDB tables i.e Collections do not have aby fixed schema/column structure
+	Documents
+		Each record in a Collections is called as documents. A Collection will have multiple Documents in it.
+		Documents are stored in JSON format i.e like a Javascript Object format, Also all Documents in a Collection need not have similar set of Key-value pairs.. All 3 documents mentioned below are Valid for a document
+		Eg:-
+		 In a Collection called Employee, The following Documents are Valid
+		 {"id":2015,"Name":"Emp1","Age":26,"Role":"Developer"}
+		 {"id":1,"Name":"Emp2","Age":27}
+		 {"Name":"Emp3"}
+		 
+		 This is what makes a Collection in MongoDB schemaless
+	
+	Default databases in mongoDB are 
+		admin - manage user access to mongodb
+		config- manage mongoDB configurations
+		local - 
+	
+	Mongod - Denotes server
+	
+	mongo - denotes shell
+		
+Shell Commands
+	
+	mongod --dbpath "D:\MongoDB\DB" --logpath "path/log.log" - start server with dbpath and log path
+	
+	mongod --help - server command list
+	
+	mongo --help - shell command list
+	
+	mongod -f c:\path..\fileName.cfg - To start mongodb server with setting from a config file
+	
+	Mongo - start Mongo shell at path db mentioned in above command
+	
+	net start MongoDB - To start mongodb as background service
+	
+	net stop MongoDB - To stop mongodb as background service
+	
+	'cls' - clear window
+	
+	help - inside shell to see help
+	
+	'show dbs' - show databases available in the server, Only the databases in which collections with atleast single document exists
+	
+	'use db_NAME' - eg-"use sysconfig" if db exists switches to that DB, else creates a new one with the specified name and switches to it. Note. DB is not created unless data is stored
+	
+	'new Date()' - current date
+	
+	'db.COLLECTION_NAME.QUERY' - eg-"db.Employee.insertOne(//document object)" Here, 'db.' refers to the current active DB, 'Employee' will be the name of exisiting or to be created collection and 'insertOne()' is one of the query operation that can be performed in the 'Employee' Collection
+	Note: DB is created only if it has atleast one collection, Collection is created only if it has one valid document
+	
+	'db.COLLECTION_NAME.insertOne(//JSON)' 
+		Eg: 
+		Input
+			db.Employee.insertOne({"id":1,"Name":"Emp2","Age":27}) 
+		Output
+			{
+				"acknowledged" : true,
+				"insertedId" : ObjectId("5eeae3cbabc88e79a5c62727") 
+			}
+		
+		Here ObjectId is the unique ID given for this record/Document in the key '_id', this is of Datatype 'ObjectId' which is supported by MongoDB
+		
+		Note: if keys should be enclosed in "" if it has empty space in it else {id:1,Name:"Emp2",Age:27} is a valid input. Value however if its a String, ahould be in ""
+		
+		"_id" is a reserved key name in mongoDB, we can use it to provide user defined key, but we need to make sure its unique {"_id":1,Name:"Emp2",Age:27}
+		
+	'db.tempTable.insertMany([{}])' Array of map to insert
+		
+		
+	'db.COLLECTION_NAME.find()' - shows cursor (first 20) data in collection
+		Eg: 
+		Input
+			db.Employee.find()
+		Output
+			{ "_id" : ObjectId("5eeae3cbabc88e79a5c62727"), "id" : 1, "Name" : "Logan", "Age" : 26 }
+	
+	'db.COLLECTION_NAME.find().pretty()' - shows cursor (first 20) data in collection, beautified
+		Eg: 
+		Input
+			db.Employee.find().pretty()
+		Output
+			{
+				"_id" : ObjectId("5eeae3cbabc88e79a5c62727"),
+				"id" : 1,
+				"Name" : "Logan",
+				"Age" : 26
+			}
+			
+	'db.COLLECTION_NAME.find({"id":1})' results matching records
+	'db.COLLECTION_NAME.find({"id": {$gt :1}})' results with Id greaterThan 1
+	
+	'db.COLLECTION_NAME.find({},{name:1,_id:0})' find all data, but selecting specific columns to fetch(select column_Name) 1 - yes ,0-no
+		
+	'db.tempTable.deleteOne(filter,options)' delete first match
+		db.tempTable.deleteOne({"id":4}) will delete first record with 'id' 4
+		output
+			{ "acknowledged" : true, "deletedCount" : 1 }
+			
+	db.tempTable.updateOne({"Name" : "Brian"},{$set: {"Name":"Connor"}})
+		{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+		
+			'{$set:{json}}' $set is marker to denote operation to be performed
+	
+	db.tempTable.updateMany({},{$set: {"Name":"Connor"}}) // empty filter to update all documents
+	
+	db.tempTable.updateMany({"Name" : "Brian"},{$set: {"Name":"Connor"}})
+		{ "acknowledged" : true, "matchedCount" : 3, "modifiedCount" : 3 }
+		
+			'{$set:{json}}' $set is marker to denote operation to be performed
+	
+	db.tempTable.update({"Name" : "Brian"},{$set: {"Name":"Connor"}})//same as updateMany
+	db.tempTable.update({"Name" : "Brian"}, {"Name":"Connor"}) // only accepted by update()... it will replace the entire object with second parameter
+	in this scenario, all other key value will disappear only name will be there
+	
+	db.tempTable.replaceOne({id:10},{//json}) // this will replace entire json except "_id", not ablet to replace "_id" itself
+	
+	'db.tempTable.deleteMany({})' Truncate Table
+	'db.tempTable.deleteMany({Age:26})' To delete matching records
+	
+	
+	
+CRUD
+	Create
+		use TestDB
+		db.tempTable.insertOne(data,options)
+		db.tempTable.insertMany(data,options)
+		db.createCollection("COLLECTION_NAME",options) // use this to create collection with special options like validation etc
+		
+		mongoimport 'FILE_PATH' -d DATABASE_NAME -c COLLECTION_NAME --jsonArray --drop		
+		
+		Options
+		{ordered: flase} //false - skip erros and continue ; true - stop at error... both values will not rollback succesful entries
+		
+		{writeConcern: {options}}
+			{w: 1} - 1 denotes number of instances write operation need to be acknowledged ; 0 will send request and will not wait for response
+			{wtimeout: 200} - timeout for write functions
+			{j: undefined} - //undefined means no exernal journal is given to us; true means Any script is written in journal before writing to Disk 
+		
+	Read
+		db.tempTable.find()
+		db.tempTable.find(filter,options)
+		db.tempTable.findOne(filter,options) // pretty not supported
+		
+		Sub functions
+			find().pretty() // exists only on cursor
+			find().toArray()// returns complete array instead of cursor (first 20)
+			find().forEach(// JS function)
+			findOne().SUB_Document/SUB_Array KEY // only for findOne
+	Update
+		db.tempTable.replaceOne(filter,data,options)
+		db.tempTable.update(filter,data,options)// can be used both ways with and without $set, update() without $set is actually replaceMany
+		db.tempTable.updateOne(filter,data,options)
+		db.tempTable.updateMany(filter,data,options)
+		
+	Delete
+		db.tempTable.deleteOne(filter,options)
+		db.tempTable.deleteMany(filter,options)
+		db.myCollection.drop()
+		db.dropDatabase()
+		
+MISC
+	Inserts and updates can have arrays and nested objects as a value for a Key.
+		db.Employee.insertOne({"id":1,"Name":"Emp2","Age":27,"Hobbies":["sports","driving"],"Address":{"streetnumber":"32","StreetName":"vivekanandar St"}}) 
+	To fetch the embedded list or document, use its key as property
+		db.Employee.find({"Name":"Emp2"}).Hobbies
+	To filter based on the contents of list
+		db.Employee.find({"Hobbies":"driving"}) /// this will returns the document that has hobbies that contain driving
+	To filter based on the contents of nested Documents
+		db.Employee.find({"Address.Streetnumber":"32"}) /// this will returns the document that has Address with Streetnumber that contain 32
+	
+	MongoDB when insertMany() will execute one by one if 5th document fails by deafult it stops there but previous 4 entries are stored, if 'ordered' options is set to false its skips the entry on error and continues to next document... both scenarios will not rollback succesful entries
+	
+	Journal is a place used to track operations before writing to disk, incase if server failure or something error occurs after server recovery.. Mongodb searches journal to execute pending actions... this is used to increase security
+	
+	Aggregate
+		This is like join sql for collections
+		db.COLLECTION1_NAME.aggregate([{$lookup: {from: "COLLECTION2_NAME", localField: "COLUMN1", foreignField: "COLUMN2", as: "ALIAS_NAME" }}]).pretty()
+		
+		$lookup - to get data from another colllection
+			from - target collection name
+			localField - field from source collection to join
+			foreignField - field from target collection to join
+			as - alias name for the result
+			
+	Schema Validation
+		Inspite of MongoDB documents are flexible, we can add schema validation to documents
+			Types of Validation
+				Strict
+					Validaton for All inserts and updates
+				Moderate
+					Validaton for All inserts, But updates for documents which are valid (without incorrect data)
+			Types of Actions
+				Error
+					Stop and rollback
+				Warning
+					Proceed but throw warning // thrown only at log file not in console
+					
+					
+		To create collection with validation use this
+			db.createCollection("COLLECTION_NAME", {
+				validator: {$jsonSchema: {
+					bsonType: "object", 
+					required: ["id","name","age"], // list of mandatory fields
+					properties: {
+							id: {bsonType: "integer",description:"Integer and Required"},
+							name: {bsonType: "string",description:"String and Required"},
+							age: {bsonType: "integer",description:"Integer and Required"},
+							type: {bsonType: "string",description:"String and not Required"},
+							Hobbies: {
+								bsonType: "array",
+								description:"array and not Required",
+								items:{bsonType: "string",description:"String and Required"}
+								}
+							}
+						}
+					},
+				validationLevel: 'strict/moderate',
+				validationAction: "warn/error"
+				}
+			})
+								
+		To modify the schema of collection run
+			db.runCommand({collMod:"COLLECTION_NAME", {validator: {...schema object liek above }}})

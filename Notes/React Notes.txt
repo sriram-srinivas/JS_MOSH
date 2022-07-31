@@ -1,0 +1,575 @@
+============================================================
+						React JS
+============================================================
+
+Into
+	Its is custom, resuable, highly reactive - super fast, javascript driven.. web application... component library
+	Runs in Browser mostly... 
+	Uses ES6+ js functionalities
+
+ES6+
+	var														let													const
+	
+	Hoisting is there										No Hoisting											No Hoisting
+	Globally scoped											Block Scoped										Block Scoped
+	can be re-declared in same scope						Not re-declarable in same scope						Not re-declarable in same scope
+	can be re assigned										can be re assigned									cannot be re assigned
+
+							============================Snippet=========================================================	
+									var a1="variable";
+									let a2="let";
+									const a3="const"; // like Java final variable
+
+									console.log(a1,a2,a3); // output "varialbe,let,const"
+
+									{
+									  var a1="block var";
+									  let a2="block let";
+									  const a3="block const";
+									  console.log(a1,a2,a3); // output "block var,block let,block const"
+									}
+
+									console.log(a1,a2,a3); // output "block var,let,const"
+									function fun(){
+									  var a1="func var";
+									  let a2="func let";
+									  const a3="func const";
+									  console.log(a1,a2,a3); // output "func var,func let,func const"
+									}
+
+									fun();
+
+									console.log(a1,a2,a3); // output "block var,let,const"
+
+									var a1="re variable";
+									//let a2="re let"; //redeclare in same scope not allowed
+									//const a3="re const"; //redeclare in same scope not allowed
+
+									console.log(a1,a2,a3); // output "re variable,let,const"
+							================================END=================================================	
+	
+	Arrow Function
+		Syntax:	const print = (//paramters goes here) => {
+					//code goes here
+				}
+				const rand = () => Math.random(); // short hand syntax if arrow funtion only has return statement
+				
+				If arrow funtion has exactly only one parameter (not more / not less), () can be omitted
+				
+				const multiply = num => num*2; // short hand for mulltiply and return a variable
+				
+				//full version
+				
+				const multiply = (num) =>{
+					return num *2 ;
+				}
+				
+		Arrow function in ES6 is usedful to avoid issues with using 'this' keyword. 'this' keyword might result in unexpected outputs when used inside normal function()..but it is resolved in arrow Function
+		
+	Modular code (Import/Export)
+		ES6 allows us to import a javascript file inside another javascript file. Thus enables to split JS code to separate modules 
+		
+		/*person.js*/
+		const person = {
+			name:'max'
+		};
+		
+		export const clean = () => {};
+		export const username ="admin";
+		
+		export default person; 
+		// 'export' keyword is used to mark which content of the file is mportable, in other words, only the exported content can be imported 
+		// 'default' keyword can be given to only one export content/variable in a file, to mark it as default exported file
+		
+		Note: There is something called Higher order component When we use export like this
+		export default Radium(person)... here Radium is a higher order component, it wrapps the person component and parse it to find extra functionalities
+		
+		/*index.js*/
+		import pers from './person.js'  // any import without {} is refering to deafult export. It can have any alias 'pers' or 'persObj' 
+		import persObj from './person.js' // both above and this line points to default export
+		
+		import {clean,username} from './person.js' // named import has exact variable name as in exported file inside {}. used for non - default exports
+		
+		import {username as usr} from './person.js' // {EXPORT_VARIABLE_NAME as ALIAS}... use 'as' keyword to mention any alias for named exports
+		
+		import * as bundled from './person.js' // use this to import all content inside an object named 'bundled', to access use 'bundled.username'
+		
+		import pers,{clean,username} from './person.js' // short hand of above
+		
+		This export import feature is advanced JS feature (ES6), might not be supported by even leading browser, It needs to be compiled to basic JS to ship and run in all browsers
+		
+	Class
+		Similar to java's class
+		'extends' keyword for inheritance, similar to java
+		const obj = new class(); //suntax for instance creation
+		'constructor(){}' method is used as constructor function
+		'this.' is used to access member function and property of a class
+		If a class is extended and if classes have constructor() method 'super()' should be called in the child class constructor to acess parent class constructor
+		child constructor is executed before parent class constructor
+	
+	Spread & Rest operator
+		'...' is the operator, based on the place where its used it behaves as spread or rest operator
+		Spread 
+			Used to split array elements or object properties, this is like deep copy with out passing the reference
+			const oldArray = [1,2,3]; 
+			const newArray = [...oldArray,4,5]; //will result [1,2,3,4,5], same can be done to merge two JS objects
+		
+		Rest 
+			This is like java Variable arguments
+			same '...' operator is used in method parameter section to pass variable number of function paramters 
+			const sortArr = (...args) => args.sort(); // arrow function which recieves any number of paramters as stores it to 'args' array and return sorted array
+			This can ideally be used in areas where varying no of parameters are passed to method to be set in an array to perform operations like sort(),filter() on it
+	
+	Default parameters
+		function myFunction(x, y = 10) {
+		  // y is 10 if not passed or undefined
+		  return x + y;
+		}
+		myFunction(5); // will return 15
+	
+	Destructuring
+		var o = {p: 42, q: true};
+		var {p, q} = o; // creates 2 variables p=42,q=true... based on property name
+		var {p, r} = o; // creates 2 variables p=42,r=undefined... based on property name
+		
+		var o = [1,2,3,4];
+		var [p, a] = o;// creates 2 variables p=1,q=2... based on index
+		var [p, , a] = o;// creates 2 variables p=1,q=3... based on index
+	
+	Primitive Types
+		int,string,boolean are primitive..pass by value
+	
+	Reference Types
+		Objects,Array are reference type..pass by reference
+		
+		const person = {name:'first'};
+		const person1 = person;
+		person1.name='one'; // will change person.
+		
+		//use spread operator to avoid this
+		const person1 = {...person}; // after this, changing person1.name will not affect person.name
+		
+	Array inbuilt functions
+		These are functions like sort(), filter() which act on all index of array to return an array or an element
+		
+		map()
+		const arr1=[1,2,3];
+		const arr2 = arr1.map((num,index) => {
+			return num * 2;
+		});
+		This will set arr2 as [2,4,6]
+	Note: Map has inbuit second argument the index of array
+		
+	Event
+		All functions by deafult get acess to 'event' object... 'event.target' is used to select the element from which event was triggered
+		
+	Object.keys(JS_OBJECT)	
+		This method will return an array of keys present in JS_OBJECT which is sent as parameter
+	
+	Array(3)
+		This is a parameterized constructor which returns an array of 3 empty elements
+	
+	JS_ARRAY.reduce(function(total, currentValue, currentIndex, arr), initialValue)
+		total	Required. The initialValue, or the previously returned value of the function
+		currentValue	Required. The value of the current element
+		currentIndex	Optional. The array index of the current element
+		arr				Optional. The array object the current element belongs to
+		initialValue	Optional. A value to be passed to the function as the initial value
+		
+What is React - 
+	JS library to build User Interfaces.. Which runs in Browser resulting is super fast responsiveness..it is used to build components..which is modular, can be resused and easily maintained
+	Written in JSX (JS xml).. similar to custom html elements 
+	
+Environment / Workflow Setup
+	Benifits:-
+	Code optimization
+	Use next gen JS during development, convert to native JS during build 
+	Support for linting (error/warning in complie time), css auto prefixing (-moz, webkit etc) 
+	
+	Tools & Imports :-
+	NPM - Node's Packager Manager is used for dependency management, a library provider that provides all necessary pre built packages
+	WebPack - Webpack is a code bundler, that bundles multiple files of code to one two files after build..optimizes code
+	Babel - JS preprocessor,when included with webpack it converts latest ES6 code to native JS to make the app compatible with as many browsers as possible
+	Local Web Server - To launch the app as it would run in the actual server
+	
+	We can export both variables and class objects
+	
+	codepen, jsbin readily available online editors
+	React Library package- Has all reserved keywords and implementation logics of react
+	React DOM package- virtual dom maintained by react... responsible for super fast performance offered by react.. any react component is interpreted to HTML DOM using React DOM.. 
+	
+	Local Setup:- 
+	Download and install latest stable node js from actula node js website, to get NPM and the JS server
+	open cmd, Run 'npm install -g create-react-app' // This is done only once to install the create-react-app built in setup
+	Move to destination folder and run 'create-react-app mark1 --scripts-version 1.1.5' to create a project named 'mark1' as per the standards in 'scripts-version 1.1.5' built in package, This will create folders and files based on that package definition
+	After above step completes, move to the mark1 folder and run 'npm start'
+	This will start a web server, with the default files and will have a jrebel like service that updates UI on any changes on the code
+	
+	Note:
+		package.json has meta data and is like pom.xml
+		index.html will have only div with 'root' as id, all css and js are injected at buid time
+		index.js will be the starting js file that has ReactDOM.render() call and all other js and css imports
+		as css imported in js will be included to you html.. but it will work as normal css import and is available for the entire view
+	
+	NPM
+		npm install - Running this wil bring node_modules folder based on package.json
+	
+Components
+	individula build block of web page (header,footer,sidebar,content,slider...).. basically a template of a particular part in a webpages, where we can send data dynamically and reuse the same element wherever needed
+	
+	components will start wiht capital letter, since lowercase are used by react generally
+	For Both type of components we need to import React from 'react' , to compile jsx to javascript
+	
+	Class based components
+		All class based components should extend 'Component' class from react library
+		
+		Both class level functions and attribute dont have const/let/var prefix
+		personName:'Vikey',
+		printName = (name) =>{console.log(name);} are valid properties of a class
+		
+		class CLASS_NAME extends Component{
+			render(){ // called by react to show component
+				return(
+				//jsx goes here
+				);
+			}
+		}
+		
+		Note: if you are configuring a constructor in the component, 'super(props)' shold be called in it to avoid issues
+		
+	Functional components
+		Best way of creating components
+		const FUNCTION_NAME = () => {
+			return(
+				//jsx goes here
+			);
+		}
+		return() method is internally called by ReactDom.. so all function based component must have return() method.. jsx is put inside () as a parameter, of return method.. so all jsx tag must be wrapped under a single root/parent tag.. 
+		ES6's arrow function is also used to create functional components
+		
+		Note:'export default React.memo(CONST_NAME)' exporting a component const inside of React.memo() will MEMOrize the const component, rerendering happens only of the props sent to it is changed... This is used for performance optimization
+		
+Component Life Cycle
+		This is available only in class based components, it is also called Lifecycle hooks
+		
+		Check 01.LifeCycleMethods.png in screenhots folde to get list of inbuilt methods in class based component
+		
+		Create component life cycle (happens on creating component for first time)
+		1. constructor(props) is called (Basic ES6 way or creating class). Do basic initialization or setState and no heavy lifting tasks(http req,cookies, Google analytics)
+		2.'static getDerivedStateFromProps(props, state)', its is called to sync 'prop' with the 'state'(very rare need). In cases where props could change, we can call this to sync it with state... do lightweight tasks only 
+		3.render() is called then, Use it to display only JSX.. No http req or timeouts should be set in this method (will cause performance impact).
+		This render() completes only if all its child component's render() is over
+		4.componentDidMount() methods is executed at the end of render(), this is called only if component loaded properly. This is a important Life Cycle Hook, as it can be used for hevy lifting tasks(like http).. However do not call setState unless really needed. as it will result in re render and cause performance issues
+		
+		Update component life cycle
+		1.getDerivedStateFromProps(props, state)
+		2.shouldComponentUpdate(nextprops,nextState), checks if update cycle is needed.. Should not block internal activity, it might result in failure
+		3.render() 
+		4.getSnapshotBeforeUpdate(prevProps,prevState), this gets prev dom details, information like current scrollbar position is obtained from here, which can be used to set in nextState too
+		5.componentDidUpdate(prevProps,prevState, snapshot) is executed on completed render(), Denotes update is finished properly. No setState() here too
+		
+		Note: In both componentDidMount/componentDidUpdate methods, on calling setState or http req call might result in infinte loop.. Make sure to avoid such scenario
+		
+		'componentWillUnmount()' is called when the component is removed from the DOM. To run some work before removing a component this method can be used
+		
+		'shouldComponentUpdate()' can be used to improve performance by avoiding re render of components, which is not affected during the action
+		shouldComponentUpdate(nextprops,nextState){
+			return (nextprops.property !== this.props.property);//using this inside the internal class based component will avoid unwanted update
+		}
+		
+		PureComponents
+			import React, {PureComponent} from 'react';
+			class App extends PureComponent {} will have inbuilt shouldComponentUpdate() which checks for all the properties  of App class, only if the value had changed update cycle is triggered.. it is a replacement for shouldComponentUpdate(), when all changes needs to be checked before an update 
+		
+JSX - Javascript XML
+	As name suggests XML syntax.... similar to HTMl tags
+	All HTML tags have equivalent JSX tag (same name mostly)... its case sensitive <div> is reserved JSX tag equivalent to <div> html tag... but <Div> is custom JSX tag... can be given definition internally
+	Since 'class' is reserved keyword for JS... to mention style class name to JSX tag 'className' is used
+	likewise 'onclick' equivalent jsx attribute is 'onClick'
+	All JSX code is converted to equivalent html tag
+	Any JS expression is put inside '{}'... Any code inside {} is evaluated to a JS expression
+	Generally Jsx code should be covered inside a single parent tag to work, or it should be an array with 'key=""' unique key attribute for every array element ,sepearted by commas. This will be useful when the parent or container tag should be avoided (stlying and html structure reasons)
+	
+	Another work around to avoid dummy wrapper html to be put in browser, we can create a parent component (Higher order component) that just returns props.children
+	
+	/* sample parent.js
+	const parent = props => props.children;
+	export default parent;
+	*/ // use this parent js as wrapper for all other jsx, which does not have any impact at html structure
+	
+	Note: All above is required as in JS it is not feasible to return multiple lines at once
+	After React 16.2.. import React,{Fragment} from 'react'; is available, which is similar to the parent component	
+	<Fragment></Fragment> can be used as wrapper which has no html equivalent but just returns all its child tags internally
+	
+	any function called from onClick should not have () after fnction name, as it would be called on load
+	onClick={this.funcName} // only on click (as only reference for method is passed)
+	onClick={this.funcName()} // on load & on click
+	
+	Note: to pass parameters use 'this.FUNCTION_NAME.bind(this, PARAMETER1,PARAMETER2..etc) or,
+	use anonymous arrow function onClick={() => this.FUNCTION_NAME(PARAMETER1,PARAMETER2..etc)} // not recommended though (low performance), use bind syntax
+	
+	All jsx components compile to a JS method in React lib React.createElement('html Element Name',js object(class of function component,childrenelement(JSX))
+	
+	createElement() method will have min of 3 parameters and n number of parameters at the max, as all element from 3rd parameter are children
+	
+	So all jsx tags with children..
+	
+	var app = (
+		<div>
+			<Person name="Max"/>
+			<Person name="Milllian"/>
+		</div>
+	);
+	
+	ReactDOM.render(app,document.getElementById('#id')); >>> Sets JSX in variable to respective id 
+	
+	Conditional content display
+		To display conditional content 
+		Set a flag in 'state' object, change it with the respective event using 'setState()'
+		To configure at the jsx tag, two ways are there
+		1. Ternary operator - {condition ? <div/> : null} // inside the render()
+		2. Assign to a variable conditionally let pers = null; if(condition){pers= (<div/>);} //outside render(), and display {pers} inside render()
+		
+	Dynamic content
+		To output a content by iterating a list use Array.map(() => {return(//jsx);}),
+		If we are rendering a list the array, the List should have unique id parameter and that should be used as 'key' props of the component
+		'key' is default/inbuilt property that should be included in the element(both custom and html element) rendered using map() function, React throws error if not done.
+		'key' is used to improve performance in manipulating List based components, It is used by the virtual Dom 
+Props
+	Argument or properties sent/used in Class and functional components... All attributes set to custom JSX tag is stored in props object.. <Person name="Max"/> is accessed using {props.name} inside 'Person' class/function
+	props are sent from out side the component as a parameter through the source tag
+	
+	'props' is a generally used term, but any functional component can have one parameter, with any name of our choice..but its actually behaves like the props variable
+	
+	Class based components use {this.props} as keyword to recieve properties
+	{props.children} 'children' will have all child nodes inside the source react component tags
+	
+	Just like variables/strings, we can also pass function name without (), as a property to the component. assigning the prop to an event inside the component will call the function reference passed
+	
+	Note: to pass all props from parent to child element use  '...' spread operator like <Component {...props} /> and all props are sent to this child component
+	
+	'key' is a reserved props which is used when displaying array of jsx components, It expects unique value to enable react work on lists effeciently
+	'ref' is a prop that can be used to access the component and apply some requirements like setting focus onload etc. It can be done in two ways
+	ref={element => {this.refElement = element}} // this sets the parent element to class level property, hence it is available globally
+	Note: you can also use 'React.createRef()' to set the ref to component 
+	
+	PropTypes
+		install and import prop-types package, which is provided by react community itself.. To setup datatype check for props sent to component...
+		Note: this shows warning if wrong data types is set, only during dev mode builds
+		
+Render
+	ReactDOM.render(<JSX_TAG/>,document.getElementById('id')); >>> '<JSX_TAG/>' is class or function with return method
+	ReactDOM.render(VARIABLE_NAME,document.querySelector('#id')); 'VARIABLE_NAME' just a var/let/const with var app = (//jsx goes here);
+	
+Routing
+	React routing enables developing SPA
+	Install 'react-router' and 'react-router-dom' to enable rounting
+	Enclose area to route under '<BrowserRouter>' tag, imported from react-router-dom
+	Following is route config, showing which component is displayed for each path 
+	<Route path="/" exact component={Worksheets}/>
+		"path" is url to consider
+		"exact" is a boolean value to specify if the url should be exact or to consider
+		"component" component to be displayed
+	
+	<Link to="/Account">//component</Link>	for static routing
+	<Link to={{pathname:'/Account',hash: '#SOME_ID', search:'?sort=Relevance' }}>//component</Link> //dynamic routing
+	
+	withRouter(Component) will pass down router configuration to child properties
+	
+	
+State
+	State is used to add behaviour to the UI. i.e it is used to do dynamic functionalities and event handling or conditional actions with the web page
+	state is actually the scope of the component... state is not obtained from outside the component, its handled internally
+	
+	it is advised to use functional components with react hooks to manage state.. and usage of state can be reduced as much as possible
+	
+	Any javascript class that extends 'Component' class, can have a reserved variable defined... called as 'state'
+	state = {
+		person: ['sub','hari'],
+		cars: ['polo','swift']
+	}//class level object that has two arrays
+	{this.state.person} or {this.state.cars} can be used to access variables
+	
+	only if variables or values of state property when changed, will result in re rendering the associated components. 
+	So if we desire something to happen conditionaly, 'state' property is used to initialze and change value when required, which will result in re rendering component accordingly
+	
+	directly changing "this.state.person = 'name'", will through error/warning.. only setState() method is used to manipulate state level data
+	
+	this.setState({person: ['vikey']}); // this is setState syntax, and it will affect only the 'person' attribute and leaves 'cars' unaffected.
+	If new element is added in setState it is appended to existing one
+	Dom is updated by listening to change in state or props.. and updates all components using the state/props
+	
+	Stateful component - component with state, not advised to have many stateful component, also called container component
+	StateLess component - component without state, advised to have many stateLess component, also called presentation component
+	
+	more statefull - more complex, less maintainable
+	Note: updating objects,Arrays in JS should be done in immutable way(using '...' operator), so to avoid issues with pass by reference(updating source array too)
+	Note, On using the setState render() of the component is fully executed again
+	
+	this.setState(); method can have both a JS object or a funtion that return object as its parameter, If we are dependent on previous state for updating the new state like incrementing count on a particular actions, setting state by directly passing object might leaad to using the old state insted of the updated one
+	this.setState({
+		count: this.state.count+1, // could have old or non updated value
+	});
+	Instead if we use a funtion that returns an object inside the setState(), react ensured to send updated state.. This fnction has two inbuilt parameters first one being the previous/latest State and second one being the props of the component
+	this.setState((prevState,props) => {
+		return {count: prevState.count+1}; // prevState  is guaranteed to have latest state 
+	});
+	
+	so if new state is not dependent on old state, use setState({//state object});, 
+	if dependent on current state use setState(() => {return {//sate object};});
+	
+	Two way data Binding
+		pass reference of setState changer method of container component to the presentation component
+		using prop assign reference of the method to the onChange of jsx component (<input type="text"/>)
+		set 'value' attribute for the component to see what value was set on load		
+		use 'event' keyword as a parameter in the setState changer method of container component
+		'event.target.value' to get value of the onChange element, use it in setState to change input value
+	
+React hooks
+	These are only available for Functional Components
+	After React 16.8
+	'useState'
+	Used to manage state in functional components using 'useState' import
+	Most react hook packages start with 'useXYZ' keyword... useState is most important
+	Unlike class based state, usestate objects will discard all aditional elements in the object, when not sent in overriding setstate method
+	to preserve we might have to split up object elements to individual usestate variables
+	
+	let [currentStateObject,setStateFunctionName] = useState({
+		//state object
+	});
+	
+	useState returns exactly 2 objects 
+	first one is the updated or recent Stateobject
+	Second, a setState Function to set new value to the state
+	
+	'useEffect()'
+		This is 2nd most important React hook, this behaves like the life cycle hooks(class based component specific) for a Functional Component
+	useEffect(function()) calls the functon passed as parameter once per every render cycle of the component(When no second parameter is passed). It thus combines componentDidMount & componentDidUpdate methods of the ;ife cycle hooks.
+	useEffect(function(), [props.property]) this syntax can be used to contorl the invocation of use effect only when the 'props.property' changes in the component, we can put multiple properties in the second parameter array
+	Note: if '[]' is passed as second parameter to useEffect(), it means that the method will be called only when the component gets rendered or when it is destroyed (return statement inside the useEffect is executed only during destruction if '[]' is 2nd argument)
+	Also we can have any number of useEffect() methods in your component
+	
+	'useRef()'
+		This hook is used to implement 'ref' property in functional components, 'const elementRef = useRef(null)' and set 'ref={elementRef}' doing this will set component with the ref to the 'elementRef' and we can use this const to do click(), focus() or any available js function
+		
+	'useContext()'
+		This hook is used to replace <ContextVar.Consumer></ContextVar.Consumer> in functional components. 
+		
+		'const VARIABLE_NAME = useContext(ContextVar)' will set all contents in the context API variable to the 'VARIABLE_NAME' assigned
+	
+CSS
+	Css file can also be imported normally using import, Webpack takes care of including the file
+	All style classes in the imported css files are converted to <style> tags and is included in the <head> tag
+	So Css file even if imported to single js file, is available globally, it is just normal css
+	All css prefixing or browser specific style name prefixing (-webkit-, -moz-) are automatically done by the webpack
+	Unlike normal style class based css configuration, we can use javascript objects to set styling
+	.Person { //normal css
+		background-color: red;
+		padding:1%;
+	}
+	
+	const buttonStyle = {// jsx styling object
+		backgroundColor: 'red',
+		padding:'1%',
+		border: '1px solid blue'
+	}
+	
+	Note: on some state change if we just change buttonStyle.backgroundColor='green'; then jsx will apply it accordingly
+	Also, to add css style class dynamically, we can use a string array to add or remove them and use Array.join(' '), to get the class list string
+	
+	<TAG_NAME style={buttonStyle} /> //internal css styling in JSX
+	
+	JSX internal CSS Styling allows you to add js objects as style, all css attribute name used are js names (which we use in js element.style.border) and not css attribute names
+	
+	'style' is the jsx attribute for assigning js style object inside {}
+	
+	JS object based css styling can be used to scope the JS object styleClass within a component or single instance of that component too, but it comes with a price of not being able to use full css potential,
+	As pseudo-elements and pseudo-class implementation in object based css is done using the 'Radium' library install and import radium to the app.js 
+	Use export default Radium(App) to add pseudo-class/pseudo-elements/media tag css to inline style
+	Note: Radium import/export is needed individually in all components that use radium syntax
+	To use media anf keyframes use {StyleRoot} from radium import and wrap the main application under <StyleRoot></StyleRoot> tag
+	
+	Styled components - library to set scoped css styles
+	CSS module - setting in the webpack to consider css file as an object and its class as properties
+	Note: import classes from 'app.css'; //will import css classes as properties to 'classes' object and this behaves as css module (not globally scoped)
+	But if the same is imported like "import 'app.css';"
+	
+Error Handling
+	React's Error Boundary concept is used to handle Error pages
+	Create an Error boundary component, with the custom error msg template to show whe something went worng
+	This could be triggered when some internal error like failed server response or some custom throw exception
+	In the component set 'state' object with 'hasException' and 'errorMessage', Also create an in built function 
+	componentDidCatch = (error, info) => { // this method is called by react internally on error scenario
+		this.setState({hasException:true,errorMessage:error}); // this is to set conditional render in this component's return() statement
+	}
+	
+	In the render() statement of this component, use if() to return either your custom error component or 'this.props.children' based on the 'hasException' of state object
+	Wrap the individual component in which you suspect error might occur, it is not optimal to wrap this over the entire application
+	Use this only if it is not possible for the developer to handle the error, i.e its not an logical or implementation error but caused by some other external reasons like 3rd party service call/ http response etc
+	
+	Note: This will not work in developer mode, It works only after building the project in production mode
+	
+	
+HOC Higher Order Components
+	These are wrapper components that just can be used to retun single jsx element in render method and avoid uneccessary container html. Also this can used to set default functionality for the enclosed child tags (eg exception handling)
+	There are 2 ways of creating these,
+	
+	const wrapper = props => props.children // functional wrapper component with no additional HTML attribute 
+	
+	const wrap = (ComponentName, ClassName) =>{ // normal JS funtion which can be called  to return jsx
+		return props =>{ // anonymous arrow function returnning jsx
+		<div className={ClassName}> // add styling usig <siv> for all components 
+			<ComponentName />
+		</div>	
+		};
+	}
+	
+Context API
+	To make properties available across components without passing them as props(i.e from grandParent component directly to grandchild component without involving the Parent component or any other component in between) , Context API can be used.
+	Create js for context file and set 'const ContextVar= React.createContext({key:vale,Key1:value1})' and export the contextVar.
+	Note: React.createContext() -> can take any datatype as its value, even functions
+	This has a global scope and can be used to share information across component files. 
+	We can access this by importing the context file in our desired component's js file.
+	One imported, this is treated as a component, Hence to make context available for components all components should be wrapped by the <ContextVar.Provider></ContextVar.Provider> or <ContextVar.Consumer></ContextVar.Consumer> tags. 
+	'ContextVar.Provider' takes 'value' as a property that can be used to modify the  'ContextVar' created context.
+	'ContextVar.Consumer' should be used to get the values from the context, this tag only takes a function as its child content which recives the context as its parameter. Any jsx can be given in the return statement of this function where the context is available as the parameter
+	<ContextVar.Consumer>
+	{context => { return //jsx ;}} // arrow function with context as its parameter
+	</ContextVar.Consumer>	
+	Note: since we enclose jsx code with <contextVar> tags all context is available only for the jsx and not for other js code in the class/functional component 
+	
+	After React 16.6 'static contextType' reserved variable is used in class based component to access the context API
+	In the component class use
+	static contextType = ContextVar; // 'static contextType' is reserved and should not be changed
+	
+	now use 'this.context' which again is a reserved keyword, will have the contents of ContextVar and can be used anywhere in the component class
+	
+Axios
+	Http npm custom module
+	
+	Interceptors - to perform global operations for all request/responses like logging / transformatin etc
+		
+		axios.defaults.baseURL='SomeURL';
+		axios.defaults.headers.common['Authorization']='token';
+		axios.defaults.headers.post['Content-Type']='application/json';
+		
+		axios.interceptors.request.use(request =>{
+			//edit or logging request can be done here
+			return request; // must have 
+		}, error =>{
+			
+			return Promise.reject(error); 
+		})
+		
+		
+		You learned how to add an interceptor, getting rid of one is also easy. Simply store the reference to the interceptor in a variable and call eject  with that reference as an argument, to remove it 
+			var myInterceptor = axios.interceptors.request.use(function () {/*...*/});
+			axios.interceptors.request.eject(myInterceptor);
+			
+	axios instances
+		const instance1 = axios.create({
+			//properties
+			baseURL:''
+		})
+		
+		use this to have specific config for specific components

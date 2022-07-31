@@ -1,0 +1,19 @@
+Git
+	Version control software
+
+Commands
+	git init - give this in the Project's source folder to create .git folder - > this enables git support for the project
+	
+	git status  - to view all files with their Tracking & Stage status of the files with the project repository
+	
+	git add FOLDER_PATH - "FOLDER_PATH" can have any file or folder name that needs to be staged for the commit
+	git add . - will add/stage all untracked files for commit
+	
+	git rm --cached FOLDER_PATH - to remove files from staging
+	
+	git commit -m "commit message" - commit staged files with the commit message
+	
+.gitignore
+	The file should be created in the root folder of the project. All folders/files that should not be configured to the Git repo can be mentioned here
+	
+	

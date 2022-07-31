@@ -1,0 +1,40 @@
+V8 JS engine
+	Used by google chrome to execute specific tasks
+	With bndings to C++ code,V8 JS engine when running on server is capable of doing whaterver c++ can do...(eg Accessing file system using JS)
+Node js
+	Logical layer that runs on Google Chrome's V8 javascript engine...
+	
+	Variables
+		global - object that has full scope (equivalent to windo property of Browser JS)
+		process - object that has properties and methods to manipulate Node process (similar to document property of Browser JS)
+	
+	Import & Export
+		note.js
+			const name = "Logan";
+			
+			module.exports = name; // exports the name variable
+		
+		app.js
+			const VAR_NAME = require('note.js') // used to import another js file.. the file is acutally executed during 'require' call
+			
+Debugging
+	add 'debugger' code in your file and execute your file with 'node inspect app.js'
+		Now hit 'chrome://inspect' (works only in chrome) to launch debugger in browser
+				
+NPM
+	npm install - Running this wil bring node_modules folder based on package.json
+	
+command Line	
+	Command Line arguments
+		node app.js parameterString secondParameter -> executing this will invoke the app.js file and passes 'parameterString' & 'secondParameter' as parameters which is present in 'process.argv' array. Note: Empty space is the delimiter enclose stig in "" to consider it as a single argument
+		
+Modules
+	fs - file system modules work wit CRUD in File systems. Supports only String Data
+	
+ExpressJS-
+	Important npm module, Used to create both web & application servers.
+	app.set() // config for express
+	
+	
+Mongo Driver
+	
