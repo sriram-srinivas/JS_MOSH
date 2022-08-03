@@ -1,0 +1,39 @@
+JEST
+
+	Testing framework - Test runner
+	
+	Conventions
+		Create files anywhere in code repo with extension as  either .test.js or .spec.js and Jest runs it for us during "npm test"
+		filename.test.js
+			App.test.js
+		filename.spec.js
+			App.spec.js
+			
+		Create Folders with folder name __test__ inside any folder or location in code repo and all files irrescpective of extension is executed during "npm test"
+			__test__
+				first.js
+				second.js
+					
+			In above example noth first.js and second.js files inside __test__ is executed 
+	Syntax
+		test(testName,function) - testName string identifier for test, funtion is a callback function to define what to test, this callback can return only a promise or undefined	
+			test("testName", () => {
+				// calback to run test
+			})
+			
+			it(testName,function) - same as test(testName,function)
+				
+		expect(//condition).toBe(//value) - expect() reccieves a statement and toBe() matcher is used to compare the statement value
+			test("test1", () => {
+				expect(1+1).toBe(2) // checks if 1+1 = 2
+			})
+			
+				Single test can have multiple expext().toBe() Assertions
+				
+		describe(testGroupName,function) - used to group multiple tests under one group		
+		describe("Group1",()=>{
+			// set multiple tests under one group
+			test()	
+			it()
+		})
+	
