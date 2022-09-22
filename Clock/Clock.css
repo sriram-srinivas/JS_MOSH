@@ -1,0 +1,101 @@
+:root {
+    --axis: 5%;
+    --white: #ffffff;
+}
+
+*{
+    margin: 0;
+    padding:0;
+    transition: all .5s;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    width: 100vw;
+}
+.container{
+    height: inherit;
+    width: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.clockContainer{
+    border:10px solid #D1C0A8;
+    width: 20vw;
+    height: 20vw;
+    border-radius: 50%;
+    box-shadow: 15px 10px 20px #888,0px 0px 5px 5px #BFAA8C inset;
+    position: relative;
+}
+.marker{
+    font-size: 1rem;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+  .hour1,.hour2,.hour3,.hour4,.hour5,.hour6,.hour7,.hour8,.hour9,.hour10,.hour11,.hour12,.hourHand,.minuteHand,.secondHand{
+      position: absolute;
+  }
+   .hour12{
+      top:3%;
+      left: 45%;
+  }
+  .hour1,.hour11{
+      top: 10%;
+  }
+  .hour2,.hour10{
+      top: 25%;
+  }
+  .hour3,.hour9{
+      top: 45%;
+  }
+  .hour4,.hour8{
+      top: 65%;
+  }
+   .hour5,.hour7{
+      top:80%;
+  }
+.hour6{
+      top:87%;
+      left: 48%;
+  }
+  .hour3{
+      left: 90%;
+  }
+  .hour9{
+      left: 5%;
+  }
+   .hour1,.hour5{
+      left: 70%;
+  }
+   .hour2,.hour4{
+      left: 85%;
+  }
+   .hour7,.hour11{
+      left: 25%;
+  }
+   .hour8, .hour10{
+      left: 10%;
+  }
+  .hourHand,.minuteHand,.secondHand{
+    border-radius: 10px;
+    height: 8px;
+    top:50%;
+    left:50%;
+    transform-origin: 0 0;
+}
+  .hourHand{
+    background-color: navy;
+    width: 25%;
+    transform: rotate(0deg);
+  }
+  .minuteHand{
+    background-color: red;
+    width: 35%;
+    transform: rotate(90deg);
+  }
+  .secondHand{
+    background-color: green;
+    height: 4px;
+    width:35%;
+    transform: rotate(315deg);
+  }
