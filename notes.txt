@@ -1102,3 +1102,32 @@ button.addEventListener('click', debounce(function(x,y) {
         alert(y)
            }, 3000));
 
+
+
+for in | for of
+
+
+const a = [1,2,3,4,5]
+const b = {
+    1:'1a',
+    2:'2b',
+    3:'3c'
+}
+
+
+for(key in a){
+    console.log('for in a', key) // 0 1 2 3 4 shows index
+}
+console.log('======================')
+for(key of a){
+    console.log('for of a', key) // 1 2 3 4 5 shows values
+}
+
+console.log('======================')
+for(key in b){
+    console.log('for in b', key) // 1 2 3 shows keys
+}
+console.log('======================')
+for(key of b){
+    console.log('for of b', key) // b is not iterable error
+}
