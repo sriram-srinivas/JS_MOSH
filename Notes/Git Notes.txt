@@ -17,3 +17,55 @@ Commands
 	The file should be created in the root folder of the project. All folders/files that should not be configured to the Git repo can be mentioned here
 	
 	
+
+Show changes
+	git diff --name-only --cached
+	
+commit
+	git commit -m "FDHB-13979 replaced scroll listener with IntObsrvr"
+	git commit -m "FDHB-14269 reduced unwanted code during render cycle"
+	
+	git commit --no-verify
+
+push
+	git push
+Config
+	git config --global user.email "sriram.srinivas@foodhub.com"
+	 git config --global user.name "sriram-fh"
+ 
+
+New branch create
+	git checkout -b SIT-DEC-2022 
+	
+Existing branch switch
+	git checkout SIT-DEC-2022 
+	
+	
+Fetch
+	git fetch => Git Fetch is the command that tells the local repository that there are changes available in the remote repository without bringing the changes into the local repository. 
+	
+Pull	
+	git pull => Git Pull on the other hand brings the copy of the remote directory changes into the local repository
+	
+Reset/revert commits in branch
+	git reset --soft HEAD~1
+
+To set specific hash to branch
+	git cherry-pick f6889aa8b4a105345e5d4885798992a9d9743d04
+	
+	
+Get branch name
+git rev-parse --abbrev-ref HEAD
+	
+create tag in current branch
+	git tag -a 5.6.46-global -m '5.6.46-global PREPROD' && git push --tags
+	git tag -a 5.6.46-BIGFOODIE -m '5.6.46-BIGFOODIE PREPROD' && git push --tags
+	
+	internal script
+		
+		npm run tag 5.5.70-global
+	
+	
+update branches
+	git remote update origin --prune
+	
