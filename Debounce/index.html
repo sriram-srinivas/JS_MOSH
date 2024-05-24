@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Debounce</title>
+</head>
+<body>
+    <div class="container">
+    <input type="text" id="input"/>
+    <span id="output"></span>
+    </div>
+    <script>
+        const input = document.getElementById('input');
+        const output = document.getElementById('output');
+        const delay = 500 //in ms
+        let timeout = null;
+        const debounce = () => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => output.textContent = input.value, delay);
+        };
+
+        input.addEventListener('input', debounce);
+    </script>
+</body>
+</html>
