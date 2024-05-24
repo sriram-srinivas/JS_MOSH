@@ -1,27 +1,3 @@
-'use strict';
-
-//temp
-
-const input = "07/10/2021";
-const [mm,dd,yyyy] = input.split("/")
-const temp = `${yyyy}-${mm}-${dd}`
-const test1 = new Date(temp)
-const formatDate = (date) => {
-    if (!date) return new Date().toLocaleString();
-  
-    // Get the timezone from browser using native methods
-    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    const dateTmp = Date.parse(date.toLocaleString());
-  
-    const localDate = convertToLocalTime(dateTmp, {
-      timeZone: timezone,
-    });
-  
-    return format(localDate, DEFAULT_DATE_FORMAT);
-  };
-console.log(formatDate(test1));
-
-
 
 let Maxscore=20,currentScore,highScore=0,answer=0,startMsg='Start Guessing...',correctGuess=false;
 
