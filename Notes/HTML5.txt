@@ -1,0 +1,18 @@
+Doctype
+    First line of code, To denote what version on HTML is wriiten and to instruct different browser to parse the documents properly
+
+   HTML 4 -  <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+   XHTML  -  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+   HTML 5 -  <!DOCTYPE html>
+
+    Before HTML 5 Doctypes need to refer to a DTC (document type Declaration)
+
+Tag compatibility
+    https://www.w3schools.com/tags/ref_html_dtd.asp
+
+
+
+Semantic tags
+    
+
+Non semantic tags

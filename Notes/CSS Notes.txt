@@ -1,1 +1,121 @@
 Flexbox
+
+        <style>
+        .flex-container {
+            display: flex;
+            background-color: DodgerBlue;
+        }
+
+        .flex-container > div {
+            background-color: #f1f1f1;
+            margin: 10px;
+            padding: 20px;
+        }
+        </style>
+    <body>
+
+        <div class="flex-container">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>  
+        </div>
+
+    </body>
+
+    Flex Container
+        .flex-container{
+            display:flex; // makes child elements flex compatible
+        }
+        To make any content flexible, the parent tag should be given with 'display:flex'
+
+        Flex container properties can be given along with 'display:flex'
+        
+        .flex-container{
+            display:flex; // makes child elements flex compatible
+            flex-direction: row | column | row-reverse | column-reverse;
+            flex-wrap: wrap | nowrap | wrap-reverse;
+            flex-flow: row wrap; //The flex-flow property is a shorthand property for setting both the flex-direction and flex-wrap properties. 
+            justify-content: center | flex-start | flex-end | space-around | space-between; // alginment horizontally
+            align-items: center | flex-start | flex-end | stretch | baseline; // alignment vertically, similar to vertical align
+            align-content: center | flex-start | flex-end | space-around | space-between; | stretch; // when inner childs are in multiline, this property is used to set how to align them
+        }
+
+        Center a Div inside another div
+        .flex-container {
+            display: flex;
+            height: 300px;
+            justify-content: center; // horizontal
+            align-items: center; // vertical
+        }                               // this code properly centers a div
+
+
+    Flex childs
+        .flex-conatiner > div{
+            order: 1 | n; // any integer value to specify display order
+            flex-grow: 1 | n; // any integer, property specifies how much a flex item will grow relative to the rest of the flex items
+            flex-shrink: 1 | n; // any integer, property specifies how much a flex item will shrink relative to the rest of the flex items
+            flex-basis: 200px; // sets initial length, like min-length
+            flex: 1 1 200px; shorthand property for the flex-grow, flex-shrink, and flex-basis
+            align-self: center | flex-start | flex-end | stretch | baseline; // overrides align-items of its parent
+        }
+
+
+GRID
+    <style>
+        .item1 { grid-area: header; }
+        .item2 { grid-area: menu; }
+        .item3 { grid-area: main; }
+        .item4 { grid-area: right; }
+        .item5 { grid-area: footer; }
+
+        .grid-container {
+        display: grid;
+        grid-template-areas:
+            'header header header header header header'
+            'menu main main main right right'
+            'menu footer footer footer footer footer';
+        gap: 10px;
+        background-color: #2196F3;
+        padding: 10px;
+        }
+
+        .grid-container > div {
+        background-color: rgba(255, 255, 255, 0.8);
+        text-align: center;
+        padding: 20px 0;
+        font-size: 30px;
+        }
+    </style>
+    <body>
+
+        <div class="grid-container">
+            <div class="item1">Header</div>
+            <div class="item2">Menu</div>
+            <div class="item3">Main</div>  
+            <div class="item4">Right</div>
+            <div class="item5">Footer</div>
+        </div>
+
+    </body>
+    
+    Grid Container
+        .grid-container{
+            display: grid | inline-grid; // makes child elements Grid compatible
+        }
+        To align any content in grid layout, the parent tag should be given with 'display:grid' or 'display:inline-grid'
+
+        Grid container properties can be given along with 'display:grid'
+        .grid-container{
+            column-gap: 10px;
+            row-gap: 20px;
+            gap: 10px 20px; //shorthand for row-gap  column-gap
+        }
+
+    Center a div
+        .parent {
+            display: grid;
+        }
+
+        .child {
+            place-self: center;
+        }
