@@ -1,0 +1,6 @@
+CLI
+    npm i -g ember-cli
+
+    ember --verison
+
+    ember new <name> --lang en
