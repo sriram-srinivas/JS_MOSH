@@ -24,11 +24,13 @@ button {
 }
 
 body {
-  background: #f3f3f3;
+  background-color: #28282B;
+  width:100vw;
+  height:100vh;
 }
-.tomster {
-    background: url(../assets/images/teaching-tomster.png);
-    /* ...snip... */
-    width: 600px;
-    height: 700px;
+
+  .arcReactorContainer{
+    width: 100px;
+    height:100px;
+    background-color: red;
   }
