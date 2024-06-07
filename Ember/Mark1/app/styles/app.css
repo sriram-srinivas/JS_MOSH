@@ -26,6 +26,7 @@ button {
 
 body {
   background-color: #28282B;
+  color:#fff;
   width:100vw;
   height:100vh;
 }
@@ -39,8 +40,7 @@ body {
 }
 
 .header{
-  padding-left: 2vw;
-  padding-top: 1vh;
+  padding: 1vh 2vw;
   width: 100vw;
   display: flex;
   align-items: center;
@@ -58,7 +58,16 @@ body {
 }
 .logoLabel{
   display: inline-block;
-  color: #fff;
   margin: 10px;
   font-size: 35px;
+}
+
+.navLinks{
+  margin-left: auto;
+}
+
+.navLinks a{
+  text-decoration: none;
+  color: #fff;
+  margin: 0px 5px;
 }
