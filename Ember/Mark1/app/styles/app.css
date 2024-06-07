@@ -31,7 +31,7 @@ body {
 }
 
 .arcReactorContainer{
-  margin: 10px;
+  margin: 10px 0;
   background:  url('../assets/images/arcReactor.png');
   background-size: contain;
   width: 45px;
@@ -39,7 +39,7 @@ body {
 }
 
 .header{
-  padding: 1vh 2vw;
+  padding: 1vh 0;
   width: 100%;
   display: flex;
   align-items: center;
