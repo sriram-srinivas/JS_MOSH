@@ -1,5 +1,6 @@
 /* Ember supports plain CSS out of the box. More info: https://cli.emberjs.com/release/advanced-use/stylesheets/ */
 @import url(https://fonts.googleapis.com/css?family=Lato:300,300italic,400,700,700italic);
+@import url('https://fonts.googleapis.com/css2?family=Marvel:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 * {
   margin: 0;
@@ -12,7 +13,7 @@ h1,
 h2,
 h3,
 h4,
-h5,
+h56
 h6,
 p,
 div,
@@ -29,8 +30,35 @@ body {
   height:100vh;
 }
 
-  .arcReactorContainer{
-    width: 100px;
-    height:100px;
-    background-color: red;
-  }
+.arcReactorContainer{
+  margin: 10px;
+  background:  url('../assets/images/arcReactor.png');
+  background-size: contain;
+  width: 45px;
+  height: 45px;
+}
+
+.header{
+  padding-left: 2vw;
+  padding-top: 1vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+}
+
+.marvel-regular,.marvel-bold {
+  font-family: "Marvel", sans-serif;
+  font-style: normal;
+}
+.marvel-regular {
+  font-weight: 400;
+}
+.marvel-bold {
+  font-weight: 700;
+}
+.logoLabel{
+  display: inline-block;
+  color: #fff;
+  margin: 10px;
+  font-size: 35px;
+}
