@@ -30,7 +30,89 @@ command Line
 		
 Modules
 	fs - file system modules work wit CRUD in File systems. Supports only String Data
-	
+		fs.readFile(path,callback)
+			path - fileName or path of file, 
+			callback - to handle (err,data) =>{}
+		fs.appendFile(path,content,callback) // file is opened content is appended if exists, else new file is created
+			path - fileName or path of file
+			content - string content to write in file
+			callback - to handle (err) =>{}
+		fs.open(path,accesstype,callback) // file is opened if exists, else new file is created
+			path - fileName or path of file
+			accesstype - 'r' read ; 'w' - write
+			callback - to handle (err,file) =>{}
+		fs.writeFile(path,content,callback) // file is opened content is replaced if exists, else new file is created
+			path - fileName or path of file
+			content - string content to write in file
+			callback - to handle (err) =>{}
+		fs.unlink(path,callback)
+			path - fileName or path of file, 
+			callback - to handle (err) =>{}
+		fs.rename(Oldname,newName,callback)
+
+	http - http module is use to create a server listening to speciic port to process requests
+			var http = require('http');
+
+			http.createServer(function (req, res) {
+			res.writeHead(200, {'Content-Type': 'text/html'});
+			res.end('Hello world!');
+			}).listen(1994);
+
+	url - url module is used to parse url query params 
+			var q = url.parse(req.url, true).query;
+			var adr = 'http://localhost:8080/default.htm?year=2017&month=february';
+			var q = url.parse(adr, true);
+
+			console.log(q.host); //returns 'localhost:8080'
+			console.log(q.pathname); //returns '/default.htm'
+			console.log(q.search); //returns '?year=2017&month=february'
+
+			var qdata = q.query; //returns an object: { year: 2017, month: 'february' }
+			console.log(qdata.month); //returns 'february'	
+
+	events - custom event emmiter
+		var events = require('events');
+		var eventEmitter = new events.EventEmitter();
+
+		//Create an event handler:
+		var myEventHandler = function () {
+		console.log('I hear a scream!');
+		}
+
+		//Assign the event handler to an event:
+		eventEmitter.on('scream', myEventHandler);
+
+		//Fire the 'scream' event:
+		eventEmitter.emit('scream');
+
+	formidable - for parse file to be uploaded
+
+	nodemailer - node js mail service
+		var nodemailer = require('nodemailer');
+
+		var transporter = nodemailer.createTransport({
+		service: 'gmail',
+		auth: {
+			user: 'youremail@gmail.com',
+			pass: 'yourpassword'
+		}
+		});
+
+		var mailOptions = {
+		from: 'youremail@gmail.com',
+		to: 'myfriend@yahoo.com, myfriend2@yahoo.com',
+		subject: 'Sending Email using Node.js',
+		text: 'That was easy!',
+		html: '<h1>Welcome</h1><p>That was easy!</p>'
+		};
+
+		transporter.sendMail(mailOptions, function(error, info){
+		if (error) {
+			console.log(error);
+		} else {
+			console.log('Email sent: ' + info.response);
+		}
+		});
 ExpressJS-
 	Important npm module, Used to create both web & application servers.
 	app.set() // config for express

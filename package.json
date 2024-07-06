@@ -20,5 +20,8 @@
   "homepage": "https://github.com/sriram-srinivas/JS_MOSH#readme",
   "devDependencies": {
     "jest": "^28.1.2"
+  },
+  "dependencies": {
+    "http": "^0.0.1-security"
   }
 }

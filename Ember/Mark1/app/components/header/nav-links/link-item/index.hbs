@@ -1,1 +1,1 @@
-<LinkTo class="marvel-bold" @route={{@data.route}}> {{getLang @data.langLabel}}</LinkTo> 
+<LinkTo class="marvel-bold" @route={{@data.route}} {{on "load" (action this.isActiveRoute @data.route)}}> {{getLang @data.langLabel}}</LinkTo> 
