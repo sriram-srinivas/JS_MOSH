@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>LightBulbEffect</title>
+
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link rel="stylesheet" href="../../resources/css/bootstrap4_3_1.min.css" />
+
+		<script src="../../resources/js/jquery3_3_1.min.js"></script>
+		<script src="../../resources/js/bootstrap4_3_1.min.js"></script>
+		<script src="../../resources/js/popper1_14_7.min.js"></script>
+		<style>
+			html,body{
+				background-color: #333;
+				height:100%;
+			}
+			.flex-container {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			.textCenter{
+				text-align:center;
+			}
+			.tubelight{
+				position:relative;
+				width:60%;
+				margin:auto;
+				height:15px;
+				border: 1px solid #fff;
+				border-radius:5%;
+			}
+			.leftHolder,.rightHolder{
+				position:absolute;
+				width:2%;
+				height:100%;
+				background-color:#ccc;
+			}
+			.leftHolder{
+				left:0;
+			}
+			.rightHolder{
+				right:0;
+			}
+			.filament{
+				position:absolute;
+				left:2%;
+				width:96%;
+				height:100%;
+				background-color:inherit;
+				box-shadow: none;
+				animation: flickGlow 3s ease 1 !important;
+			}
+			.filamentOn{
+				background-color:#fff !important;
+				box-shadow: 0px 0px 25px 10px #98AFC7 !important;
+				animation: flickGlow 3s ease 1 !important;
+			}
+			@keyframes flickGlow{
+				0%{
+					background-color:inherit;
+					box-shadow:none;
+				}
+				2%{
+					background-color:#fff;
+					box-shadow: 0px 0px 25px 0px #98AFC7;
+				}
+				4%{
+					background-color:#fff;
+					box-shadow: 0px 0px 25px 1px #98AFC7;
+				}
+				6%{
+					background-color:inherit;
+					box-shadow:none;
+				}
+				17%{
+					background-color:#fff;
+					box-shadow: 0px 0px 25px 2px #98AFC7;
+				}
+				20%{
+					background-color:#fff;
+					box-shadow: 0px 0px 25px 3px #98AFC7;
+				}
+				25%{
+					background-color:inherit;
+					box-shadow:none;
+				}
+				100%{
+					background-color:#fff;
+					box-shadow: 0px 0px 25px 10px #98AFC7;
+				}
+			}
+			.switch{
+				position:relative;
+				width:5%;
+				margin:auto;
+				margin-top:3%;
+				height:20px;
+				border: 1px solid #fff;
+				background-color:#ccc;
+				font-size:11px;
+				color:#fff;
+				text-transform:uppercase;
+			}
+			.toggle{
+				position:absolute;
+				width:50%;
+				height:100%;
+				transition: all 0.5s ease !important;
+			}
+			.on{
+				right:0;
+				background-color: #00FF00;
+				box-shadow: 0px 0px 25px 10px #00FF00;
+			}
+			.off{
+				left:0;
+				background-color: #8B0000;
+			}
+			.switch,.switch *{
+				cursor:pointer;
+			}
+			
+		</style>
+			
+	</head>
+	<body class="container-fluid textCenter flex-container">
+		<div class="row" style="width:100%">
+			<div class="d-none d-sm-block col-sm-1 col-lg-1 col-xl-2"></div>
+			<div class="col-12 col-sm-10 col-lg-10 col-xl-8">
+				<div id="tube" class="tubelight">
+					<div class="leftHolder"></div>
+					<div id="filament" class="filament"></div>
+					<div class="rightHolder"></div>
+				</div>
+				
+				<div id="switch" class="switch">
+					<div id="toggleSwitch" class="toggle" onclick="toggle()"></div>
+				</div>
+			</div>
+			<div class="d-none d-sm-block col-sm-1 col-lg-1 col-xl-2"></div>
+		</div>
+		<script>
+			var switchFlag='';
+			var element = document.getElementById("toggleSwitch");
+			var filament = document.getElementById("filament");
+			filament.classList.toggle('filamentOn');
+				function toggle(){
+					if(switchFlag=='off'){
+						switchFlag='on';
+						element.classList.remove('off');
+						element.classList.add(switchFlag);
+					}else{
+						switchFlag='off';
+						element.classList.remove('on');
+						element.classList.add(switchFlag);
+					}
+					element.innerHTML=switchFlag;
+					filament.classList.toggle('filamentOn');
+				}
+				toggle();
+		</script>
+	</body>
+</html>

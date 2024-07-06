@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>ShiningText</title>
+
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<link rel="stylesheet" href="../../resources/css/bootstrap4_3_1.min.css" />
+
+		<script src="../../resources/js/jquery3_3_1.min.js"></script>
+		<script src="../../resources/js/bootstrap4_3_1.min.js"></script>
+		<script src="../../resources/js/popper1_14_7.min.js"></script>
+		<style>
+			html,body{
+				background-color: #000;
+				height:100%;
+				font-family: cambria;
+			}
+			.flex-container {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			.textCenter{
+				text-align:center;
+			}
+			.shinyText{
+				background: linear-gradient(90deg,#000,#fff,#000) no-repeat;
+				background-size: 80%;
+				width:100%;
+				font-size:45px;
+				color:#000;
+				text-transform:uppercase;
+				animation: shine 5s linear infinite;
+				-webkit-background-clip:text;
+				overflow:hidden;
+				-webkit-text-fill-color:rgba(255,255,255,0); 
+			}
+			
+			@keyframes shine{
+				0%{
+					background-position:-500%;
+				}
+				100%{
+					background-position:500%;
+				}
+			}
+		</style>
+			
+	</head>
+	<body class="container-fluid textCenter flex-container">
+		<div class="row" style="width:100%">
+			<div class="d-none d-sm-block col-sm-1 col-lg-1 col-xl-2"></div>
+			<div class="col-12 col-sm-10 col-lg-10 col-xl-8">
+				<label id="shineContent" class="shinyText"></label>
+			</div>
+			<div class="d-none d-sm-block col-sm-1 col-lg-1 col-xl-2"></div>
+		</div>
+		<script>
+			var list=["Ilaya Thalapathy Vijay..","I'M Waiting..","Oru vaati Mudivu panitan na","Yen pecha nane keka mata","Indha area andha area andha edam indha edam","All area layaun aiyaa ghilli da.."];
+			var i=0;
+			function setVal(){
+			if(i>=list.length){
+			i=0;
+			}
+				console.log(i);
+				document.getElementById("shineContent").innerHTML=list[i];
+				i++;
+			}
+			setVal();
+			var myVar = setInterval(setVal,5000);  
+		</script>
+	</body>
+</html>

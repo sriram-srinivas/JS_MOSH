@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>HoverZoom</title>
+
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="stylesheet" href="../../resources/css/bootstrap4_3_1.min.css" />
+
+	<script src="../../resources/js/jquery3_3_1.min.js"></script>
+	<script src="../../resources/js/bootstrap4_3_1.min.js"></script>
+	<script src="../../resources/js/popper1_14_7.min.js"></script>
+	<style>
+		body{
+		background-color: #483D8B;
+		color:#fff;
+		font-weight:bold;
+		height:100%;
+		font-family: cambria;
+		}
+		.textCenter{
+		text-align:center;
+		}
+		.menuItem{
+		cursor:pointer;
+		-webkit-transition: font-size 240ms ease-in-out,width 500ms ease-in-out;
+		-moz-transition: font-size 240ms ease-in-out,width 500ms ease-in-out;
+		-ms-transition: font-size 240ms ease-in-out,width 500ms ease-in-out;
+		-o-transition: font-size 240ms ease-in-out,width 500ms ease-in-out;
+		transition: font-size 240ms ease-in-out,width 500ms ease-in-out;
+		}
+		.expand{
+		white-space: nowrap;
+		width:0;
+		-webkit-transition: font-size 240ms ease-in-out,width 500ms ease-in-out;
+		-moz-transition: font-size 240ms ease-in-out,width 500ms ease-in-out;
+		-ms-transition: font-size 240ms ease-in-out,width 500ms ease-in-out;
+		-o-transition: font-size 240ms ease-in-out,width 500ms ease-in-out;
+		transition: font-size 240ms ease-in-out,width 500ms ease-in-out;
+		}
+		.menuItem:hover .expand{
+		width:120%;
+		background-color:#FF1493;
+		font-size: 150%;
+		padding:2%;
+		}
+		.flex-container {
+			display: flex;
+			align-items: center;
+			 justify-content: center;
+		}
+		.noPaddingDiv div{
+		padding: 0 !important;
+		}
+		.menuClass:hover .menuItem {
+			filter:blur(4px);
+		}
+
+		.menuClass .menuItem:hover {
+			filter:none;
+		}
+	</style>
+</head>
+<body class="container-fluid ">
+	<div class="row" style="margin-top:15%">
+		<div class="d-none d-sm-block col-sm-1 col-lg-1 col-xl-2"></div>
+		<div class="col-12 col-sm-10 col-lg-10 col-xl-8">
+			<div class="row textCenter menuClass">
+				<div class="menuItem col-12 col-sm-2 col-lg-2 col-xl-2">
+					<div class="expand">
+						HOME
+					</div>
+				</div>
+				<div class="menuItem col-12 col-sm-2 col-lg-2 col-xl-2">
+					<div class="expand">
+						ABOUT
+					</div>
+				</div>
+				<div class="menuItem col-12 col-sm-2 col-lg-2 col-xl-2">
+					<div class="expand">
+						SERVICES
+					</div>
+				</div>
+				<div class="menuItem col-12 col-sm-2 col-lg-2 col-xl-2">
+					<div class="expand">
+						MENU
+					</div>
+				</div>
+				<div class="menuItem col-12 col-sm-2 col-lg-2 col-xl-2">
+					<div class="expand">
+						OUR TEAM
+					</div>
+				</div>
+				<div class="menuItem col-12 col-sm-2 col-lg-2 col-xl-2">
+					<div class="expand">
+						CONTACT US
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="d-none d-sm-block col-sm-1 col-lg-1 col-xl-2"></div>
+	</div>
+</body>
+</html>

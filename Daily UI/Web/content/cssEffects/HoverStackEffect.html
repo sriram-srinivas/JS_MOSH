@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>HoverStack</title>
+
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="stylesheet" href="../../resources/css/bootstrap4_3_1.min.css" />
+
+	<script src="../../resources/js/jquery3_3_1.min.js"></script>
+	<script src="../../resources/js/bootstrap4_3_1.min.js"></script>
+	<script src="../../resources/js/popper1_14_7.min.js"></script>
+	<style>
+		body{
+			font-weight:bold;
+			height:100%;
+			width:100%
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		
+		.red span{
+			background-color: red;
+		}
+		
+		.orange span{
+			background-color: orange;
+		}
+		
+		.lightblue span{
+			background-color: lightblue;
+		}
+		
+		.green span{
+			background-color: green;
+		}
+		
+		.yellow span{
+			background-color: yellow;
+		}
+		
+		.purple span{
+			background-color: purple;
+		}
+		
+		.menuClass{
+			position: relative;
+		}
+		
+		.menuClass span{
+			font-size: 30px;
+			position:absolute;
+			width: 90px;
+			height: 90px;
+			color: #fff;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			transform: rotate(-30deg) skew(25deg);
+			-webkit-transition: all 500ms ease-in-out;
+			-moz-transition: all 500ms ease-in-out;
+			-ms-transition: all 500ms ease-in-out;
+			-o-transition: all 500ms ease-in-out;
+			transition: all 500ms ease-in-out;
+		}
+		
+		.menuClass .menuItem:hover span:nth-child(5) {
+			transform: rotate(-30deg) skew(25deg) translate(50%,-50%);
+		}
+		.menuClass .menuItem:hover span:nth-child(4) {
+			transform: rotate(-30deg) skew(25deg) translate(40%,-40%);
+			opacity: 0.8;
+		}
+		.menuClass .menuItem:hover span:nth-child(3) {
+			transform: rotate(-30deg) skew(25deg) translate(30%,-30%);
+			opacity: 0.6;
+		}
+		.menuClass .menuItem:hover span:nth-child(2) {
+			transform: rotate(-30deg) skew(25deg) translate(20%,-20%);
+			opacity: 0.4;
+		}
+		.menuClass .menuItem:hover span:nth-child(1) {
+			transform: rotate(-30deg) skew(25deg) translate(0%,0%);
+			opacity: 0.3;
+		}
+		
+	</style>
+</head>
+<body class="container-fluid ">
+	<div class="row" style="margin-top:15%">
+		<div class="d-none d-sm-block col-sm-1 col-lg-1 col-xl-1"></div>
+		<div class="col-12 col-sm-10 col-lg-10 col-xl-10">
+			<div class="row">
+				<div class="menuClass col-12 col-sm-2 col-lg-2 col-xl-2">
+					<div class="menuItem red">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span>a</span>
+					</div>
+				</div>
+				<div class="menuClass col-12 col-sm-2 col-lg-2 col-xl-2">
+					<div class="menuItem green">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span>b</span>
+					</div>
+				</div>
+				<div class="menuClass col-12 col-sm-2 col-lg-2 col-xl-2">
+					<div class="menuItem lightblue">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span>c</span>
+					</div>
+				</div>
+				<div class="menuClass col-12 col-sm-2 col-lg-2 col-xl-2">
+					<div class="menuItem yellow">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span>d</span>
+					</div>
+				</div>
+				<div class="menuClass col-12 col-sm-2 col-lg-2 col-xl-2">
+					<div class="menuItem purple">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span>e</span>
+					</div>
+				</div>
+				<div class="menuClass col-12 col-sm-2 col-lg-2 col-xl-2">
+					<div class="menuItem orange">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+						<span>f</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="d-none d-sm-block col-sm-1 col-lg-1 col-xl-1"></div>
+	</div>
+</body>
+</html>

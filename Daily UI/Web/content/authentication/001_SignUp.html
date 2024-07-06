@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>001 SignUp</title>
+
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<link rel="stylesheet" href="../../resources/css/style.css" />
+	<link rel="stylesheet" href="../../resources/css/bootstrap4_3_1.min.css" />
+	
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
+	<script src="../../resources/js/jquery3_3_1.min.js"></script>
+	<script src="../../resources/js/bootstrap4_3_1.min.js"></script>
+	<script src="../../resources/js/popper1_14_7.min.js"></script>
+	
+</head>
+<body class="container-fluid flex-container bodyBG">
+	<div class="row">
+		<div class="d-none d-sm-block col-sm-1 col-lg-1 col-xl-2"></div>
+		<div class="col-12 col-sm-10 col-lg-10 col-xl-8 shadow formPanel fadeIn">
+			<div class="row">
+				<div class="col-12 col-sm-6 nopadding">
+					<div id="myCarousel" class="carousel slide" data-ride="carousel">
+						<ul class="carousel-indicators">
+							<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+							<li data-target="#myCarousel" data-slide-to="1"></li>
+							<li data-target="#myCarousel" data-slide-to="2"></li>
+						</ul>
+
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+								<img src="../../resources/images/slider1.jpg" alt="DMC Insane Real World Graphics"/>
+								<div class="carousel-caption">
+									<h3>DMC: Definitive Edition</h3>
+									<p>Insane Real World Graphics!</p>
+								</div>
+							</div>
+
+							<div class="carousel-item">
+								<img src="../../resources/images/slider2.jpg" alt="DMC Unpredictable Story Line & Ending"/>
+								<div class="carousel-caption">
+									<h3>DMC: Dante Like Never Before</h3>
+									<p>Unpredictable Story Line & Ending!</p>
+								</div>
+							</div>
+
+							<div class="carousel-item">
+								<img src="../../resources/images/slider3.jpg" alt="DMC Deadly Weapons With Insane Combos"/>
+								<div class="carousel-caption">
+									<h3>DMC: Angel & Demon Action Adventure</h3>
+									<p>Deadly Weapons With Insane Combos!</p>
+								</div>
+							</div>
+						</div>
+						
+						<a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+							<span class="carousel-control-prev-icon"></span>
+						</a>
+						<a class="carousel-control-next" href="#myCarousel" data-slide="next">
+							<span class="carousel-control-next-icon"></span>
+						</a>
+					</div>
+				</div>
+				<div class="col-12 col-sm-6  nopadding">
+					<form class="growIn signUpForm">
+						<div class="signUpTable">
+							<div class="paddingTopBottom">
+								<picture>
+								  <img src="../../resources/images/logo.png" alt="DMC" style="width:100%;">
+								</picture>
+							</div>
+							<div class="paddingTopBottom">
+								<label for="uname" class="textbox">
+									<input type="text" id="uname" name="uname" placeholder="&nbsp;"></input>
+									<span class="label">User Name</span>
+									<span class="textboxBorder"></span>
+								</label>
+							</div>
+							<div class="paddingTopBottom">
+								<label for="email" class="textbox">
+									<input type="email" id="email" name="email" placeholder="&nbsp;"></input>
+									<span class="label">E-mail</span>
+									<span class="textboxBorder"></span>
+								</label>
+							</div>
+							<div class="paddingTopBottom">
+								<label for="password" class="textbox">
+									<input type="password" id="password" name="password" placeholder="&nbsp;"></input>
+									<span class="label">Password</span>
+									<span class="textboxBorder"></span>
+								</label>
+							</div>
+							<div class="paddingTopBottom">
+								<label for="cnfrm_pwd" class="textbox">
+									<input type="password" id="cnfrm_pwd" name="cnfrm_pwd" placeholder="&nbsp;">
+									<span class="label">Confirm Password</span>
+									<span class="textboxBorder"></span>
+								</label>
+							</div>
+							<div class="signUpPanel textRight">
+								<span class="fa fa-arrow-circle-right"></span>
+							</div>
+							<div class="bounceIn textCenter">
+									<div class="orPanel"><span class="orSpan">or</span></div>
+									<img src="../../resources/images/fb.png" /> 
+									<img src="../../resources/images/google.png" /> 
+									<img src="../../resources/images/twitter.png" />
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="d-none d-sm-block col-sm-1 col-lg-1 col-xl-2"></div>
+	</div>
+	<script src="../../resources/js/UIscript.js"></script>
+</body>
+</html>

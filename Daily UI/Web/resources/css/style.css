@@ -1,0 +1,270 @@
+@charset "UTF-8";
+
+:root {
+  --bounce-duration: 2s;
+}
+
+@font-face {
+  font-family: DMC;
+  src: url(DMC.ttf);
+}
+
+html, 
+body {
+    height: 100%;
+}
+.bodyBG{
+	background-size:cover;
+	background:  url("../images/BG1.jpg") no-repeat fixed center; 
+}
+
+.shadowEffect::before, .shadowEffect::after {
+    content: "";
+    -webkit-box-shadow: 0 0 20px rgba(0,0,0,0.8);
+    -moz-box-shadow: 0 0 20px rgba(0,0,0,0.8);
+    box-shadow: 0 0 20px rgba(0,0,0,0.8);
+    -moz-border-radius: 100px / 10px;
+    border-radius: 100px / 10px;
+}
+.shadowEffect {
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.shadow {
+  -webkit-box-shadow: 3px 3px 5px 6px #000 !important;  
+  -moz-box-shadow:    3px 3px 5px 6px #000 !important; 
+  box-shadow:         3px 3px 5px 6px #000 !important;   
+}
+
+.nopadding{
+	padding:0 !important;
+}
+
+.formPanel{
+	background-color: #fff;
+	opacity:0.9;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+}
+
+.blur {
+    -webkit-filter: blur(4px);
+    filter: blur(4px);
+}
+
+.signUpForm{
+height:80%;
+
+}
+
+.signUpTable{
+	width:80%;
+	height:100%;
+	margin:auto;
+}
+
+.paddingTopBottom{
+	padding-top:2%;
+	padding-bottom:2%;
+}
+
+.carousel img{
+	width:100% !important;
+}
+
+.fadeIn{
+	-webkit-animation-name: fader; 
+	-webkit-animation-duration: 2s;
+	animation-name: fader;
+	animation-duration: 2s;
+}
+
+@-webkit-keyframes fader {
+	from {opacity: 0;}
+	to {opacity: 1;}
+}
+
+@keyframes fader {
+	from {opacity: 0;}
+	to {opacity: 1;}
+}
+
+.growIn input{
+	-webkit-animation-name: growth; 
+	animation-name: growth;
+}
+
+@-webkit-keyframes growth {
+	from {width: 0%;}
+	to {width: 100%;}
+}
+
+@keyframes growth {
+	from {width: 0%;}
+	to {width: 100%;}
+}
+
+.textCenter{
+	text-align:center !important;
+}
+
+.bounceIn img{
+	display:inline-block;
+	width:10%;
+	height:10%;
+	-webkit-animation-name: bouncer; 
+	animation-name: bouncer;
+	margin:3%;
+}
+
+@-webkit-keyframes bouncer {
+	0% {
+		-webkit-transform:translateY(-100%);
+		opacity: 0;
+	}
+	25% {
+		-webkit-transform:translateY(-50%);
+		opacity: 0;
+	}
+	50% {
+		-webkit-transform:translateY(0);
+	}
+	75% {
+		-webkit-transform:translateY(50%);
+	}
+	100% {
+		-webkit-transform:translateY(0);
+		opacity: 1;
+	}
+}
+
+@keyframes bouncer {
+	0% {
+		transform:translateY(-100%);
+		opacity: 0;
+	}
+	25% {
+		transform:translateY(-50%);
+		opacity: 0;
+	}
+	50% {
+		transform:translateY(0);
+	}
+	75% {
+		transform:translateY(50%);
+	}
+	100% {
+		transform:translateY(0);
+		opacity: 1;
+	}
+}
+
+.textbox {
+    position: relative;
+    margin: auto;
+    width: 100%;
+}
+
+.textbox input {
+    -webkit-appearance: none !important; 
+    width: 100% ;
+    border: 0 !important;
+    font-family: inherit !important;
+    padding: 12px 0 !important;
+    height: 48px !important;
+    font-size: 16px !important; 
+    font-weight: 500 !important;
+    border-bottom: 2px solid #c8ccd4 !important;
+    background: none !important;
+    border-radius: 0 !important;
+    color: #223254 !important;
+    transition: all 0.15s ease !important;
+}
+* {
+    box-sizing: border-box !important;
+}
+.textbox .label {
+    position: absolute !important;
+    top: 16px !important;
+    left: 0 !important;
+    font-size: 16px !important;
+    color: #9098a9 !important;
+    font-weight: 500 !important;
+    transform-origin: 0 0 !important;
+    transition: all 0.2s ease !important;
+}
+.textbox .textboxBorder {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    height: 2px !important;
+    width: 100% !important;
+    background: #ff3506 !important;
+    transform: scaleX(0) !important;
+    transform-origin: 0 0 !important;
+    transition: all 0.15s ease !important;
+}
+
+.textbox input:hover {
+  background: rgba(34,50,84,0.03) !important;
+}
+.textbox input:not(:placeholder-shown) + span {
+  color: #5a667f !important;
+  transform: translateY(-26px) scale(0.75) !important;
+}
+.textbox input:focus {
+  background: none !important;
+  outline: none !important;
+  
+}
+.textbox input:focus + span {
+  color: #ff3506 !important;
+  transform: translateY(-26px) scale(0.75) !important;
+}
+.textbox input:focus + span + .textboxBorder {
+  transform: scaleX(1) !important;
+}
+
+.carousel-caption h3,p{
+text-shadow: 2px 2px black;
+ font-family: DMC;
+}
+
+.floatRight{
+	float:right !important;
+}
+
+.textRight{
+	text-align:right !important;
+}
+
+.signUpPanel{
+	display:block;
+	width:100%;
+}
+
+.signUpPanel span{
+	color:#3b5998;
+	font-size:1.5em;
+}
+
+.orPanel{
+
+}
+
+.orPanel { 
+	text-align:center; 
+	width:60%;
+	margin:auto;
+	border-top: 1px dashed #ccc;
+	line-height:0.1em; 
+} 
+.orPanel .orSpan { 
+	background:#fff; 
+	padding:0 10%; 
+}

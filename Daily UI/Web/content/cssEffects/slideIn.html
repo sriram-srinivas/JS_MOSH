@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+html,body{
+	width:100%;
+	height:100%;
+	text-align:center;
+	}
+div{
+	position:relative;
+	padding:0.5%;
+	width:9%;
+	height:50%;
+	display:inline-block;
+	-webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+	-webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+	animation-name: example;
+	transition: all .5s;
+	/*animation-iteration-count: infinite;/*This can be handy kacha mucha effect*/*/
+}
+div:hover{
+
+box-shadow:1px 10px 8px #888888;
+}
+.class1{
+background-color:red;
+animation-duration: 1s;
+}
+.class2{
+background-color:green;
+	animation-duration: 1.5s;
+}
+.class3{
+background-color:blue;
+	animation-duration: 2s;
+}
+.class4{
+background-color:yellow;
+	animation-duration: 2.5s;
+}
+.class5{
+background-color:orange;
+	animation-duration: 3s;
+}
+
+@-webkit-keyframes example {
+	from {opacity:.1;left:100%;}
+	to{opacity:.5;left:0%;}
+}
+
+@keyframes example {
+	 from {opacity:.1;left:100%;}
+	to{opacity:.5;left:0%;}
+}
+</style>
+</head>
+<body>
+<div class="class1">
+</div>
+<div class="class2">
+</div>
+<div class="class3">
+</div>
+<div class="class4">
+</div>
+<div class="class5">
+</div>
+</body>
+</html>
