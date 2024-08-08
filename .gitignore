@@ -2,3 +2,31 @@
 /Oops/node_modules
 node_modules
 package-lock.json
+
+#Ember
+/Ember/Mark2/node_modules
+
+# compiled output
+/Ember/Mark2/dist/
+/Ember/Mark2/tmp/
+
+# dependencies
+/Ember/Mark2/bower_components/
+/Ember/Mark2/node_modules/
+
+# misc
+/Ember/Mark2/.env*
+/Ember/Mark2/.pnp*
+/Ember/Mark2/.sass-cache
+/Ember/Mark2/.eslintcache
+/Ember/Mark2/connect.lock
+/Ember/Mark2/coverage/
+/Ember/Mark2/libpeerconnection.log
+/Ember/Mark2/npm-debug.log*
+/Ember/Mark2/testem.log
+/Ember/Mark2/yarn-error.log
+
+# ember-try
+/Ember/Mark2/.node_modules.ember-try/
+/Ember/Mark2/bower.json.ember-try
+/Ember/Mark2/package.json.ember-try
