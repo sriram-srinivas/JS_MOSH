@@ -1,0 +1,449 @@
+Ruby
+    It is fully object oriented programming language. Everything is an object in Ruby. Each and every code has their properties and actions. Here properties refer to variables and actions refer to methods
+
+Syntax comparison with JS / JAVA
+    console.log() -> puts() or puts "" #print statement
+    {a:1,b:2} -> {"a" => 1, "b" => 2} # object syntax
+    prompt() -> gets.chomp.to_i # get input from user
+    continue -> next # skip loop
+    new ClassName() -> ClassName.new() #object creation
+    closures -> blocks
+
+    Module Namespaces -> similar to Packages in java
+    Modules -> used to perform import/export of JS Modules
+    Mixins -> Multiple inheritance (Java) & Module import (JS)
+
+Comments
+    # -> single line comments
+    =begin -> multi line comments
+    .any comments
+    .goes
+    .here
+    =end
+
+Operators
+    Airthmetic operator -> all same as JS, ** is used for exponent
+    Bitwise operator -> & - AND, | - OR, << - Left shift, >> - Right Shift, ^ - XOR, ~ - Complement 
+    Logical operator -> &&, ||
+    Ternary operator -> condtion ? true : false
+    Assignment operator -> same as JS, %=, **= is also there
+    Comparison operator -> like in JS ==, !=, <, >, <=, >= 
+            <=> -> single operator that return -1 (less), 0 (equal), 1 (greater)
+                puts(1<=>1) # 0
+                puts(2<=>1) # 1
+                puts(1<=>2) # -
+            .eql? -> '===' of JS
+    Range operator
+        .. -> used to cread iterable puts((10..15).to_a) prints 10, 11, 12, 13, 14, 15
+        .. -> used to cread iterable puts((10...15).to_a) prints 10, 11, 12, 13, 14
+
+
+Variables
+    Local Variables
+        Starts with lowercase or _, block level scope, needs to be initialized before use else error is thrown
+    Class Variables
+        Starts with @@, Class scoped: (like singleton Variable) if changed in one object of class all objects get the value reflected, needs to be initialized before use else error is thrown
+    Instance Variables
+        Starts with @, Object scoped: can be accesed inside the functions of the Object it is created in, need not be initialized default value is 'nil'
+    Global Variables
+        Starts with $, Global scope, need not be initialized default value is 'nil', not good practice to use
+
+
+    Note: 
+        This means we can have same variable name 'test' for 4 variables like '_test, @@test, @test and $test' 
+        if we use @test & @@test outside a class, warning is thrown
+
+
+Data Type
+    Number
+    String
+    Symbol
+    Hash -> JS objects with different syntax
+    Array
+    Boolean
+
+Conditional Statements
+    IF
+        if _a >= 18
+            #code
+        elsif -a < 0 # not elseif, elsif
+            #code
+        else
+            #code
+        end
+
+    Case
+
+
+        case _variable
+        when "val1"
+            #code
+        when "val2"
+            #code
+        .
+        .
+        .
+        else
+            #code
+        end
+
+    FOR
+        for i in 1..5 do   
+            puts i   
+        end   #prints 1 to 5
+
+        _x = ["Blue", "Red", "Green", "Yellow", "White"]   
+        for i in _x do   
+            puts i   
+        end   #Print array element in loop
+
+    WHILE
+        Runs the loop until condition becomes false
+        _x = 5
+        while _x >= 0    
+            puts _x   
+            _x -=1   
+        end  # prints 5 to 1
+    
+    DO WHILE
+        loop do   
+            puts "Checking for answer"   
+            answer = gets.chomp   
+            if answer != '5'   
+                break   
+            end   
+        end
+    
+    UNTIL
+        Same as while but runs the loop until condition becomes true
+        i = 1   
+        until i == 10    
+            i += 1   
+        end  
+    
+    BREAK
+        'break' statement used inside loops to stop loop totally
+
+    NEXT
+        'next' statement used inside loops to skip current loop
+
+    REDO
+        'redo' statement used inside loops to repeat current loop
+
+    RETRY
+        'retry' statement used inside loops to repeat the whole loop iteration from the start.
+
+    
+Classes
+    As usaul blueprint of an object.
+    Each Ruby class is an instance of class Class. Classes in Ruby are first-class objects.
+    Ruby class always starts with the keyword class followed by the class name. Conventionally, for class name we use CamelCase. The class name should always start with a capital letter. Defining class is finished with end keyword.
+
+        class Novel   
+            attr_accessor :pages, :category  
+            
+            def initialize   
+                yield(self)   
+            end   
+        end
+
+    Getters and Setters
+        class Novel   
+            attr_accessor :pages, :category     # creates getters and setters for 'pages' & 'catergory'. Only then they can be used in objects to get & set values
+
+Objects
+    Object is the default root of all Ruby objects. 
+    Ruby objects inherit from 'BasicObject' (like protoyped Objects in JS) which allows creating alternate object hierarchies.
+    Object mixes in the 'Kernel module' which makes the built-in Kernel functions globally accessible.
+
+
+    Initializing ad Object
+
+        class Novel   
+            attr_accessor :pages, :category   
+            
+            def initialize   
+                yield(self)   
+            end   
+        end   
+
+        n1 = 1                              # dummy Obj
+        novel = Novel.new do |n|            # Novel.new passes a temp reference of to be created objec to 'n'
+        n.pages = 564   
+        n.category = "thriller"
+        puts novel == n                     # outputs 'false'. Since n is temp obecjt at this time
+        n1 = n                              # final object reference 'n' is set to 'n1'
+        end 
+        
+        puts n1 == novel                    # ouputs 'true'. as the final object of 'n' is same as 'novel'
+        puts "I am reading a #{novel.category} novel which has #{novel.pages} pages." 
+
+        #output
+            false           # for novel ==n
+            true            #for n1 == novel
+            I am reading a thriller novel which has 564 pages. 
+
+
+
+Methods / Functions
+    Ruby method is defined with the def keyword.
+
+    def methodName(param)
+        puts "Hello #{param}"
+    end  
+
+     A method is called by just writing its name. No need to invoke using (). 
+     Note: If def is not having params no need to put () at end of methdName in Method definition
+
+
+Ruby Blocks
+    Ruby code blocks are called closures in other programming languages
+    It consist of a group of codes which is always enclosed with braces or written between do..end
+    Braces have high precedence and do has low precedence.
+    To invoke a block, you need to have a function with the same name as the block
+
+    Multiline blocks
+        [10, 20, 30].each do |n|   
+            puts n   
+        end   
+    
+    Inline blocks
+        [10, 20, 30].each {|n| puts n}  
+
+    Both prints array elements
+
+    Scope & precedence
+        Blocks have scope and variables inside block cant be accesed outside as usual, and if duplicate variable name is used inner defined variables have higher precedence as well
+
+Yield
+    The yield statement is used to call a block within a method with a value. i.e for each 'yield' the block next to met is invoked.
+    While the execution of met method, when we reach at yield line, the code inside the block is executed. When block execution finishes, code for met method continues.
+
+    #code
+        def met   
+                puts "This is method"                   # executed 1st
+            yield                                       # executes block where 'met is called'; so "This is block" is printed
+                puts "You will be back to method"       # executed 3rd
+            yield                                       # "This is block" is printed
+            yield                                       # "This is block" is printed
+            yield                                       # "This is block" is printed  
+        end
+
+    met {puts "This is block"}
+
+    #output
+        This is method
+        This is block
+        You will be back to method
+        This is block
+        This is block
+        This is block   
+    
+    Passing parameters with yield statement
+
+        One or more than one parameter can be passed with the yield statement.
+    
+        #code
+            def met   
+                yield 1   
+                puts "This is method"   
+                yield 2   
+            end   
+            
+            met {|i| puts "This is block #{i}"}   
+
+        #output
+            This is block 1
+            This is method
+            This is block 2
+
+
+BEGIN and END block
+    Ruby BEGIN and END block is used to declare that file is being loaded and file has been loaded respectively.
+        
+    #code
+        puts "Load1"
+        BEGIN {   
+            puts "Start"   
+        }   
+        
+        END {   
+            puts "End"   
+        }   
+        puts "Load2"  
+
+    #output
+        Start
+        Load1
+        Load2
+        End
+
+
+Ampersand parameter (&varName)
+    The &varName is a way to pass a reference pointer of the block to a method.
+
+    #code
+        def met(&var)   
+            puts "This is method"   
+            var.call   
+        end   
+        met { puts "This is &varName example" }   
+
+    #output
+        This is method
+        This is &varName example
+
+    Any variable after & is reference to the block after 'met'. It is called useing '.call'. i.e  '.call == yield'
+
+
+Ruby Modules
+    Ruby module is a collection of class, methods or constants. Module name should start with a capital letter.
+
+    Modules basically serve two purposes:
+
+        They act as namespace. They prevent the name clashes.                   #Java Packages
+        They allow the mixin facility to share functionality between classes.   #JS mulitple module import
+
+    A module method may be instance method or module method.
+
+    Instance methods are methods in a class when module is included.
+
+    Module methods may be called without creating an encapsulating object while instance methods may not.
+
+    They are similar to classes as they hold a collection of methods, class definitions, constants and other modules. 
+    They are defined like classes. 
+    
+    Objects or subclasses can not be created using modules. There is no module hierarchy of inheritance.
+
+
+    Module Namespaces (Java Packages)
+
+        #file1.rb
+            module Library   
+                num_of_books = 300   
+                def Library.fiction(120)   
+                    # ..   
+                end   
+                def Library.horror(180)   
+                    # ..   
+                end   
+            end  
+
+
+        #file2.rb
+            module Novel   
+                total = 123   
+                read = 25   
+                def Novel.fiction(left)   
+                    # ...   
+                end   
+            end  
+
+        #file3.rb
+            require "Library"               # Module Imports
+            require "Novel"   
+            
+            x = Library.fiction(Library::num_of_books)   
+            y = Novel.fiction(Novel::total)  
+
+
+    Module Mixins
+        Mixins eliminate the need of multiple inheritance in Ruby
+        A module doesn't have instances because it is not a class. However, a module can be included within a class.
+
+        When you include a module within a class, the class will have access to the methods of the module.
+
+        //code
+            module Name   
+                def bella   
+                    #
+                end   
+                def ana   
+                    #    
+                end   
+            end   
+                
+            module Job   
+                def editor   
+                    #
+                end   
+                def writer   
+                    #
+                end   
+            end   
+                
+            class Combo   
+                include Name                # inherited Modules
+                include Job   
+               
+                def f   
+                    #
+                end   
+            end   
+                
+            final=Combo.new   
+            final.bella   
+            final.ana   
+            final.editor   
+            final.writer   
+            final.f 
+
+
+Strings
+    '' or "" accepted
+
+    puts '1'*3                                  # outputs '111'
+
+    msg = "This tutorial is from JavaTpoint."   
+  
+    puts msg["JavaTpoint"]                      # outputs JavaTpoint
+    puts msg["tutorial"]                        #  outputs tutorial  
+    puts msg[0]                                 #  outputs 'T'  
+    puts msg[0,2]                               #  outputs 'Th'    
+    puts msg[0..19]                             #  outputs 'This tutorial is fro'  
+    puts msg[0, msg.length]                     #  outputs 'This tutorial is from JavaTpoint.' 
+    puts msg[-3]                                #  outputs 'n'
+
+
+    puts "                                      # prints as is in multi line
+    A   
+    AB   
+    ABC   
+    ABCD"   
+    
+    puts %/                                     # Another syntax to print as is in multi line
+    A   
+    AB   
+    ABC   
+    ABCD/  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Kernel module??
