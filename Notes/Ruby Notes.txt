@@ -8,6 +8,8 @@ Syntax comparison with JS / JAVA
     continue -> next # skip loop
     new ClassName() -> ClassName.new() #object creation
     closures -> blocks
+    'Hello ${varName}' -> 'Hello #{varName}' # to do Sting literals 
+    undefined -> nil
 
     Module Namespaces -> similar to Packages in java
     Modules -> used to perform import/export of JS Modules
@@ -395,9 +397,10 @@ Strings
     puts '1'*3                                  # outputs '111'
 
     msg = "This tutorial is from JavaTpoint."   
-  
-    puts msg["JavaTpoint"]                      # outputs JavaTpoint
-    puts msg["tutorial"]                        #  outputs tutorial  
+    
+    puts msg["Hello"]                           #  outputs 'nill'
+    puts msg["JavaTpoint"]                      #  outputs 'JavaTpoint'
+    puts msg["tutorial"]                        #  outputs 'tutorial'  
     puts msg[0]                                 #  outputs 'T'  
     puts msg[0,2]                               #  outputs 'Th'    
     puts msg[0..19]                             #  outputs 'This tutorial is fro'  
@@ -417,17 +420,271 @@ Strings
     ABC   
     ABCD/  
 
+    String literals
+        'This is a #{varName}' 
+
+    Sting concat
+        "A"+"B"
+        "A" "B"
+        "A"<<"B"
+        "A".concat("B")
+
+    Immutable Stings
+        In most programming languages strings are immutable. It means that an existing string can't be modified, only a new string can be created out of them.
+        In Ruby, by default strings are not immutable. To make them immutable, freeze method can be used.
+
+        str = "Original string"   
+        str << " is modified "          #concat allowed
+        str.freeze   
+        str << "is again modified"      #concat not allowed, error is thrown
+  
+    String comparison
+
+        puts "abc" == "abc"             #true 
+        puts "as ab" == "ab ab"         #false  
+        puts "23" == "32"               #false  
+        
+        puts "ttt".eql? "ttt"           #true
+        puts "12".eql? "12"             #true
+        
+        String case insensitive comparison    
+            puts "Java".casecmp "Java"      #0 (true) 
+            puts "Java".casecmp "java"      #0 (true)
+            puts "Java".casecmp "ja"        #1 (false)
+
+
+Arrays
+    Can be created using [] or Array.new
+
+    Array.new(10)           #creates array of size 10
+
+    temp = Array.new(5)
+    puts temp.size, temp.length     #outputs 5,5
+
+    Easily populate array using Range operator
+            num = Array("1".."10")
+            puts num                            # prints array elements from 1 to 10
+
+            (1..10).to_a                        #creates array with values from 1 to 10
+            (1..10).to_a.reverse                #creates array with values from 10 to 1
+
+    Array Methods
+        .size                       #Returns Length of array
+        .length                     #Returns Length of array
+        Array.new(n)                #creates array, () needed only is size is to be mentioned 
+        [index]                     #returns element in that index, if out of bound 'nil' is returned
+        [index,length]              #eg[1,3], will return 3 elements starting from 1 index
+        [1..n]                      #returns all indexes ranging from [1...n]
+        .at(index)                  #returns element at the index
+        .fetch(index,default)       #returns element at the index, if index is out of bound, default is returned
+        .first                      #returns 1st element of array
+        .last                       #returns last element of array
+        .take(n)                    #returns 0 to n elements from array
+        .drop(n)                    #rerurn n+1 till end of array
+        .push(element)              #add element to array
+        <<                          #add element to array
+        unshift                     #adds new element to beginig of array
+        insert(position,element)    #adds element at given position
+        
+        pop                         #removes last element from array
+        shift                       #removes first element from array
+        delete(element)             #removes the element if available
+        uniq                        #remove duplicates              
 
 
 
+Hashes
+    Syntax
+        name = {"key1" => "value1", "key2" => "value2", "key3" => "value3"...}  
+
+    Hash Methods
+        hsh==other_hash								#Two hashes are equal if they contain same key and value pair.
+        hsh[key]									#Retrieve value from the respective key.
+        hsh[key] = value							#Associates new value to the given key.
+        assoc(obj)									#Compare obj in the hash.
+        clear										#Remove all key value pair from hash.
+        compare_by_identity							#Compare hash keys by their identity.
+        compare_by_identity?						#Return true if hash compare its keys by their identity.
+        default(key=nil)							#Return default value.
+        default = obj								#Sets the default value.
+        delete(key)									#Delete key value pair.
+        each										#Call block once for each key in hash.
+        empty?										#Return true if hash contains no key value pair.
+        eql>(other)									#Return true if hash and other both have same content
+        fetch(key[, default])						#Return value from hash for a given key.
+        flatten										#Return a new array that is a one-dimensional flattening of this hash.
+        has_key?(key)								#Return true if given key is present in hash.
+        has_value?(value)							#Return true if given value is present in hash for a key.
+        include?(key)								#Return true if given key is present in hash.
+        to_s/ inspect								#Return content of hash as string.
 
 
+Date & Time
+    Ruby date provides two classes, Date and DateTime.
+
+    To understand the concept of date, first we need to understand some terms.
+
+    *Calendar date: The calendar date is a particular day within a calendar month within a year.
+    *Ordinal date: The ordinal date is a particular day of a calendar year identified by its ordinal number.
+    *Week date: The week date is a day identified by calendar week and day numbers. The first calendar week of the year is the one which includes first Thursday of that year.
+    *Julian day number: The julian day number is in elapsed day since noon on January 1, 4713 BCE.
+    *Modified julian day number: The modified julian day number is in elapsed day since midnight on November 17, 1858 CE.
+    
+    The Date object is created with 
+    .new
+    .parse
+    .today
+    .jd
+    .strptime
+    
+    All date objects are immutable, hence they can't modify themselves
 
 
+    Date Methods
+        Date.new(2017,4,3)            
+        Date.jd(2451877)               
+        Date.ordinal(2017,3)         
+        Date.commercial(2017,5,6)     
+        Date.parse('2017-02-03')    
+        Date.strptime('03-02-2017', '%d-%m-%Y')                           
+        Time.new(2017,10,8).to_date   
 
 
+        d = Date.parse('4th Mar 2017')   
+                                    
+        d.year                        
+        d.mon                         
+        d.mday                        
+         d.wday                        
+        d += 1                        
+        d.strftime('%a %d %b %Y')    
 
 
+DateTime
+    Ruby DateTime is a subclass of Date. It easily handles date, hour, minute, second and offset.
+    The DateTime object created with 
+        DateTime.new
+        DateTime.ordinal
+        DateTime.parse
+        DateTime.jd
+        DateTime.commercial
+        DateTime.now
+
+    DateTime Methods
+        d = DateTime.parse('4th Mar 2017 02:37:05+05:40')   
+                       
+        d.hour                 
+        d.min                 
+        d.sec                  
+        d.offset               
+        d.zone
+        d.new_offset('+05:00')   
+
+Ranges               
+    (-5..-1).to_a, create rage from -5 to -1
+    incorrect values either result in error or no Range
+    '..' or '...' is used to create rages, check 'Range operator'
+
+    //code
+        range = 0..5   
+  
+        range.include?(3)   
+        range.min   
+        range.max   
+        range.reject {|i| i < 5 }   
+        range.each
+
+    
+    Range as conditions
+
+        budget = 50000   
+  
+        watch = case budget   
+            when 100..1000 then "Local"   
+            when 1000..10000 then "Titan"   
+            when 5000..30000 then "Fossil"   
+            when 30000..100000 then "Rolex"   
+            else "No stock"   
+        end   
+
+
+    Ranges as Intervals
+        Ranges can also be defined in terms of intervals. Intervals are represented by === case equality operator.
+
+        //Code
+            if (('a'..'z') === 'v')   
+                puts "v lies in the above range"   
+            end   
+            
+            if (('50'..'90') === 99)   
+                puts "z lies in the above range"   
+            end  
+
+
+Iterator
+
+    Each
+        (collection).each do |variable|  
+            code...  
+        end 
+
+        (1...5).each do |i|   
+            puts i   
+        end                         #print 1 to 4 as '...' is used  
+
+    TIMES
+        x.times do |variable|  
+            code...  
+        end   
+
+        5.times do |n|   
+            puts n   
+        end                         #prints 0 to 4
+
+
+    UPTO
+        1.upto(5) do |n|   
+            puts n   
+        end
+
+    STEP
+        (10..50).step(5) do |n|   
+            puts n   
+        end                     # 10, 15, 20
+
+
+    EACH_LINE
+        "All\nthe\nwords\nare\nprinted\nin\na\nnew\line.".each_line do |line|   
+            puts line   
+        end  
+
+
+File I/O
+    Ruby I/O is a way to interact with your system. Data is sent in the form of bytes/characters. IO class is the basis for all input and output in Ruby. It may be duplexed, hence may use more than one native operating system stream.
+
+    Modes
+        "r": read-only mode is the default mode starts at beginning of file.
+        "r+": read-write mode, starts at beginning of file.
+        "w": write-only mode, either creates a new file or truncates an existing file for writing.
+        "w+": read-write mode, either creates a new file or truncates an existing file for reading and writing.
+        "a": write-only mode, if file exists it will append the file othrwise a new file will be created for writing only.
+        "a+": read and write mode, if file exists it will append the file othrwise a new file will be created for writing and reading.
+
+
+    IO console
+        IO::console
+        IO#raw#raw!
+        IO#cooked
+        IO#cooked!
+        IO#getch
+        IO#echo=
+        IO#echo?
+        IO#noecho
+        IO#winsize
+        IO#winsize=
+        IO#iflush
+        IO#ioflush
+        IO#oflush
 
 
 
