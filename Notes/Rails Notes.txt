@@ -80,3 +80,93 @@ Ruby Folder structure
     README.md           -> It is a brief instruction manual for your application.
     Rakefile            -> It locates and loads tasks that can be run from the command line.
     config.ru           -> Rack configuration for Rack based servers used to start the application.
+
+
+Generating a Scaffold
+    Rails scaffolding quickly generates a set of CRUD operations for a resource. Let’s create a scaffold for a Post resource with title and body attributes:
+
+    rails generate scaffold Post title:string body:text
+
+    This command generates:
+
+        Model (post.rb)
+        Database migration (db/migrate)
+        Controller (posts_controller.rb)
+        Routes
+        JSON views
+
+    Run the migration to create the posts table in your database:
+        rails db:create
+        rails db:migrate    
+
+Active Record
+    Active record is used to implement ORM in rails.
+    Object-relational-mapping (ORM) is the mapping of relational database tables to object-oriented classes. 
+    This is used to remove the mismatch between your program's object view and database's relational data view
+
+    A perfect ORM hides the details of a database's relational data behind the object hierarchy. In Rails, ORM is implemented by Active Record which is one of the most important components of the Rails library.
+    
+    Active Record Classes and Objects
+        Each table in a database is generally represented by a class that extends Active Record base class. By extending Active Record base classes, model objects inherit a lot of functionalities.
+
+        While using Active Records, you don't have to set up any database connections. It manages all the database connections for an appication. It adds attributes to your class for each of the columns in the database.
+
+    Active Record naming conventions
+        Active Record uses the CoC (convention over configuration) principle. On following naming convention, you can take advantage of many dynamic features of Active Record without any configuration.
+    
+    Class Vs Database
+        Database table should be named in the plural form and in lowercase of your model classes. 
+            Eg:
+                        Class Name                                              DB Table Name
+                    Student                                                  students
+                    Person                                                   people
+                    Car                                                      cars
+                    Child                                                    children
+                    Datum                                                    data    
+
+        With the help of this convention, Rails will automatically find the corresponding table to your model class without any configuration code. 
+        Note: It even supports plural nouns such as 'people' as the plural of 'person'.
+        
+        To turn this off add below code in 'config/environment.rb'
+            ActiveRecord::Base.pluralize_table_names = false
+
+
+
+
+Rails MVC
+    Requests first come to the controller, controller finds an appropriate view and interacts with model which in turn interacts with database and send response to controller. Then controller gives the output to the view based on the response.
+
+    MVC flow
+        Input ----> Controller ----> Selects View ----> Interacts with Model ----> DB ----> Model ----> Controller ----> sends View ----> output
+
+
+    Model
+        The models are classes in Rails. They interact with database, store data, handles validation, transaction, etc
+        Handled by 'ActiveRecord' library
+        Ruby method names are automatically generated from database tables field names.
+
+    View
+        View represent data in a particular format in an application for the users. It handles HTML, CSS, JavaScript and XML in an application. They do what controller tells them.
+        Handled by 'ActionView' library. This library is an Embedded Ruby (Erb) based system which define presentation templates for data presentation.
+
+    Controller
+        Controller directs traffic to views and models. It query models for data from the database and display the desired result with the help of view in an application.
+        This subsystem is implemented in ActionController librapry. This library is a data broker sitting between ActiveRecord and ActionView.
+
+
+
+
+Rails Router
+    Router is a way to redirect incoming requests to controllers and actions
+
+    METHOD 'controller/:route' => 'controller#method'  
+
+    get 'roll/:id' => 'roll#branch'                     # In this example GET method if invoked for 'roll/12344' rails will point to 'branch' method of 'roll' controller
+    get 'roll/:id' to: 'roll/branch'                    # another syntax
+
+
+    rake routes                                 # run this in terminal to check how routes are mapped to controlers in a Rails application
+
+
+Scaffolding
+    Scaffolding is a quick way for auto generating a set of models, views and controllers for a new resource in a single operation.
