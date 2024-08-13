@@ -170,3 +170,17 @@ Rails Router
 
 Scaffolding
     Scaffolding is a quick way for auto generating a set of models, views and controllers for a new resource in a single operation.
+
+
+
+ERB
+    Embedded Ruby Code
+        <% %>   # executes the Ruby code
+        <%= %>  # executes the Ruby code and displays the result
+
+    #code
+        <ul>
+            <% @products.each do |p| %>
+                <li><%=  @p.name %></li>
+            <% end %>
+        </ul>
