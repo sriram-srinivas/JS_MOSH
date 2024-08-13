@@ -30,3 +30,29 @@ package-lock.json
 /Ember/Mark2/.node_modules.ember-try/
 /Ember/Mark2/bower.json.ember-try
 /Ember/Mark2/package.json.ember-try
+
+
+
+
+#Rails
+/Ruby/Mark1/.bundle
+
+# Ignore all logfiles and tempfiles.
+/Ruby/Mark1/log/*
+/Ruby/Mark1/tmp/*
+/Ruby/Mark1/!/log/.keep
+/Ruby/Mark1/!/tmp/.keep
+
+# Ignore uploaded files in development
+/Ruby/Mark1/storage/*
+/Ruby/Mark1/!/storage/.keep
+
+/Ruby/Mark1/node_modules
+/Ruby/Mark1/yarn-error.log
+
+/Ruby/Mark1/public/assets
+/Ruby/Mark1/.byebug_history
+
+# Ignore master key for decrypting credentials and more.
+/Ruby/Mark1/config/master.key
+
