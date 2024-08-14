@@ -30,4 +30,21 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  signin_to_fw: "Sign in to FreshIMS"
+  signin_des: "We'll send you a link for hassle-free-sign in via email"
+  signin_with_email: "Sign in with email"
+  email_placeholder: "name@example.com"
+  invalid_email: "Please enter valid Email"
+  check_email: "Check Your Email!"
+  we_have_emailed: "We've emailed a link to "
+  click_to_sign: "Click it to instantly sign in or sign up."
+  check_spam: "If you don't see the email in your inbox, check your spam folder"
+  resend_email: "Resend Email"
+  open_gmail: "Open Gmail"
+  open_outlook: "Open Outlook"
+  auth_email_welcome: "Welcome to FreshIMS"
+  auth_email_desc: "Tired of fumbling with passwords? We've got something special for you! Just click the button to signin."
+  auth_email_btn: "Access Account"
+  auth_email_ignore: "If you haven’t requested this email, there’s nothing to worry about, you can safely ignore it."
+  best_regards: "Best Regards,"
+  freshims: "FreshIMS"

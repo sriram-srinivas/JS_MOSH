@@ -31,7 +31,7 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
@@ -58,4 +58,29 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  #Mailer
+  config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.smtp_settings = {
+  #  address: 'sandbox.smtp.mailtrap.io',
+  #  port: 2525,
+  #  domain: 'sandbox.smtp.mailtrap.io',
+  #  user_name: '22714be3c55f49',
+  #  password: '2bfe16b159f030',
+  #  authentication: 'login',
+  #  enable_starttls_auto: true
+  #}
+
+  config.action_mailer.smtp_settings = {
+    address: 'smtp-relay.brevo.com',
+    port: 587,
+    domain: 'smtp-relay.brevo.com',
+    user_name: '7a56b1001@smtp-brevo.com',
+    password: 'T9tr0qz6dpXNmZs7',
+    authentication: 'login',
+    enable_starttls_auto: true
+  }
+
+config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
 end
