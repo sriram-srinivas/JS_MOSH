@@ -692,7 +692,10 @@ File I/O
 
 
 
+MD5
+    require 'digest'
 
+    puts Digest::MD5.hexdigest 'Maximum Effort'             # MD5 'Maximum Effort'
 
 
 
