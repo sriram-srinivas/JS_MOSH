@@ -1,4 +1,5 @@
 Source: https://www.javatpoint.com/ruby-on-rails-tutorial
+https://www.youtube.com/watch?v=fmyvWz5TUWg
 Rails
     Ruby on Rails is a server-side web application development framework written in Ruby language b
 
@@ -10,6 +11,7 @@ Rails Scripts
         WEBrick Web Server
         Generators
         Migrations
+        Associations
 
 Installation
     Prerequisites
@@ -41,9 +43,13 @@ Create Project
 
     rails server                            # start rails server
 
+    rails s                                 # start rails server
+
     rails server -p portNumber              # To start in specific port
 
     rails generate controller controllerName         # create controller
+
+    rails g controller controllerName HtmlFileName   # create controller, with html file as well
 
     rails destroy controller controllerName          # destroy controller use only if needed
     
@@ -130,9 +136,22 @@ Active Record
         
         To turn this off add below code in 'config/environment.rb'
             ActiveRecord::Base.pluralize_table_names = false
+    
+    Migrations
+        Creating Models in rails and migrating them properly to DB
+        https://guides.rubyonrails.org/v3.2/migrations.html
 
+        Migration to associate tables
+            rails g migration add_user_id_to_friends user_id:integer:index   # This command adds a cloumn user_id of type integer and indexes it, inside table friends (if table exists)
 
+            Note: 'add_user_id_to_friends' is migration name as well as convention
 
+    Associations
+        Associate between Db tables, To Associate
+        1. Go to db folder and respective models and set 'belongsto' & 'hasmany' association to each model class based on requirements. 
+        2. Use Migrations to create DB associations
+        Refer to link below
+        https://guides.rubyonrails.org/v3.2/association_basics.html
 
 Rails MVC
     Requests first come to the controller, controller finds an appropriate view and interacts with model which in turn interacts with database and send response to controller. Then controller gives the output to the view based on the response.
@@ -169,9 +188,15 @@ Rails Router
     rake routes                                 # run this in terminal to check how routes are mapped to controlers in a Rails application
 
 
+
+Partial render
+
+Templating
+
 Scaffolding
     Scaffolding is a quick way for auto generating a set of models, views and controllers for a new resource in a single operation.
 
+    After scaffold to edit https://stackoverflow.com/questions/57633104/is-there-a-way-to-add-fields-to-an-already-generated-scaffold-in-rails-migratio
 
 
 ERB
@@ -185,3 +210,14 @@ ERB
                 <li><%=  @p.name %></li>
             <% end %>
         </ul>
+
+
+Devise
+    Ruby gem to create full authentication
+
+Rails Controller
+    Controller layer
+    Convention oriented
+    
+    before_action:
+        
