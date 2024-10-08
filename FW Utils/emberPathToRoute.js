@@ -5,9 +5,9 @@ const pathToComponent = input => {
         return {input,output}
 }
 
-const input = "frontend/app/ui-components/module-tickets/list/template.hbs";
+const input = "frontend/app/components/module-tickets/list/template.hbs";
 
-console.log(pathToComponent(input))
+console.log(">pathToComponent",pathToComponent(input))
 
 const componentToPath = input => {
     const output = input.split("::").map(
@@ -18,4 +18,4 @@ const componentToPath = input => {
 
 // Example usage:
 const input1 = "Frontend::App::UiComponents::ModuleTickets::List";
-console.log(componentToPath(input1));
+console.log(">componentToPath",componentToPath(input1));
