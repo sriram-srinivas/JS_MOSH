@@ -1,0 +1,78 @@
+DSA - Data Structures & Algorithms
+
+Data Structures
+    Data Structures is the way of organising and storing data, in a manner so it can be accessed, queried or updated efficiently
+
+Algorithms
+    Process or set of steps to perform a task
+
+
+Concepts
+    Big O Notation
+        Any problem in coding can have multiple solution (eg. reverse a string can be done with loop, recursion, arrays etc). To measure which code is efficient we use Big o Notation.
+        A good code should run fast, require less memory, readable & provide correct output. In short a code should be readabe & scaable
+
+        Readabiltiy - How easy it is to read and understand existing code
+            Proper intendattions
+            Proper comments
+            DRY principle
+            Keeping code modular
+
+        Scalability - How efficient code is when it performs with large amount of data 
+            Efficiency of code os measured with 2 metrics Time complexity & Space complexity
+
+        Time Complexity
+            Amount of time code takes to run an algorithm. Faster the execution = Better Time Complexity
+
+        Space complexity
+            Amount of memory code needs to run an algorithm. Lesser memory needed = Better Space Complexity 
+
+        Note: Big O Notation is the performance parameter to define and rate the Code 
+
+        Why Big O?
+            When we can use time (seconds & minutes) to measure how quick program executes, why use Big O. Same program if run on different machines (PC vs server) varies 
+            based on RAM, CPU and other parallel activites. Same system might take different time to execute programs when run multiple times based on CPU usage at that time. 
+            so measuring performance of code in mins, secs is not correct. 
+
+            Big O measures number of operations or number of comparisons code performs to complete
+
+
+        Big O(n)
+            If the number of operations in code = number of inputs it is called Big O(n). Which means if we give an array of size 10, number of operations is 10 
+            likewise if we give an array of size 20, number of operations is 20.
+
+            Example:
+                const names =["Logan", "Ethan", "John", "Brian"]
+                const names2 = ["Tony", "Peter", "Bruce", "Steve", "Thor", "Strange"]
+
+                const isNamePresent = (arr) => {
+                    arr.forEach(name => {
+                        if(name === "Tony"){
+                            console.log(name, 'Available')
+                        }
+                    })
+                }
+                isNamePresent(names);
+                isNamePresent(names2);
+
+            In above program, number of operations will increas with lenth of params use pass (4 times for names & 6 times for names2)
+
+        Big O(1)
+            If number of operations is always 1 irrespective of input length it is Big O(1).
+
+            Example:
+                const names =["Logan", "Ethan", "John", "Brian"]
+                const names2 = ["Tony", "Peter", "Bruce", "Steve", "Thor", "Strange"]
+
+                const printFirstName = (arr) => {
+                    console.log('First Name is', arr[0]);
+                }
+                
+                printFirstName(names);
+                printFirstName(names2);
+            
+            In above program no matter length of arr code always completes in one operation
+
+        Counting Operation (Big O)
+
+        
